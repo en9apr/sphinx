@@ -28,16 +28,25 @@ Python Fundamentals:
 
    expressions
 
+Python Practice:
+----------------
+
+.. toctree::
+   :maxdepth: 1
+   :numbered: 4
+
+   quiz_1	      
+   examples_1
+   examples_2
+   project_1
+   quiz_2
+   examples_3
+   project_2
+   
+
 Helpful Links:
 --------------
 
 * `MathJax Syntax <http://en.wikipedia.org/wiki/Help:Displaying_a_formula>`_
-
-====================
- Indices and tables
-====================
-
-* :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`
 

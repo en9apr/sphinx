@@ -1,8 +1,3 @@
-
-# coding: utf-8
-
-# In[1]:
-
 # Compute number of feet corresponding to number of miles
 
 #####
@@ -15,8 +10,6 @@ print 13 * 5280
 #####
 # 68640
 
-
-# In[2]:
 
 # Compute the number of seconds in a given number of hours, minutes, and seconds.
 
@@ -32,8 +25,6 @@ print 7 * 60 * 60 + 21 * 60 + 37
 
 #26497
 
-
-# In[3]:
 
 # Compute the length of a rectangle's perimeter, given its width and height.
 
@@ -53,8 +44,6 @@ print 2 * w + 2 * h
 #22
 
 
-# In[4]:
-
 # Compute the area of a rectangle, given its width and height.
 
 ###################################################
@@ -72,8 +61,6 @@ print w * h
 
 #28
 
-
-# In[5]:
 
 # Compute the circumference of a circle, given the length of its radius.
 
@@ -93,8 +80,6 @@ print 2 * pi * r
 #50.24
 
 
-# In[6]:
-
 # Compute the area of a circle, given the length of its radius.
 
 ###################################################
@@ -112,8 +97,6 @@ print pi * r ** 2
 #200.96
 
 
-# In[7]:
-
 # Compute the future value of a given present value, annual rate, and number of years.
 
 ###################################################
@@ -128,8 +111,6 @@ print pi * r ** 2
 
 #1967.15135729
 
-
-# In[9]:
 
 # Compute a name tag, given the first and last name.
 
@@ -146,8 +127,6 @@ print "My name is " + "Joe" + " Warren"
 #My name is Joe Warren.
 
 
-# In[10]:
-
 # Compute the statement about a person's name and age, given the person's name and age.
 
 ###################################################
@@ -162,8 +141,6 @@ print "Joe Warren is " + str(52) + " years old"
 
 #Joe Warren is 52 years old.
 
-
-# In[12]:
 
 # Compute the distance between the points (x0, y0) and (x1, y1).
 
@@ -186,8 +163,6 @@ print ((x0 - x1)**2 + (y0 - y1)**2)**0.5
 
 #5.0
 
-
-# In[ ]:
 
 
 

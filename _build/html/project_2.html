@@ -1,0 +1,275 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>7. Rock, Paper, Scissors, Lizard, Spock Project &mdash; The Visual Room</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/print.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/theme_extras.js"></script>
+    <link rel="top" title="The Visual Room" href="index.html" />
+    <link rel="prev" title="6. Examples of Functions" href="examples_3.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>The Visual Room</span></a></h1>
+        <h2 class="heading"><span>7. Rock, Paper, Scissors, Lizard, Spock Project</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="examples_3.html">6. Examples of Functions</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="rock-paper-scissors-lizard-spock-project">
+<h1>7. Rock, Paper, Scissors, Lizard, Spock Project<a class="headerlink" href="#rock-paper-scissors-lizard-spock-project" title="Permalink to this headline">¶</a></h1>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Testing template for name_to_number()</span>
+
+<span class="c">###################################################</span>
+<span class="c"># Copy and paste your definition of name_to_number() here</span>
+
+<span class="k">def</span> <span class="nf">name_to_number</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">name</span> <span class="o">==</span> <span class="s">&quot;rock&quot;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">0</span>
+    <span class="k">elif</span><span class="p">(</span><span class="n">name</span> <span class="o">==</span> <span class="s">&quot;Spock&quot;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">elif</span><span class="p">(</span><span class="n">name</span> <span class="o">==</span> <span class="s">&quot;paper&quot;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">2</span>
+    <span class="k">elif</span><span class="p">(</span><span class="n">name</span> <span class="o">==</span> <span class="s">&quot;lizard&quot;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">3</span>
+    <span class="k">elif</span><span class="p">(</span><span class="n">name</span> <span class="o">==</span> <span class="s">&quot;scissors&quot;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="mi">4</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">pass</span>
+  <span class="c">#      print &quot;Sorry, your choice is not one of&quot;,</span>
+  <span class="c">#      print &quot;rock, paper, scissors, lizard or Spock&quot;</span>
+
+<span class="c">###################################################</span>
+<span class="c"># Test calls to name_to_number()</span>
+<span class="k">print</span> <span class="n">name_to_number</span><span class="p">(</span><span class="s">&quot;rock&quot;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">name_to_number</span><span class="p">(</span><span class="s">&quot;Spock&quot;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">name_to_number</span><span class="p">(</span><span class="s">&quot;paper&quot;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">name_to_number</span><span class="p">(</span><span class="s">&quot;lizard&quot;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">name_to_number</span><span class="p">(</span><span class="s">&quot;scissors&quot;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">name_to_number</span><span class="p">(</span><span class="s">&quot;scissfors&quot;</span><span class="p">)</span>
+
+
+<span class="c">###################################################</span>
+<span class="c"># Output to the console should have the form:</span>
+<span class="c"># 0</span>
+<span class="c"># 1</span>
+<span class="c"># 2</span>
+<span class="c"># 3</span>
+<span class="c"># 4</span>
+
+<span class="c"># Testing template for number_to_name()</span>
+
+<span class="c">###################################################</span>
+<span class="c"># Copy and paste your definition of number_to_name() here</span>
+
+<span class="k">def</span> <span class="nf">number_to_name</span><span class="p">(</span><span class="n">number</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">number</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&quot;rock&quot;</span>
+    <span class="k">elif</span><span class="p">(</span><span class="n">number</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&quot;Spock&quot;</span>
+    <span class="k">elif</span><span class="p">(</span><span class="n">number</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&quot;paper&quot;</span>
+    <span class="k">elif</span><span class="p">(</span><span class="n">number</span> <span class="o">==</span> <span class="mi">3</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&quot;lizard&quot;</span>
+    <span class="k">elif</span><span class="p">(</span><span class="n">number</span> <span class="o">==</span> <span class="mi">4</span><span class="p">):</span>
+        <span class="k">return</span> <span class="s">&quot;scissors&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">pass</span>
+
+<span class="c">###################################################</span>
+<span class="c"># Test calls to number_to_name()</span>
+<span class="k">print</span> <span class="n">number_to_name</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">number_to_name</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">number_to_name</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">number_to_name</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">number_to_name</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">number_to_name</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+
+
+<span class="c">###################################################</span>
+<span class="c"># Output to the console should have the form:</span>
+<span class="c"># rock</span>
+<span class="c"># Spock</span>
+<span class="c"># paper</span>
+<span class="c"># lizard</span>
+<span class="c"># scissors</span>
+
+
+
+<span class="k">def</span> <span class="nf">verb</span><span class="p">(</span><span class="n">winning_choice</span><span class="p">,</span> <span class="n">difference</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">winning_choice</span> <span class="o">==</span> <span class="s">&quot;Spock&quot;</span><span class="p">):</span>
+        <span class="k">if</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">difference</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s">&quot; smashes &quot;</span>
+        <span class="k">elif</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">difference</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s">&quot; vaporises &quot;</span>
+        
+    <span class="k">elif</span><span class="p">(</span><span class="n">winning_choice</span> <span class="o">==</span> <span class="s">&quot;lizard&quot;</span><span class="p">):</span>
+        <span class="k">if</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">difference</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s">&quot; poisons &quot;</span>
+        <span class="k">elif</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">difference</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s">&quot; eats &quot;</span>
+        
+    <span class="k">elif</span><span class="p">(</span><span class="n">winning_choice</span> <span class="o">==</span> <span class="s">&quot;paper&quot;</span><span class="p">):</span>
+        <span class="k">if</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">difference</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s">&quot; covers &quot;</span>
+        <span class="k">elif</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">difference</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s">&quot; disproves &quot;</span>  
+        
+    <span class="k">elif</span><span class="p">(</span><span class="n">winning_choice</span> <span class="o">==</span> <span class="s">&quot;rock&quot;</span><span class="p">):</span>
+        <span class="k">if</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">difference</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s">&quot; blunts &quot;</span>
+        <span class="k">elif</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">difference</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s">&quot; crushes &quot;</span>     
+    <span class="k">elif</span><span class="p">(</span><span class="n">winning_choice</span> <span class="o">==</span> <span class="s">&quot;scissors&quot;</span><span class="p">):</span>
+        <span class="k">if</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">difference</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s">&quot; decapitate &quot;</span>
+        <span class="k">elif</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">difference</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s">&quot; cuts &quot;</span>           
+
+
+<span class="c"># Testing template for rpsls(player_choice)</span>
+
+<span class="c">###################################################</span>
+
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="k">def</span> <span class="nf">rpsls</span><span class="p">(</span><span class="n">player_choice</span><span class="p">):</span>
+    <span class="k">print</span>
+    <span class="k">print</span> <span class="s">&quot;You have chosen &quot;</span> <span class="o">+</span> <span class="n">player_choice</span>
+    <span class="n">player_number</span> <span class="o">=</span> <span class="n">name_to_number</span><span class="p">(</span><span class="n">player_choice</span><span class="p">)</span>
+<span class="c">#    print &quot;This is number &quot; + str(player_number)</span>
+    
+    <span class="k">if</span><span class="p">(</span><span class="n">player_number</span> <span class="o">!=</span> <span class="bp">None</span><span class="p">):</span> 
+        <span class="n">computer_number</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randrange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">5</span><span class="p">)</span>
+        <span class="n">computer_choice</span> <span class="o">=</span> <span class="n">number_to_name</span><span class="p">(</span><span class="n">computer_number</span><span class="p">)</span>
+        <span class="k">print</span> <span class="s">&quot;I have chosen &quot;</span> <span class="o">+</span> <span class="n">computer_choice</span>
+<span class="c">#        print &quot;This is number &quot; + str(computer_number)</span>
+        <span class="n">difference</span> <span class="o">=</span> <span class="n">computer_number</span> <span class="o">-</span> <span class="n">player_number</span>
+        <span class="n">remainder</span> <span class="o">=</span> <span class="n">difference</span> <span class="o">%</span> <span class="mi">5</span>
+    
+        <span class="k">if</span><span class="p">(</span><span class="n">remainder</span> <span class="o">==</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="k">print</span> <span class="s">&quot;It&#39;s a draw!&quot;</span>
+        <span class="k">elif</span><span class="p">(</span><span class="n">remainder</span> <span class="o">==</span> <span class="mi">1</span> <span class="ow">or</span> <span class="n">remainder</span> <span class="o">==</span> <span class="mi">2</span><span class="p">):</span>
+            <span class="k">print</span> <span class="s">&quot;I win -&quot;</span><span class="p">,</span> 
+            <span class="n">winning_verb</span> <span class="o">=</span> <span class="n">verb</span><span class="p">(</span><span class="n">computer_choice</span><span class="p">,</span> <span class="n">difference</span><span class="p">)</span>
+            <span class="k">print</span> <span class="n">computer_choice</span> <span class="o">+</span> <span class="n">winning_verb</span> <span class="o">+</span> <span class="n">player_choice</span> <span class="o">+</span> <span class="s">&quot;!&quot;</span>
+        <span class="k">elif</span> <span class="p">(</span><span class="n">remainder</span> <span class="o">==</span> <span class="mi">3</span> <span class="ow">or</span> <span class="n">remainder</span> <span class="o">==</span> <span class="mi">4</span><span class="p">):</span>
+            <span class="k">print</span> <span class="s">&quot;You win -&quot;</span><span class="p">,</span>
+            <span class="n">winning_verb</span> <span class="o">=</span> <span class="n">verb</span><span class="p">(</span><span class="n">player_choice</span><span class="p">,</span> <span class="n">difference</span><span class="p">)</span>
+            <span class="k">print</span> <span class="n">player_choice</span> <span class="o">+</span> <span class="n">winning_verb</span> <span class="o">+</span> <span class="n">computer_choice</span> <span class="o">+</span> <span class="s">&quot;!&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;Sorry, your choice was not one of&quot;</span><span class="p">,</span>
+        <span class="k">print</span> <span class="s">&quot;rock, paper, scissors, lizard or Spock.&quot;</span>
+        <span class="k">print</span> <span class="s">&quot;Please try again.&quot;</span>
+<span class="c">###################################################</span>
+<span class="c"># Test calls to number_to_name()</span>
+<span class="n">rpsls</span><span class="p">(</span><span class="s">&quot;rock&quot;</span><span class="p">)</span>
+<span class="n">rpsls</span><span class="p">(</span><span class="s">&quot;Spock&quot;</span><span class="p">)</span>
+<span class="n">rpsls</span><span class="p">(</span><span class="s">&quot;paper&quot;</span><span class="p">)</span>
+<span class="n">rpsls</span><span class="p">(</span><span class="s">&quot;lizard&quot;</span><span class="p">)</span>
+<span class="n">rpsls</span><span class="p">(</span><span class="s">&quot;scissors&quot;</span><span class="p">)</span>
+<span class="n">rpsls</span><span class="p">(</span><span class="s">&quot;scissfors&quot;</span><span class="p">)</span>
+
+<span class="c">###################################################</span>
+<span class="c"># Output to the console should have the form:</span>
+
+<span class="c">#You have chosen rock</span>
+<span class="c">#I have chosen ???</span>
+<span class="c"># You/I win!</span>
+
+<span class="c">#You have chosen Spock</span>
+<span class="c">#I have chosen ???</span>
+<span class="c"># You/I win!</span>
+
+<span class="c">#You have chosen paper</span>
+<span class="c">#I have chosen ???</span>
+<span class="c"># You/I win!</span>
+
+<span class="c">#You have chosen lizard</span>
+<span class="c">#I have chosen ???</span>
+<span class="c"># You/I win!</span>
+
+<span class="c">#You have chosen scissors</span>
+<span class="c">#I have chosen ???</span>
+<span class="c"># You/I win!</span>
+
+
+<span class="k">print</span> <span class="mi">4</span> <span class="o">%</span> <span class="mi">5</span> <span class="c"># player wins = 4</span>
+
+<span class="k">print</span> <span class="mi">3</span> <span class="o">%</span> <span class="mi">5</span> <span class="c"># player wins = 3</span>
+<span class="c">#Spock smashes scissors</span>
+
+<span class="k">print</span> <span class="mi">2</span> <span class="o">%</span> <span class="mi">5</span> <span class="c"># computer wins = 2</span>
+<span class="c">#Lizard poisons Spock</span>
+
+<span class="k">print</span> <span class="mi">1</span> <span class="o">%</span> <span class="mi">5</span> <span class="c"># computer wins = 1</span>
+<span class="c">#Spock vaporises rock</span>
+<span class="c">#Paper disproves Spock</span>
+
+<span class="k">print</span> <span class="mi">0</span> <span class="o">%</span> <span class="mi">5</span> <span class="c">#draw</span>
+
+<span class="k">print</span> <span class="o">-</span><span class="mi">1</span> <span class="o">%</span> <span class="mi">5</span> <span class="c"># player wins = 4</span>
+<span class="c">#Spock vaporises rock</span>
+<span class="c">#Paper disproves Spock</span>
+
+<span class="k">print</span> <span class="o">-</span><span class="mi">2</span> <span class="o">%</span> <span class="mi">5</span> <span class="c"># player wins = 3</span>
+<span class="c">#Lizard poisons Spock</span>
+
+<span class="k">print</span> <span class="o">-</span><span class="mi">3</span> <span class="o">%</span> <span class="mi">5</span> <span class="c"># computer wins = 2 </span>
+<span class="c">#Spock smashes scissors</span>
+
+<span class="k">print</span> <span class="o">-</span><span class="mi">4</span> <span class="o">%</span> <span class="mi">5</span> <span class="c">#computer wins = 1 </span>
+</pre></div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="examples_3.html">6. Examples of Functions</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, Andrew Roberts.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

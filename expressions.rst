@@ -1,11 +1,20 @@
-===========
-Expressions
-===========
+======================
+Arithmetic Expressions
+======================
 
-Exercises for Expressions
-^^^^^^^^^^^^^^^^^^^^^^^^^
+Definition of Expressions
+=========================
+
+Number
+------
+
+Types of Number
+~~~~~~~~~~~~~~~
+
+* An integer number - ``int()`` 
+* A decimal number - ``float()``
+* Use ``type()`` to determine the type of number
+
 .. ipython::
 
-   In [1]: print type(3), type(3.142)
-
-.. literalinclude:: _ipython/expressions_examples.py
+   In [1]:  print type(3), type(3.142)
