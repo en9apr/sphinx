@@ -3,20 +3,25 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to The Visual Room's documentation!
-===========================================
+======================
+ Notes on Computation
+======================
 
-Contents:
+Computational Fluid Dynamics:
+-----------------------------
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
+   :numbered: 4
 
-	0_continuity
+   continuity
+   momentum
 
 
 
-Indices and tables
-==================
+====================
+ Indices and tables
+====================
 
 * :ref:`genindex`
 * :ref:`modindex`
