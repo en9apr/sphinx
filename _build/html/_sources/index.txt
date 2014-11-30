@@ -16,8 +16,22 @@ Computational Fluid Dynamics:
 
    continuity
    momentum
+   navier_stokes
+   cfd
 
+Python Fundamentals:
+--------------------
 
+.. toctree::
+   :maxdepth: 1
+   :numbered: 4
+
+   expressions
+
+Helpful Links:
+--------------
+
+* `MathJax Syntax <http://en.wikipedia.org/wiki/Help:Displaying_a_formula>`_
 
 ====================
  Indices and tables

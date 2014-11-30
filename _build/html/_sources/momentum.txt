@@ -8,12 +8,12 @@ Newton's Second Law - The net force equals the rate of change of momentum
 .. math:: \vec F = {D {\vec V M} \over D t}
 
 For a system:
-~~~~~~~~~~~~~
++++++++++++++
 
 .. math:: \vec F = {D \over D t} \int_{SYS} \vec V dM
 
 For a control volume (via Reynolds Transport Theorem):
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+++++++++++++++++++++++++++++++++++++++++++++++++++++++
     
 .. math:: \sum \vec F_{CV} = {\partial \over \partial t} \int_{CV} \vec V \rho dV + \int_{CS} \vec V \rho \vec V \cdot \hat n dA 
 
@@ -80,4 +80,4 @@ Euler's Equation in the x-direction:
 Vector Notation:
 ++++++++++++++++
 
-.. math:: \rho \vec g-  \nabla p = \rho \left ( {\partial \over \partial t} \vec V + \vec V (\nabla \cdot \vec V) \right )
+.. math:: \rho \vec g- \nabla p = \rho \left ( {\partial \vec V \over \partial t} + \vec V(\nabla \cdot \vec V) \right )
