@@ -19,30 +19,41 @@ Computational Fluid Dynamics:
    navier_stokes
    cfd
 
-Python Fundamentals:
---------------------
+High Performance Scientific Computing:
+--------------------------------------
 
 .. toctree::
    :maxdepth: 1
    :numbered: 4
-
-   expressions
-
-Python Practice:
-----------------
-
-.. toctree::
-   :maxdepth: 1
-   :numbered: 4
-
-   quiz_1	      
-   examples_1
-   examples_2
-   project_1
-   quiz_2
-   examples_3
-   project_2
    
+   hpsc
+
+Python:
+-------
+
+.. toctree::
+   :maxdepth: 1
+   :numbered: 4
+   
+   comments_strings_print_statements
+   arithmetic_expressions
+   logical_expressions
+   relational_expressions
+   assignment_sentences
+   conditional_sentences
+   variables_and_constants
+   functions
+   modules
+   practice   
+
+Programming Tips:
+-----------------
+
+.. toctree::
+   :maxdepth: 1
+   :numbered: 4
+
+   programming_tips_1
 
 Helpful Links:
 --------------

@@ -1,0 +1,141 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1. Programming Tips 1 &mdash; The Visual Room</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/print.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/theme_extras.js"></script>
+    <link rel="top" title="The Visual Room" href="index.html" />
+    <link rel="prev" title="10. Questions, Examples and Projects" href="practice.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>The Visual Room</span></a></h1>
+        <h2 class="heading"><span>1. Programming Tips 1</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="practice.html">10. Questions, Examples and Projects</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="programming-tips-1">
+<h1>1. Programming Tips 1<a class="headerlink" href="#programming-tips-1" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#docstrings" id="id1">Docstrings</a></li>
+<li><a class="reference internal" href="#comments" id="id2">Comments</a></li>
+<li><a class="reference internal" href="#example-of-docstring-and-comment" id="id3">Example of Docstring and Comment</a></li>
+<li><a class="reference internal" href="#example-of-always-giving-conditional-output" id="id4">Example of Always Giving Conditional Output</a></li>
+</ul>
+</div>
+<div class="section" id="docstrings">
+<h2><a class="toc-backref" href="#id1">1.1. Docstrings</a><a class="headerlink" href="#docstrings" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Docstring tells you what the program does (interface) not how it does it.</li>
+<li>Docstring is surrounded by three quotes, before and after</li>
+</ul>
+</div>
+<div class="section" id="comments">
+<h2><a class="toc-backref" href="#id2">1.2. Comments</a><a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Comments tells you how program does it (implementation)</li>
+<li>Comments are preceded by a hash tag</li>
+</ul>
+</div>
+<div class="section" id="example-of-docstring-and-comment">
+<h2><a class="toc-backref" href="#id3">1.3. Example of Docstring and Comment</a><a class="headerlink" href="#example-of-docstring-and-comment" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">math</span>
+
+<span class="k">def</span> <span class="nf">area_triangle_sss</span><span class="p">(</span><span class="n">side1</span><span class="p">,</span> <span class="n">side2</span><span class="p">,</span> <span class="n">side3</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns area of a triangle, given the lengths of its three sides</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="c"># Heron&#39;s formula</span>
+    <span class="n">semi_perim</span> <span class="o">=</span> <span class="p">(</span><span class="n">side1</span> <span class="o">+</span> <span class="n">side2</span> <span class="o">+</span> <span class="n">side3</span><span class="p">)</span> <span class="o">/</span> <span class="mf">2.0</span>
+    <span class="k">return</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">semi_perim</span> <span class="o">*</span>
+                     <span class="p">(</span><span class="n">semi_perim</span> <span class="o">-</span> <span class="n">side1</span><span class="p">)</span> <span class="o">*</span>
+                     <span class="p">(</span><span class="n">semi_perim</span> <span class="o">-</span> <span class="n">side2</span><span class="p">)</span> <span class="o">*</span>
+                     <span class="p">(</span><span class="n">semi_perim</span> <span class="o">-</span> <span class="n">side3</span><span class="p">))</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="example-of-always-giving-conditional-output">
+<h2><a class="toc-backref" href="#id4">1.4. Example of Always Giving Conditional Output</a><a class="headerlink" href="#example-of-always-giving-conditional-output" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Conditional Output should always be given if no critera are met, i.e. always use else</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">favourites</span><span class="p">(</span><span class="n">instructor</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the favourite thing of a given instructor</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">if</span> <span class="n">instructor</span> <span class="o">==</span> <span class="s">&quot;Joe&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s">&quot;games&quot;</span>
+    <span class="k">elif</span> <span class="n">instructor</span> <span class="o">==</span> <span class="s">&quot;Scott&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s">&quot;ties&quot;</span>
+    <span class="k">elif</span> <span class="n">instructor</span> <span class="o">==</span> <span class="s">&quot;John&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s">&quot;outdoors&quot;</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">print</span> <span class="s">&quot;Program saw invalid input:&quot;</span><span class="p">,</span> <span class="n">instructor</span>
+
+<span class="k">print</span> <span class="n">favourites</span><span class="p">(</span><span class="s">&quot;John&quot;</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">favourites</span><span class="p">(</span><span class="s">&quot;Jeannie&quot;</span><span class="p">)</span>  <span class="c">#Returns None is there is no value</span>
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>outdoors
+Program saw invalid input: Jeannie
+None
+</pre></div>
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="practice.html">10. Questions, Examples and Projects</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, Andrew Roberts.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
