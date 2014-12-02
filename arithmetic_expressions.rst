@@ -20,7 +20,7 @@ precedence. A simplified order is given below for common operators:
 
 1. Please (parentheses) ``()``
 
-2. Excuse (exponetiation) ``**`` (this includes roots e.g. :math:`\sqrt(2) = 2^-0.5`
+2. Excuse (exponetiation) ``**`` (this includes roots e.g. :math:`\sqrt 2  = 2^{-0.5}`
   
 3. My (muliplication) ``*`` Dear (division) ``/``
 

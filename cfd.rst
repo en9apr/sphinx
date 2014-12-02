@@ -12,7 +12,7 @@ Meaning of the Navier-Stokes Equations
 * The momentum equation in the Navier Stokes Equations is a 2nd order, non-linear partial differential equation:
 
   - :math:`\vec V (\nabla \cdot \vec V)` the convective term is the non-linear term
-  - :math:`\nu \nabla^2 \vec V` the viscous term is also is the 2nd order term
+  - :math:`\nu \nabla^2 \vec V` the viscous term is also the 2nd order term
 
 Assumptions:
 ````````````
