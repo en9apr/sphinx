@@ -90,7 +90,7 @@ Solve
   - Time dependent :math:`\Rightarrow` ODEs
   - Steady :math:`\Rightarrow` algebraic system of equations
 
-* To solve the equations we require:
+* To solve these equations we require:
 
   - Time integrators
   - Linear solvers
