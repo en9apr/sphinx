@@ -13,7 +13,13 @@ make html
 ls
 emacs @ ====={====}make html
 emacs cfd. make html
-=============================
+git add -A
+git commit -m @Minor corrections
+git push
+en9apr
+Ludwig&1951
+uwhpsc
+@=============================
  Derivation of the Continuity Equation
 =======================================
 

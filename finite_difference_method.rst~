@@ -1,0 +1,13 @@
+==============================
+ The Finite Difference Method
+==============================
+
+* Invented by Euler in 1768 for one dimension
+* Concept is to approximate derivatives using Taylor Expansions
+
+Define numerical grid
+ 
+.. image:: _images/grid.png
+
+
+.. image:: _images/derivatives.png

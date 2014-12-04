@@ -18,6 +18,7 @@ Computational Fluid Dynamics:
    momentum
    navier_stokes
    cfd
+   finite_difference_method
 
 High Performance Scientific Computing:
 --------------------------------------
