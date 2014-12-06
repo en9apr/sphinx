@@ -19,6 +19,7 @@ Computational Fluid Dynamics:
    navier_stokes
    cfd
    finite_difference_method
+   order_of_accuracy
 
 High Performance Scientific Computing:
 --------------------------------------
