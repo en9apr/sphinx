@@ -2,7 +2,7 @@
 Python Quick Reference
 ======================
 
-Python is a high-level open-source language. This page is written with the **use** of Python in mind, as opposed to computer science definitions.
+Python is a high-level open-source language. This page is written with the **use** of Python in mind, as opposed to computer science definitions. iPython is used here because it means the print statement can be avoided and the output is automatically computed by the iPython interpreter.
 
 Modules
 =======
@@ -74,7 +74,7 @@ Use `type` to determine the type of variable:
 
    In [3]: type(c)
 
-Division using integers is in three ways:
+Division using integers is in two ways:
 
 * Integer / Integer = Integer
 
