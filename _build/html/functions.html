@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>8. Functions &mdash; The Visual Room</title>
+    <title>9. Functions &mdash; The Visual Room</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -29,22 +29,22 @@
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/theme_extras.js"></script>
     <link rel="top" title="The Visual Room" href="index.html" />
-    <link rel="next" title="9. Modules" href="modules.html" />
-    <link rel="prev" title="7. Variables and Constants" href="variables_and_constants.html" /> 
+    <link rel="next" title="10. Modules" href="modules.html" />
+    <link rel="prev" title="8. Variables and Constants" href="variables_and_constants.html" /> 
   </head>
   <body>
       <div class="header"><h1 class="heading"><a href="index.html">
           <span>The Visual Room</span></a></h1>
-        <h2 class="heading"><span>8. Functions</span></h2>
+        <h2 class="heading"><span>9. Functions</span></h2>
       </div>
       <div class="topnav">
       
         <p>
-        «&#160;&#160;<a href="variables_and_constants.html">7. Variables and Constants</a>
+        «&#160;&#160;<a href="variables_and_constants.html">8. Variables and Constants</a>
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a href="modules.html">9. Modules</a>&#160;&#160;»
+        <a href="modules.html">10. Modules</a>&#160;&#160;»
         </p>
 
       </div>
@@ -52,7 +52,7 @@
         
         
   <div class="section" id="functions">
-<h1>8. Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h1>
+<h1>9. Functions<a class="headerlink" href="#functions" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
 <li><a class="reference internal" href="#purpose-of-functions" id="id1">Purpose of Functions</a></li>
@@ -67,7 +67,7 @@
 </ul>
 </div>
 <div class="section" id="purpose-of-functions">
-<h2><a class="toc-backref" href="#id1">8.1. Purpose of Functions</a><a class="headerlink" href="#purpose-of-functions" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id1">9.1. Purpose of Functions</a><a class="headerlink" href="#purpose-of-functions" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Functions are reusable pieces of programs that take an input and
 produce an output.</li>
@@ -75,7 +75,7 @@ produce an output.</li>
 </ul>
 </div>
 <div class="section" id="separation-of-interface-and-implementation">
-<h2><a class="toc-backref" href="#id2">8.2. Separation of Interface and Implementation</a><a class="headerlink" href="#separation-of-interface-and-implementation" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">9.2. Separation of Interface and Implementation</a><a class="headerlink" href="#separation-of-interface-and-implementation" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Everything within the box is the implementation</li>
 <li>Everything outside the box is the interface</li>
@@ -83,7 +83,7 @@ produce an output.</li>
 <img alt="_images/functions_classless_methods_7_0.png" src="_images/functions_classless_methods_7_0.png" />
 </div>
 <div class="section" id="comments">
-<h2><a class="toc-backref" href="#id3">8.3. Comments</a><a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id3">9.3. Comments</a><a class="headerlink" href="#comments" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Decide what the function must do and type this as a docstring</li>
 </ul>
@@ -101,7 +101,7 @@ in the body as an inline comment:</li>
 </div>
 </div>
 <div class="section" id="syntax-of-functions">
-<h2><a class="toc-backref" href="#id4">8.4. Syntax of Functions</a><a class="headerlink" href="#syntax-of-functions" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id4">9.4. Syntax of Functions</a><a class="headerlink" href="#syntax-of-functions" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>A function definition consists of a header and a body</li>
 <li>The header includes:<ul>
@@ -121,7 +121,7 @@ are not sure about implementation</li>
 </ul>
 </div>
 <div class="section" id="deciding-names">
-<h2><a class="toc-backref" href="#id5">8.5. Deciding Names</a><a class="headerlink" href="#deciding-names" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5">9.5. Deciding Names</a><a class="headerlink" href="#deciding-names" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>All valid variable names are valid function names - but a function
 should not have the same name as a variable name - and should not be
@@ -131,7 +131,7 @@ a built-in function</li>
 </ul>
 </div>
 <div class="section" id="unit-test-functions">
-<h2><a class="toc-backref" href="#id6">8.6. Unit Test Functions</a><a class="headerlink" href="#unit-test-functions" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id6">9.6. Unit Test Functions</a><a class="headerlink" href="#unit-test-functions" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>To evalaute a function call, replace the function&#8217;s parameters in the
 body of the function by their associated values in the call and
@@ -143,7 +143,7 @@ error, but assume that it&#8217;s a variable</li>
 </ul>
 </div>
 <div class="section" id="global-and-local-variables">
-<h2><a class="toc-backref" href="#id7">8.7. Global and Local Variables</a><a class="headerlink" href="#global-and-local-variables" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id7">9.7. Global and Local Variables</a><a class="headerlink" href="#global-and-local-variables" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Local Variables are only available inside a function</li>
 <li>Global Variables are available inside and outside a function</li>
@@ -152,7 +152,7 @@ must be declared at the start using: global variable_name</li>
 </ul>
 </div>
 <div class="section" id="built-in-functions">
-<h2><a class="toc-backref" href="#id8">8.8. Built-in functions</a><a class="headerlink" href="#built-in-functions" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id8">9.8. Built-in functions</a><a class="headerlink" href="#built-in-functions" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python"><div class="highlight"><pre><span class="k">print</span> <span class="nb">int</span><span class="p">(</span><span class="mf">3.0</span><span class="p">)</span> <span class="c">#convert to int</span>
 <span class="k">print</span> <span class="nb">float</span><span class="p">(</span><span class="s">&quot;3&quot;</span><span class="p">)</span> <span class="c">#convert to float</span>
 <span class="k">print</span> <span class="nb">str</span><span class="p">(</span><span class="mi">34</span><span class="p">)</span> <span class="c">#convert to string</span>
@@ -173,7 +173,7 @@ must be declared at the start using: global variable_name</li>
 </div>
 </div>
 <div class="section" id="examples-of-functions">
-<h2><a class="toc-backref" href="#id9">8.9. Examples of Functions</a><a class="headerlink" href="#examples-of-functions" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id9">9.9. Examples of Functions</a><a class="headerlink" href="#examples-of-functions" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python"><div class="highlight"><pre><span class="c"># Computes the area of a triangle</span>
 <span class="k">def</span> <span class="nf">triangle_area</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>    <span class="c"># header</span>
     <span class="n">area</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">base</span> <span class="o">*</span> <span class="n">height</span>             <span class="c"># body of function</span>
@@ -246,11 +246,11 @@ None
       <div class="bottomnav">
       
         <p>
-        «&#160;&#160;<a href="variables_and_constants.html">7. Variables and Constants</a>
+        «&#160;&#160;<a href="variables_and_constants.html">8. Variables and Constants</a>
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a href="modules.html">9. Modules</a>&#160;&#160;»
+        <a href="modules.html">10. Modules</a>&#160;&#160;»
         </p>
 
       </div>

@@ -1,0 +1,18 @@
+==============
+Python Basics
+==============
+
+Python is a high-level open-source language. This page is written with the **use** of Python in mind, as opposed to computer science definitions.
+
+Modules
+=======
+
+* Modules provide useful functions, such as array operations, plotting and much more.
+* We can import the module to allow access to the functions 
+
+.. testcode::
+   
+   # comments in python are denoted by the hash tag
+   import numpy as np # for matrix operations
+   import matplotlib.pyplot as plt # for 2D plotting
+

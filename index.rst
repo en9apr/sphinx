@@ -36,7 +36,8 @@ Python:
 .. toctree::
    :maxdepth: 1
    :numbered: 4
-   
+
+   python
    comments_strings_print_statements
    arithmetic_expressions
    logical_expressions
