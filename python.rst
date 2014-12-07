@@ -2,7 +2,14 @@
 Python Quick Reference
 ======================
 
-Python is a high-level open-source language. This page is written with the **use** of Python in mind, as opposed to computer science definitions. iPython is used here because it means the print statement can be avoided and the output is automatically computed by the iPython interpreter.
+Python is a high-level open-source language. This page is written with the **use** of Python in mind, as opposed to computer science definitions. iPython is used here because:
+
+* print statement can be avoided (you can just type the variable and get output)
+* the output is automatically computed by the iPython interpreter (no need for testoutput blocks)
+* it allows reference to variables beyond the code block
+
+.. contents::
+   :local:
 
 Modules
 =======
@@ -23,12 +30,12 @@ Definition
 
 * We have defined the following aliases:
 
-  =================== ======= ==================
+  =================== ======= =====================
   Module              Alias   Purpose
-  =================== ======= ==================
+  =================== ======= =====================
   numpy               np      Matrix Operations
   matplotlib.pyplot   plt     2D Plotting
-  =================== ======= ==================
+  =================== ======= =====================
 
 Use
 ---
@@ -114,3 +121,286 @@ Python doesn't use curely braces like C or the enddo like Fortran. The Python eq
 
    for i in range(5):
        print "Hi! \n"
+
+
+If you have nested for-loops, there is a further indent for the inner loop:
+
+.. ipython::
+
+   In [1]: for i in range(3):
+      ...:     for j in range(3):
+      ...:        print i, j
+      ...:     print "This statement is within the i-loop but not the j-loop"
+
+
+Arrays
+======
+
+Creation of Arrays
+------------------
+
+* NumPy arrays are created from lists
+
+.. ipython::
+
+   In [1]: myvals = np.array([1,2,3,4,5])
+   
+   In [2]: myvals
+
+   In [3]: type(myvals)
+
+* Or using linspace:
+
+.. ipython::
+
+   In [1]: myvals2 = np.linspace(1,5,5)
+
+   In [2]: myvals2
+
+   In [3]: type(myvals2)
+
+Index
+-----
+
+* Python uses a **zero-based index**:
+ 
+  - The first element is `0`
+  - The last element is `n-1` where `n` is the number of values in the array
+
+.. ipython::
+
+   In [1]: myvals[0], myvals[4] 
+
+Slicing Arrays
+--------------
+
+* The slice is inclusive on the front end and exclusive on the back, so the following command gives us the values of `myvals[0]`, `myvals[1]` and `myvals[2]`
+* `myvals[3]` is excluded
+
+.. ipython::
+
+   In [1]: myvals[0:3]
+
+
+Assigning Array Variables
+-------------------------
+
+One of the strange little quirks/features in Python that often confuses people comes up when assigning and comparing arrays of values.
+
+* Create 1D array called `a`:
+
+.. ipython::
+
+   In [1]: a = np.linspace(1,5,5)
+   
+   In [2]: a
+
+* Make a copy of `a` and call it `b` (this is actually assignment by reference)
+
+.. ipython::
+
+   In [1]: b = a
+
+   In [2]: b
+
+* Now try changing the values in `a`:
+
+.. ipython::
+
+   In [1]: a[2] = 17
+ 
+   In [2]: a
+
+* But this also changed `b`!
+
+.. ipython::
+
+   In [1]: b
+
+**Explanation:** Python created a pointer called `b` that tells us to route it to `a`. This is called **assignment by reference**.
+
+Copying Arrays
+--------------
+
+If you want to make a true copy of the array you have to tell Python to copy every element of `a` into a new array: 
+
+* Create an empty array `c` the same length as `a`:
+
+.. ipython::
+
+   In [1]: c = np.empty_like(a)
+ 
+   In [2]: len(c) # tells us how long c is
+
+  
+* Copy the values from `a` to `c`:
+
+.. ipython::
+
+   In [1]: c[:] = a[:]
+
+   In [2]: c
+
+* Now change a value in `a`, which doesn't change `c`:
+
+.. ipython::
+
+   In [1]: a[0] = 200
+
+   In [2]: a
+
+   In [3]: c
+
+Array Operations
+----------------
+
+Operators
+~~~~~~~~~
+
+Addition on a list is concatenation:
+
+.. ipython::
+
+   In [1]: a = [1,2,3]
+
+   In [2]: a + a
+
+Arithmetic operations on an array are element-wise:
+
+.. ipython::
+
+   In [1]: b = np.array([1,2,3])
+
+   In [2]: b + b # element-wise addition
+
+   In [3]: b - b # element-wise subtract
+
+   In [4]: b / b # element-wise divide
+
+   In [5]: b * b # element-wise muliply
+
+   In [6]: b ** 2 # element-wise power
+
+Functions
+~~~~~~~~~
+
+Functions on arrays are element-wise:
+
+.. ipython::
+
+   In [2]: np.sin(b) # element-wise sin - use np.sin for this operation not math.sin
+
+Dot Product
+~~~~~~~~~~~
+
+.. math::
+
+   \begin{bmatrix}
+   1 & 2 & 3 \\
+   4 & 5 & 6
+   \end{bmatrix} \cdot
+   \begin{bmatrix}
+   1 & 2 \\
+   3 & 4 \\
+   5 & 6
+   \end{bmatrix} = 
+   \begin{bmatrix}
+   22 & 28 \\
+   49 & 64
+   \end{bmatrix}
+
+Dot product on an array:
+
+.. ipython::
+
+   In [1]: horz = np.array([[1,2,3],[4,5,6]])
+
+   In [2]: vert = np.array([[1,2],[3,4],[5,6]])
+
+   In [3]: np.dot(horz,vert)
+
+Array Creation
+~~~~~~~~~~~~~~
+
+Lists can be created using `range`:
+
+.. ipython::
+
+   In [1]: range(5)
+
+Arrays can be created using `arange` or `linspace`:
+
+.. ipython::
+
+   In [2]: np.arange(5)
+
+   In [3]: np.linspace(0,4,5)
+
+List Comprehension
+~~~~~~~~~~~~~~~~~~
+
+* Imagine a list of three numbers:
+
+.. ipython::
+
+   In [1]: c = [1,2,3]
+
+* The list comprehension:
+
+.. ipython::
+
+   In [2]: cc = [x+y for x,y in zip(c,c)]
+
+   In [3]: cc
+
+* Where `zip` returns a list of tuples, i.e.
+
+.. ipython::
+
+   In [1]: zip(c,c)
+
+* The list comprehension is equivalent to:
+
+.. ipython::
+
+   In [1]: dd = []
+
+   In [2]: for x,y in zip(c,c):
+      ...:    dd.append(x+y)
+
+   In [3]: dd
+
+* Or:
+
+.. ipython::
+
+   In [1]: e = np.array(c)
+
+   In [2]: ee = e + e
+
+   In [3]: ee
+
+Which is Faster: Lists or Arrays?
+---------------------------------
+
+Create a list and time a list comprehension:
+
+.. ipython::
+  
+   In [1]: f = range(10000)
+
+   In [2]: timeit ff = [x + y for x,y in zip(f,f)]
+
+Create a NumPy array and time the addition:
+
+.. ipython::
+
+   In [1]: g = np.array(f)
+
+   In [2]: timeit gg = g + g
+
+   In [3]: timeit hh = np.add(g,g)
+
+* NumPy is over 100 times faster than Lists. 
+* Not much between `np.add` and `+`.
+*  Readability of `+` probably outweighs slight speed penalty.
