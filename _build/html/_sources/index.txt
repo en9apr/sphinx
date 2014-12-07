@@ -21,6 +21,15 @@ Computational Fluid Dynamics:
    finite_difference_method
    order_of_accuracy
 
+CFD Projects:
+-------------
+
+.. toctree::
+   :maxdepth: 1
+   :numbered: 4
+
+   linear_convection   
+
 High Performance Scientific Computing:
 --------------------------------------
 

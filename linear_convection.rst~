@@ -1,0 +1,59 @@
+====================
+1D Linear Convection
+====================
+
+.. contents::
+   :local:
+
+Understand the Problem
+======================
+
+* What is the final velocity profile for 1D linear convection when the initial conditions are a square wave and the boundary conditions are constant?
+
+* 1D linear convection is described as follows:
+
+.. math:: {\partial u \over \partial t} + c {\partial u \over \partial x} = 0
+
+Formulate the Problem
+=====================
+
+Input Data
+~~~~~~~~~~
+
+* nt = 50
+* nx = 20
+* tmax = 0.5
+* xmax = 2
+* c = 1
+
+====================== ========================= =========================
+x                      t                         u(x,t)
+====================== ========================= =========================
+:math:`0`              :math:`0 \le t \le 0.5`   :math:`1`
+:math:`0 < x \le 0.5`  :math:`0`                 :math:`1`
+:math:`0.5 < x \le 1`  :math:`0`                 :math:`2`
+:math:`1 < x < 2`      :math:`0`                 :math:`1`
+:math:`2`              :math:`0 \le t \le 0.5`   :math:`1`
+====================== ========================= =========================
+
+
+Output Data
+~~~~~~~~~~~
+
+====================== ============ ===========
+x                      t            u(x,t)
+====================== ============ ===========
+:math:`0 \le x \le 2`  :math:`0.5`  :math:`?`
+====================== ============ ===========
+
+
+Design Algorithm to Solve Problem
+=================================
+
+Implement Algorithm in Python
+=============================
+
+Run the Algorithm on the Data
+=============================
+
+
