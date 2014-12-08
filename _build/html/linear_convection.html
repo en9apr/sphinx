@@ -70,7 +70,11 @@
 </ul>
 </li>
 <li><a class="reference internal" href="#implement-algorithm-in-python" id="id11">Implement Algorithm in Python</a></li>
-<li><a class="reference internal" href="#run-the-algorithm-on-the-data" id="id12">Run the Algorithm on the Data</a></li>
+<li><a class="reference internal" href="#conclusions" id="id12">Conclusions</a><ul>
+<li><a class="reference internal" href="#why-does-the-wave-shift-to-the-right" id="id13">Why does the wave shift to the right?</a></li>
+<li><a class="reference internal" href="#why-isn-t-the-square-wave-maintained" id="id14">Why isn&#8217;t the square wave maintained?</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section" id="understand-the-problem">
@@ -103,9 +107,9 @@
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">x</th>
-<th class="head">n</th>
-<th class="head">t</th>
 <th class="head">i</th>
+<th class="head">t</th>
+<th class="head">n</th>
 <th class="head">u(x,t)</th>
 </tr>
 </thead>
@@ -203,28 +207,113 @@ xmax = 2
 dx = xmax/(nx-1)
 
 #Boundary Conditions
-for i between 0 and 20
-   u(0,i)=1
-   u(50,i)=1
+for n between 0 and 20
+   u(0,n)=1
+   u(50,n)=1
 
 #Initial Conditions
-for n between 1 and 49
-   if(12.5 &lt; n &lt; 25)
-       u(n,0) = 2
+for i between 1 and 49
+   if(12.5 &lt; i &lt; 25)
+       u(i,0) = 2
    else
-       u(n,0) = 1
+       u(i,0) = 1
 
 #Iteration
-for i between 1 and 20
-   u(n+1,i) = u(n,i)-c*(dt/dx)*(u(n,i)-u(n,i-1)</pre>
+for n between 1 and 20
+   u(i,n+1) = u(i,n)-c*(dt/dx)*(u(i,n)-u(i-1,n)</pre>
 </div>
 </div>
 </div>
 <div class="section" id="implement-algorithm-in-python">
 <h2><a class="toc-backref" href="#id11">1.4. Implement Algorithm in Python</a><a class="headerlink" href="#implement-algorithm-in-python" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Constants</span>
+<span class="n">nt</span> <span class="o">=</span> <span class="mi">151</span>
+<span class="n">tmax</span> <span class="o">=</span> <span class="mf">0.5</span>
+<span class="n">dt</span> <span class="o">=</span>  <span class="n">tmax</span><span class="o">/</span><span class="p">(</span><span class="n">nt</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">nx</span> <span class="o">=</span>  <span class="mi">51</span>
+<span class="n">xmax</span> <span class="o">=</span> <span class="mf">2.0</span>
+<span class="n">dx</span> <span class="o">=</span> <span class="n">xmax</span><span class="o">/</span><span class="p">(</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">c</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c"># Initialise data structures</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">nx</span><span class="p">,</span><span class="n">nt</span><span class="p">))</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">nx</span><span class="p">)</span>
+
+<span class="c"># Boundary conditions</span>
+<span class="n">u</span><span class="p">[</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c"># Initial conditions</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">i</span> <span class="o">&gt;</span> <span class="p">(</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">4</span> <span class="ow">and</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="p">(</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">):</span>
+        <span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c"># Loop</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">nt</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="p">]</span><span class="o">-</span><span class="n">c</span><span class="o">*</span><span class="p">(</span><span class="n">dt</span><span class="o">/</span><span class="n">dx</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="p">]</span><span class="o">-</span><span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">])</span>
+
+<span class="c"># X Loop</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">nx</span><span class="p">):</span>
+    <span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">i</span><span class="o">*</span><span class="n">dx</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">nt</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">[:,</span><span class="n">i</span><span class="p">],</span><span class="s">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;x (m)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;u (m/s)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">2.2</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;c=1m/s&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
 </div>
-<div class="section" id="run-the-algorithm-on-the-data">
-<h2><a class="toc-backref" href="#id12">1.5. Run the Algorithm on the Data</a><a class="headerlink" href="#run-the-algorithm-on-the-data" title="Permalink to this headline">¶</a></h2>
+<p>(<a class="reference external" href=".//linear_convection-1.py">Source code</a>, <a class="reference external" href=".//linear_convection-1_00_00.png">png</a>, <a class="reference external" href=".//linear_convection-1_00_00.hires.png">hires.png</a>, <a class="reference external" href=".//linear_convection-1_00_00.pdf">pdf</a>)</p>
+<div class="figure">
+<img alt="_images/linear_convection-1_00_00.png" src="_images/linear_convection-1_00_00.png" />
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># Loop</span>
+<span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">nt</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">nx</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="p">]</span><span class="o">-</span><span class="mf">0.5</span><span class="o">*</span><span class="p">(</span><span class="n">dt</span><span class="o">/</span><span class="n">dx</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="p">,</span><span class="n">n</span><span class="p">]</span><span class="o">-</span><span class="n">u</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">])</span>
+
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">nt</span><span class="p">,</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">u</span><span class="p">[:,</span><span class="n">i</span><span class="p">],</span><span class="s">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">&#39;x (m)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">&#39;u (m/s)&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s">&#39;c=0.5m/s&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span><span class="mf">2.2</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>(<a class="reference external" href=".//linear_convection-1_01_00.png">png</a>, <a class="reference external" href=".//linear_convection-1_01_00.hires.png">hires.png</a>, <a class="reference external" href=".//linear_convection-1_01_00.pdf">pdf</a>)</p>
+<div class="figure">
+<img alt="_images/linear_convection-1_01_00.png" src="_images/linear_convection-1_01_00.png" />
+</div>
+</div>
+<div class="section" id="conclusions">
+<h2><a class="toc-backref" href="#id12">1.5. Conclusions</a><a class="headerlink" href="#conclusions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="why-does-the-wave-shift-to-the-right">
+<h3><a class="toc-backref" href="#id13">1.5.1. Why does the wave shift to the right?</a><a class="headerlink" href="#why-does-the-wave-shift-to-the-right" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>The square wave is being convected by the constant linear wave speed <cite>c</cite></li>
+<li>In other words the stronger the convection, the greater the convective term is</li>
+<li>Hence the transient term must be greater to maintain the condition of zero net acceleration acting on the fluid</li>
+<li>This causes the temporal gradient to be much steeper, hence the shift to the right</li>
+<li>For <span class="math">\(c &gt; 0\)</span> profiles shift to the right by <span class="math">\(c \Delta t\)</span></li>
+</ul>
+</div>
+<div class="section" id="why-isn-t-the-square-wave-maintained">
+<h3><a class="toc-backref" href="#id14">1.5.2. Why isn&#8217;t the square wave maintained?</a><a class="headerlink" href="#why-isn-t-the-square-wave-maintained" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>The first order backward differencing scheme in space creates false diffusion.</li>
+<li>If the spatial step is reduced, the error reduces.</li>
+</ul>
+</div>
 </div>
 </div>
 
