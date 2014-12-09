@@ -1,6 +1,6 @@
-def convection(nt, nx, tmax, xmax, c):
+def non_linear_convection(nt, nx, tmax, xmax):
    """
-   Returns the velocity field and distance for 1D linear convection
+   Returns the velocity field and distance for 1D non-linear convection
    """
    # Increments
    dt = tmax/(nt-1)
@@ -24,7 +24,7 @@ def convection(nt, nx, tmax, xmax, c):
    # Loop
    for n in range(0,nt-1):
       for i in range(1,nx-1):
-         u[i,n+1] = u[i,n]-c*(dt/dx)*(u[i,n]-u[i-1,n])
+         u[i,n+1] = u[i,n]-u[i,n]*(dt/dx)*(u[i,n]-u[i-1,n])
 
    # X Loop
    for i in range(0,nx):
@@ -32,23 +32,27 @@ def convection(nt, nx, tmax, xmax, c):
 
    return u, x
 
-def plot_convection(u,x,nt,title):
+def plot_convection(u,x,nt,title,every):
    """
    Plots the 1D velocity field
    """
 
    import matplotlib.pyplot as plt
+   import matplotlib.cm as cm
    plt.figure()
-   for i in range(0,nt,10):
-      plt.plot(x,u[:,i],'r')
+   colour=iter(cm.rainbow(np.linspace(0,15,nt)))
+
+   for i in range(0,nt,every):
+      c=next(colour)
+      plt.plot(x,u[:,i],c=c)
       plt.xlabel('x (m)')
       plt.ylabel('u (m/s)')
       plt.ylim([0,2.2])
       plt.title(title)
       plt.show()
 
-u,x = convection(151, 51, 0.5, 2.0, 0.5)
-plot_convection(u,x,151,'Figure 1: c=0.5m/s, nt=151, nx=51')
+u,x = non_linear_convection(151, 151, 0.5, 2.0)
+plot_convection(u,x,151,'Figure 1: tmax=0.5s, nt=151, nx=151', 10)
 
-u,x = convection(151, 1001, 0.5, 2.0, 0.5)
-plot_convection(u,x,151,'Figure 2: c=0.5m/s, nt=151, nx=1001')
+u,x = non_linear_convection(151, 151, 1.0, 2.0)
+plot_convection(u,x,151,'Figure 2: tmax=1s, nt=151, nx=151', 10)

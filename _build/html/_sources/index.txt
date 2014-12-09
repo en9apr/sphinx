@@ -29,6 +29,7 @@ CFD Projects:
    :numbered: 4
 
    linear_convection   
+   nonlinear_convection
 
 High Performance Scientific Computing:
 --------------------------------------

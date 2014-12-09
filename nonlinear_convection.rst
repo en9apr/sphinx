@@ -1,6 +1,6 @@
-====================
-1D Linear Convection
-====================
+====================================================
+1D Non-Linear Convection or Invisid Burgers Equation
+====================================================
 
 .. contents::
    :local:
@@ -8,11 +8,13 @@
 Understand the Problem
 ======================
 
-* What is the final velocity profile for 1D linear convection when the initial conditions are a square wave and the boundary conditions are constant?
+* What is the final velocity profile for 1D **non-linear convection** when the initial conditions are a square wave and the boundary conditions are constant?
 
-* 1D linear convection is described as follows:
+* 1D non-linear convection is described as follows:
 
-.. math:: {\partial u \over \partial t} + c {\partial u \over \partial x} = 0
+.. math:: {\partial u \over \partial t} + u {\partial u \over \partial x} = 0
+
+* This equation can generate discontinuous solutions from smooth initial conditions (similar to shock creation)
 
 Formulate the Problem
 =====================
@@ -67,14 +69,14 @@ Discrete equation
 
 .. math::
 
-   {{u_i^{n+1} - u_i^n} \over {\Delta t}} + c {{u_i^n - u_{i-1}^n} \over \Delta x}=0 
+   {{u_i^{n+1} - u_i^n} \over {\Delta t}} + u_i^n \left( {{u_i^n - u_{i-1}^n} \over \Delta x} \right)=0 
 
 Transpose
 ~~~~~~~~~
 
 .. math::
 
-   u_i^{n+1} = u_i^n - c{\Delta t \over \Delta x}(u_i^n - u_{i-1}^n)
+   u_i^{n+1} = u_i^n - u_i^n {\Delta t \over \Delta x}(u_i^n - u_{i-1}^n)
    
 Pseudo-code
 ~~~~~~~~~~~
@@ -90,20 +92,21 @@ Pseudo-code
    dx = xmax/(nx-1)
 
    #Boundary Conditions
-   for n between 0 and 20
+   for n between 0 and 20 (for all time)
       u(0,n)=1
       u(50,n)=1 
    
    #Initial Conditions
-   for i between 1 and 49
+   for i between 1 and 49 (for spatial points between 0 and 50)
       if(12.5 < i < 25)
           u(i,0) = 2
       else
           u(i,0) = 1
    
    #Iteration
-   for n between 1 and 20
-      u(i,n+1) = u(i,n)-c*(dt/dx)*(u(i,n)-u(i-1,n)
+   for n between 1 and 20 (for all time except ics)
+      for i between 1 and 49 (for all space except bcs) 
+          u(i,n+1) = u(i,n)-u(i,n)*(dt/dx)*(u(i,n)-u(i-1,n)
    
 
 Implement Algorithm in Python
@@ -112,9 +115,9 @@ Implement Algorithm in Python
 .. plot::
    :include-source:
 
-   def convection(nt, nx, tmax, xmax, c):
+   def non_linear_convection(nt, nx, tmax, xmax):
       """
-      Returns the velocity field and distance for 1D linear convection
+      Returns the velocity field and distance for 1D non-linear convection
       """
       # Increments
       dt = tmax/(nt-1)
@@ -138,7 +141,7 @@ Implement Algorithm in Python
       # Loop
       for n in range(0,nt-1):
          for i in range(1,nx-1):
-            u[i,n+1] = u[i,n]-c*(dt/dx)*(u[i,n]-u[i-1,n])
+            u[i,n+1] = u[i,n]-u[i,n]*(dt/dx)*(u[i,n]-u[i-1,n])
 
       # X Loop
       for i in range(0,nx):
@@ -146,26 +149,30 @@ Implement Algorithm in Python
 
       return u, x
 
-   def plot_convection(u,x,nt,title):
+   def plot_convection(u,x,nt,title,every):
       """
       Plots the 1D velocity field
       """
 
       import matplotlib.pyplot as plt
+      import matplotlib.cm as cm
       plt.figure()
-      for i in range(0,nt,10):
-         plt.plot(x,u[:,i],'r')
+      colour=iter(cm.rainbow(np.linspace(0,15,nt)))
+
+      for i in range(0,nt,every):
+         c=next(colour)
+         plt.plot(x,u[:,i],c=c)
          plt.xlabel('x (m)')
          plt.ylabel('u (m/s)')
          plt.ylim([0,2.2])
          plt.title(title)
          plt.show()
 
-   u,x = convection(151, 51, 0.5, 2.0, 0.5)
-   plot_convection(u,x,151,'Figure 1: c=0.5m/s, nt=151, nx=51')
+   u,x = non_linear_convection(151, 151, 0.5, 2.0)
+   plot_convection(u,x,151,'Figure 1: tmax=0.5s, nt=151, nx=151', 10)
 
-   u,x = convection(151, 1001, 0.5, 2.0, 0.5)
-   plot_convection(u,x,151,'Figure 2: c=0.5m/s, nt=151, nx=1001')
+   u,x = non_linear_convection(151, 151, 1.0, 2.0)
+   plot_convection(u,x,151,'Figure 2: tmax=1s, nt=151, nx=151', 10)
 
 
 Conclusions
@@ -175,12 +182,12 @@ Why isn't the square wave maintained?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 * The first order backward differencing scheme in space creates false diffusion.
-* If the spatial step is reduced, the error reduces - compare Figure 1 and Figure 2
+* If tmax is increased shocks can occur - these are numerical errors - see Figure 2
 
 Why does the wave shift to the right?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* The square wave is being convected by the constant linear wave speed `c`
-* For :math:`c > 0` profiles shift to the right by :math:`c \Delta t` - see Figure 2 
+* The square wave is being convected non-linearly
+* The amount of convection is greatest where u is greatest - see Figure 1
 
 
