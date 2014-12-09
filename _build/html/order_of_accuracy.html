@@ -92,8 +92,26 @@
 <div class="math">
 \[\left . {\partial u \over \partial x} \right \vert_i = {(u_{i+1} - u_{i-1}) \over 2 \Delta x} - {\Delta x^2 \over 6} \left . {\partial^3 u \over \partial x^3} \right \vert_i - \cdots - h.o.t\]</div>
 </div>
+<div class="section" id="difference-formula-for-second-derivative">
+<h3>6.1.3. Difference Formula for Second Derivative<a class="headerlink" href="#difference-formula-for-second-derivative" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>FD:</li>
+</ul>
+<div class="math">
+\[u_{i+1} = u_i + \Delta x \left . {\partial u \over \partial x} \right \vert_i + {\Delta x^2 \over 2} \left . {\partial^2 u \over \partial x^2} \right \vert_i + {\Delta x^3 \over 6} \left . {\partial^3 u \over \partial x^3} \right \vert_i + \cdots + h.o.t\]</div>
+<ul class="simple">
+<li>BD:</li>
+</ul>
+<div class="math">
+\[u_{i-1} = u_i - \Delta x \left . {\partial u \over \partial x} \right \vert_i + {\Delta x^2 \over 2} \left . {\partial^2 u \over \partial x^2} \right \vert_i - {\Delta x^3 \over 6} \left . {\partial^3 u \over \partial x^3} \right \vert_i + \cdots + h.o.t\]</div>
+<ul class="simple">
+<li>CD - Add FD &amp; BD:</li>
+</ul>
+<div class="math">
+\[\left . {\partial^2 u \over \partial x^2} \right \vert_i = {(u_{i+1}-2u_i + u_{i-1}) \over  \Delta x^2} - O(\Delta x^2)\]</div>
+</div>
 <div class="section" id="meaning-of-the-accuracy">
-<h3>6.1.3. Meaning of the Accuracy<a class="headerlink" href="#meaning-of-the-accuracy" title="Permalink to this headline">¶</a></h3>
+<h3>6.1.4. Meaning of the Accuracy<a class="headerlink" href="#meaning-of-the-accuracy" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>Note: 1D domain (0,1) with 11 points (10 intervals) so <span class="math">\(\Delta x = 0.1\)</span></li>
 </ul>

@@ -36,6 +36,21 @@ Difference formulas for first derivatives
 
 .. math:: \left . {\partial u \over \partial x} \right \vert_i = {(u_{i+1} - u_{i-1}) \over 2 \Delta x} - {\Delta x^2 \over 6} \left . {\partial^3 u \over \partial x^3} \right \vert_i - \cdots - h.o.t
 
+Difference Formula for Second Derivative
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* FD:
+
+.. math:: u_{i+1} = u_i + \Delta x \left . {\partial u \over \partial x} \right \vert_i + {\Delta x^2 \over 2} \left . {\partial^2 u \over \partial x^2} \right \vert_i + {\Delta x^3 \over 6} \left . {\partial^3 u \over \partial x^3} \right \vert_i + \cdots + h.o.t
+
+* BD:
+
+.. math:: u_{i-1} = u_i - \Delta x \left . {\partial u \over \partial x} \right \vert_i + {\Delta x^2 \over 2} \left . {\partial^2 u \over \partial x^2} \right \vert_i - {\Delta x^3 \over 6} \left . {\partial^3 u \over \partial x^3} \right \vert_i + \cdots + h.o.t
+
+* CD - Add FD & BD:
+
+.. math:: \left . {\partial^2 u \over \partial x^2} \right \vert_i = {(u_{i+1}-2u_i + u_{i-1}) \over  \Delta x^2} - O(\Delta x^2)
+
 Meaning of the Accuracy
 ~~~~~~~~~~~~~~~~~~~~~~~
 

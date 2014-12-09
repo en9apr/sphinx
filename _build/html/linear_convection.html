@@ -29,7 +29,7 @@
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/theme_extras.js"></script>
     <link rel="top" title="The Visual Room" href="index.html" />
-    <link rel="next" title="1. Workspaces and Projects" href="hpsc.html" />
+    <link rel="next" title="2. 1D Non-Linear Convection: the Inviscid Burgers’ Equation" href="non_linear_convection.html" />
     <link rel="prev" title="6. Order of Accuracy, Midpoint Scheme and Model Equations" href="order_of_accuracy.html" /> 
   </head>
   <body>
@@ -44,7 +44,7 @@
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a href="hpsc.html">1. Workspaces and Projects</a>&#160;&#160;»
+        <a href="non_linear_convection.html">2. 1D Non-Linear Convection: the Inviscid Burgers&#8217; Equation</a>&#160;&#160;»
         </p>
 
       </div>
@@ -73,6 +73,7 @@
 <li><a class="reference internal" href="#conclusions" id="id12">Conclusions</a><ul>
 <li><a class="reference internal" href="#why-isn-t-the-square-wave-maintained" id="id13">Why isn&#8217;t the square wave maintained?</a></li>
 <li><a class="reference internal" href="#why-does-the-wave-shift-to-the-right" id="id14">Why does the wave shift to the right?</a></li>
+<li><a class="reference internal" href="#what-happens-at-the-wall" id="id15">What happens at the wall?</a></li>
 </ul>
 </li>
 </ul>
@@ -278,10 +279,13 @@ for n between 1 and 20
 </div>
 <p>(<a class="reference external" href=".//linear_convection-1.py">Source code</a>)</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">u</span><span class="p">,</span><span class="n">x</span> <span class="o">=</span> <span class="n">convection</span><span class="p">(</span><span class="mi">151</span><span class="p">,</span> <span class="mi">51</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
-<span class="n">plot_convection</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="mi">151</span><span class="p">,</span><span class="s">&#39;Figure 1: c=0.5m/s, nt=151, nx=51&#39;</span><span class="p">)</span>
+<span class="n">plot_convection</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="mi">151</span><span class="p">,</span><span class="s">&#39;Figure 1: c=0.5m/s, nt=151, nx=51, tmax=0.5s&#39;</span><span class="p">)</span>
 
 <span class="n">u</span><span class="p">,</span><span class="n">x</span> <span class="o">=</span> <span class="n">convection</span><span class="p">(</span><span class="mi">151</span><span class="p">,</span> <span class="mi">1001</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
-<span class="n">plot_convection</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="mi">151</span><span class="p">,</span><span class="s">&#39;Figure 2: c=0.5m/s, nt=151, nx=1001&#39;</span><span class="p">)</span>
+<span class="n">plot_convection</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="mi">151</span><span class="p">,</span><span class="s">&#39;Figure 2: c=0.5m/s, nt=151, nx=1001, tmax=0.5s&#39;</span><span class="p">)</span>
+
+<span class="n">u</span><span class="p">,</span><span class="n">x</span> <span class="o">=</span> <span class="n">convection</span><span class="p">(</span><span class="mi">151</span><span class="p">,</span> <span class="mi">51</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">)</span>
+<span class="n">plot_convection</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="mi">151</span><span class="p">,</span><span class="s">&#39;Figure 3: c=0.5m/s, nt=151, nx=51, tmax=2s&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="figure">
@@ -291,6 +295,10 @@ for n between 1 and 20
 <div class="figure">
 <img alt="_images/linear_convection-1_01_01.png" src="_images/linear_convection-1_01_01.png" />
 <p class="caption">(<a class="reference external" href=".//linear_convection-1_01_01.png">png</a>, <a class="reference external" href=".//linear_convection-1_01_01.hires.png">hires.png</a>, <a class="reference external" href=".//linear_convection-1_01_01.pdf">pdf</a>)</p>
+</div>
+<div class="figure">
+<img alt="_images/linear_convection-1_01_02.png" src="_images/linear_convection-1_01_02.png" />
+<p class="caption">(<a class="reference external" href=".//linear_convection-1_01_02.png">png</a>, <a class="reference external" href=".//linear_convection-1_01_02.hires.png">hires.png</a>, <a class="reference external" href=".//linear_convection-1_01_02.pdf">pdf</a>)</p>
 </div>
 </div>
 <div class="section" id="conclusions">
@@ -309,6 +317,12 @@ for n between 1 and 20
 <li>For <span class="math">\(c &gt; 0\)</span> profiles shift to the right by <span class="math">\(c \Delta t\)</span> - see Figure 2</li>
 </ul>
 </div>
+<div class="section" id="what-happens-at-the-wall">
+<h3><a class="toc-backref" href="#id15">1.5.3. What happens at the wall?</a><a class="headerlink" href="#what-happens-at-the-wall" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>As there is no viscosity, there is a non-physical change the the profile near the wall.</li>
+</ul>
+</div>
 </div>
 </div>
 
@@ -321,7 +335,7 @@ for n between 1 and 20
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a href="hpsc.html">1. Workspaces and Projects</a>&#160;&#160;»
+        <a href="non_linear_convection.html">2. 1D Non-Linear Convection: the Inviscid Burgers&#8217; Equation</a>&#160;&#160;»
         </p>
 
       </div>

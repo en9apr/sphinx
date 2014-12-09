@@ -1,0 +1,198 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>3. 1D Diffusion - Heat Equation &mdash; The Visual Room</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/print.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/theme_extras.js"></script>
+    <link rel="top" title="The Visual Room" href="index.html" />
+    <link rel="next" title="1. Workspaces and Projects" href="hpsc.html" />
+    <link rel="prev" title="2. 1D Non-Linear Convection: the Inviscid Burgers’ Equation" href="non_linear_convection.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>The Visual Room</span></a></h1>
+        <h2 class="heading"><span>3. 1D Diffusion - Heat Equation</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="non_linear_convection.html">2. 1D Non-Linear Convection: the Inviscid Burgers&#8217; Equation</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="hpsc.html">1. Workspaces and Projects</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="d-diffusion-heat-equation">
+<h1>3. 1D Diffusion - Heat Equation<a class="headerlink" href="#d-diffusion-heat-equation" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#understand-the-problem" id="id1">Understand the Problem</a></li>
+<li><a class="reference internal" href="#formulate-the-problem" id="id2">Formulate the Problem</a></li>
+<li><a class="reference internal" href="#design-algorithm-to-solve-problem" id="id3">Design Algorithm to Solve Problem</a><ul>
+<li><a class="reference internal" href="#space-time-discretisation" id="id4">Space-time discretisation</a></li>
+<li><a class="reference internal" href="#numerical-scheme" id="id5">Numerical scheme</a></li>
+<li><a class="reference internal" href="#discrete-equation" id="id6">Discrete equation</a></li>
+<li><a class="reference internal" href="#transpose" id="id7">Transpose</a></li>
+<li><a class="reference internal" href="#pseudo-code" id="id8">Pseudo-code</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#implement-algorithm-in-python" id="id9">Implement Algorithm in Python</a></li>
+<li><a class="reference internal" href="#conclusions" id="id10">Conclusions</a><ul>
+<li><a class="reference internal" href="#why-isn-t-the-square-wave-maintained" id="id11">Why isn&#8217;t the square wave maintained?</a></li>
+<li><a class="reference internal" href="#why-does-increasing-the-number-of-spatial-points-cause-instability" id="id12">Why does increasing the number of spatial points cause instability?</a></li>
+<li><a class="reference internal" href="#why-does-increasing-the-time-period-cause-instability" id="id13">Why does increasing the time period cause instability?</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="understand-the-problem">
+<h2><a class="toc-backref" href="#id1">3.1. Understand the Problem</a><a class="headerlink" href="#understand-the-problem" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>What is the final temperature profile for 1D diffusion when the initial conditions are a square wave and the boundary conditions are constant?</li>
+<li>1D diffusion is described as follows:</li>
+</ul>
+<div class="math">
+\[{\partial u \over \partial t} = \nu {\partial^2 u \over \partial x^2}\]</div>
+<ul class="simple">
+<li>Consider looking for a solution of type:</li>
+</ul>
+<div class="math">
+\[u = \hat u e^{i(kx-\omega t)}\]</div>
+<ul class="simple">
+<li>Represents a wave of amplitude <span class="math">\(\hat u\)</span>, <span class="math">\(\omega = 2 \pi f\)</span></li>
+<li>Introducing into PDE, we obtain:</li>
+</ul>
+<div class="math">
+\[i \omega = \nu k^2\]</div>
+<ul class="simple">
+<li>Leading to a solution:</li>
+</ul>
+<div class="math">
+\[u = \hat u e^{ikx}e^{- \nu k^2 t}\]</div>
+<p>where <span class="math">\(e^{\nu k^2 t}\)</span> is the exponential damping term. So diffusion is an expoentially damped wave.</p>
+<p>Note: <span class="math">\(\nu &gt; 0\)</span> for physical diffusion (if <span class="math">\(\nu &lt; 0\)</span> would represent an exponeitally growing phenomenon, e.g. an explosion or &#8216;the rich get richer&#8217; model)</p>
+<ul class="simple">
+<li>The phenomenon of diffusion is isotropic - so the finite difference formula that represents that physics is <strong>central differencing</strong> CD</li>
+</ul>
+</div>
+<div class="section" id="formulate-the-problem">
+<h2><a class="toc-backref" href="#id2">3.2. Formulate the Problem</a><a class="headerlink" href="#formulate-the-problem" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Same as Linear Convection</li>
+</ul>
+</div>
+<div class="section" id="design-algorithm-to-solve-problem">
+<h2><a class="toc-backref" href="#id3">3.3. Design Algorithm to Solve Problem</a><a class="headerlink" href="#design-algorithm-to-solve-problem" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="space-time-discretisation">
+<h3><a class="toc-backref" href="#id4">3.3.1. Space-time discretisation</a><a class="headerlink" href="#space-time-discretisation" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>FD in time</li>
+<li><strong>CD in space</strong></li>
+</ul>
+</div>
+<div class="section" id="numerical-scheme">
+<h3><a class="toc-backref" href="#id5">3.3.2. Numerical scheme</a><a class="headerlink" href="#numerical-scheme" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>i <span class="math">\(\rightarrow\)</span> index of grid in x</li>
+<li>n <span class="math">\(\rightarrow\)</span> index of grid in t</li>
+</ul>
+</div>
+<div class="section" id="discrete-equation">
+<h3><a class="toc-backref" href="#id6">3.3.3. Discrete equation</a><a class="headerlink" href="#discrete-equation" title="Permalink to this headline">¶</a></h3>
+<div class="math">
+\[{{u_i^{n+1} - u_i^n} \over {\Delta t}} = \nu {{u_{i+1}^n -2u_i^n+ u_{i-1}^n} \over \Delta x^2}\]</div>
+</div>
+<div class="section" id="transpose">
+<h3><a class="toc-backref" href="#id7">3.3.4. Transpose</a><a class="headerlink" href="#transpose" title="Permalink to this headline">¶</a></h3>
+<div class="math">
+\[u_i^{n+1} = u_i^n + \nu {\Delta t \over \Delta x^2}(u_{i+1}^n -2u_i^n+ u_{i-1}^n)\]</div>
+</div>
+<div class="section" id="pseudo-code">
+<h3><a class="toc-backref" href="#id8">3.3.5. Pseudo-code</a><a class="headerlink" href="#pseudo-code" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Very similar to Linear Convection</li>
+</ul>
+</div>
+</div>
+<div class="section" id="implement-algorithm-in-python">
+<h2><a class="toc-backref" href="#id9">3.4. Implement Algorithm in Python</a><a class="headerlink" href="#implement-algorithm-in-python" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Very similar to Linear Convection</li>
+</ul>
+<p>(<a class="reference external" href=".//diffusion-1.py">Source code</a>)</p>
+<div class="figure">
+<img alt="_images/diffusion-1_01_00.png" src="_images/diffusion-1_01_00.png" />
+<p class="caption">(<a class="reference external" href=".//diffusion-1_01_00.png">png</a>, <a class="reference external" href=".//diffusion-1_01_00.hires.png">hires.png</a>, <a class="reference external" href=".//diffusion-1_01_00.pdf">pdf</a>)</p>
+</div>
+<div class="figure">
+<img alt="_images/diffusion-1_01_01.png" src="_images/diffusion-1_01_01.png" />
+<p class="caption">(<a class="reference external" href=".//diffusion-1_01_01.png">png</a>, <a class="reference external" href=".//diffusion-1_01_01.hires.png">hires.png</a>, <a class="reference external" href=".//diffusion-1_01_01.pdf">pdf</a>)</p>
+</div>
+<div class="figure">
+<img alt="_images/diffusion-1_01_02.png" src="_images/diffusion-1_01_02.png" />
+<p class="caption">(<a class="reference external" href=".//diffusion-1_01_02.png">png</a>, <a class="reference external" href=".//diffusion-1_01_02.hires.png">hires.png</a>, <a class="reference external" href=".//diffusion-1_01_02.pdf">pdf</a>)</p>
+</div>
+</div>
+<div class="section" id="conclusions">
+<h2><a class="toc-backref" href="#id10">3.5. Conclusions</a><a class="headerlink" href="#conclusions" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="why-isn-t-the-square-wave-maintained">
+<h3><a class="toc-backref" href="#id11">3.5.1. Why isn&#8217;t the square wave maintained?</a><a class="headerlink" href="#why-isn-t-the-square-wave-maintained" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="why-does-increasing-the-number-of-spatial-points-cause-instability">
+<h3><a class="toc-backref" href="#id12">3.5.2. Why does increasing the number of spatial points cause instability?</a><a class="headerlink" href="#why-does-increasing-the-number-of-spatial-points-cause-instability" title="Permalink to this headline">¶</a></h3>
+</div>
+<div class="section" id="why-does-increasing-the-time-period-cause-instability">
+<h3><a class="toc-backref" href="#id13">3.5.3. Why does increasing the time period cause instability?</a><a class="headerlink" href="#why-does-increasing-the-time-period-cause-instability" title="Permalink to this headline">¶</a></h3>
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="non_linear_convection.html">2. 1D Non-Linear Convection: the Inviscid Burgers&#8217; Equation</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="hpsc.html">1. Workspaces and Projects</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, Andrew Roberts.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

@@ -162,11 +162,13 @@ Implement Algorithm in Python
          plt.show()
 
    u,x = convection(151, 51, 0.5, 2.0, 0.5)
-   plot_convection(u,x,151,'Figure 1: c=0.5m/s, nt=151, nx=51')
+   plot_convection(u,x,151,'Figure 1: c=0.5m/s, nt=151, nx=51, tmax=0.5s')
 
    u,x = convection(151, 1001, 0.5, 2.0, 0.5)
-   plot_convection(u,x,151,'Figure 2: c=0.5m/s, nt=151, nx=1001')
+   plot_convection(u,x,151,'Figure 2: c=0.5m/s, nt=151, nx=1001, tmax=0.5s')
 
+   u,x = convection(151, 51, 2.0, 2.0, 0.5)
+   plot_convection(u,x,151,'Figure 3: c=0.5m/s, nt=151, nx=51, tmax=2s')
 
 Conclusions
 ===========
@@ -183,4 +185,8 @@ Why does the wave shift to the right?
 * The square wave is being convected by the constant linear wave speed `c`
 * For :math:`c > 0` profiles shift to the right by :math:`c \Delta t` - see Figure 2 
 
+What happens at the wall?
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* As there is no viscosity, there is a non-physical change the the profile near the wall.
 
