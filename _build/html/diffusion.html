@@ -68,8 +68,7 @@
 <li><a class="reference internal" href="#implement-algorithm-in-python" id="id9">Implement Algorithm in Python</a></li>
 <li><a class="reference internal" href="#conclusions" id="id10">Conclusions</a><ul>
 <li><a class="reference internal" href="#why-isn-t-the-square-wave-maintained" id="id11">Why isn&#8217;t the square wave maintained?</a></li>
-<li><a class="reference internal" href="#why-does-increasing-the-number-of-spatial-points-cause-instability" id="id12">Why does increasing the number of spatial points cause instability?</a></li>
-<li><a class="reference internal" href="#why-does-increasing-the-time-period-cause-instability" id="id13">Why does increasing the time period cause instability?</a></li>
+<li><a class="reference internal" href="#why-does-increasing-the-viscosity-spatial-points-and-time-period-cause-instability" id="id12">Why does increasing the viscosity, spatial points and time period cause instability?</a></li>
 </ul>
 </li>
 </ul>
@@ -98,8 +97,8 @@
 </ul>
 <div class="math">
 \[u = \hat u e^{ikx}e^{- \nu k^2 t}\]</div>
-<p>where <span class="math">\(e^{\nu k^2 t}\)</span> is the exponential damping term. So diffusion is an expoentially damped wave.</p>
-<p>Note: <span class="math">\(\nu &gt; 0\)</span> for physical diffusion (if <span class="math">\(\nu &lt; 0\)</span> would represent an exponeitally growing phenomenon, e.g. an explosion or &#8216;the rich get richer&#8217; model)</p>
+<p>where <span class="math">\(e^{\nu k^2 t}\)</span> is the exponential damping term. So diffusion is an exponentially damped wave.</p>
+<p>Note: <span class="math">\(\nu &gt; 0\)</span> for physical diffusion (if <span class="math">\(\nu &lt; 0\)</span> would represent an exponentially growing phenomenon, e.g. an explosion or &#8216;the rich get richer&#8217; model)</p>
 <ul class="simple">
 <li>The phenomenon of diffusion is isotropic - so the finite difference formula that represents that physics is <strong>central differencing</strong> CD</li>
 </ul>
@@ -161,17 +160,24 @@
 <img alt="_images/diffusion-1_01_02.png" src="_images/diffusion-1_01_02.png" />
 <p class="caption">(<a class="reference external" href=".//diffusion-1_01_02.png">png</a>, <a class="reference external" href=".//diffusion-1_01_02.hires.png">hires.png</a>, <a class="reference external" href=".//diffusion-1_01_02.pdf">pdf</a>)</p>
 </div>
+<div class="figure">
+<img alt="_images/diffusion-1_01_03.png" src="_images/diffusion-1_01_03.png" />
+<p class="caption">(<a class="reference external" href=".//diffusion-1_01_03.png">png</a>, <a class="reference external" href=".//diffusion-1_01_03.hires.png">hires.png</a>, <a class="reference external" href=".//diffusion-1_01_03.pdf">pdf</a>)</p>
+</div>
 </div>
 <div class="section" id="conclusions">
 <h2><a class="toc-backref" href="#id10">3.5. Conclusions</a><a class="headerlink" href="#conclusions" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="why-isn-t-the-square-wave-maintained">
 <h3><a class="toc-backref" href="#id11">3.5.1. Why isn&#8217;t the square wave maintained?</a><a class="headerlink" href="#why-isn-t-the-square-wave-maintained" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>The square wave isn&#8217;t maintained because the system is attempting to reach equilibrium - the rate of change of velocity being equal to the shear force per unit mass. There are no external forces and no convective acceleration terms.</li>
+</ul>
 </div>
-<div class="section" id="why-does-increasing-the-number-of-spatial-points-cause-instability">
-<h3><a class="toc-backref" href="#id12">3.5.2. Why does increasing the number of spatial points cause instability?</a><a class="headerlink" href="#why-does-increasing-the-number-of-spatial-points-cause-instability" title="Permalink to this headline">¶</a></h3>
-</div>
-<div class="section" id="why-does-increasing-the-time-period-cause-instability">
-<h3><a class="toc-backref" href="#id13">3.5.3. Why does increasing the time period cause instability?</a><a class="headerlink" href="#why-does-increasing-the-time-period-cause-instability" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="why-does-increasing-the-viscosity-spatial-points-and-time-period-cause-instability">
+<h3><a class="toc-backref" href="#id12">3.5.2. Why does increasing the viscosity, spatial points and time period cause instability?</a><a class="headerlink" href="#why-does-increasing-the-viscosity-spatial-points-and-time-period-cause-instability" title="Permalink to this headline">¶</a></h3>
+<p>If the viscosity is too large, or if the number of spatial points is too large or if the timestep is too large, then the central differening method becomes unstable. This is due to the ratio, r. If r is too large, the method becomes unstable:</p>
+<div class="math">
+\[r = {\Delta t \over (\Delta x)^2}\]</div>
 </div>
 </div>
 </div>

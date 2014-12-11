@@ -23,7 +23,7 @@ def diffusion(nt, nx, tmax, xmax, nu):
 
    # Loop
    for n in range(0,nt-1):
-      for i in range(1,nx-1):
+      for i in range(0,nx-1):
          u[i,n+1] = u[i,n] + nu*(dt/dx**2.0)*(u[i+1,n]-2.0*u[i,n]+u[i-1,n])
 
    # X Loop
@@ -44,14 +44,17 @@ def plot_diffusion(u,x,nt,title):
    for i in range(0,nt,10):
       c=next(colour)
       plt.plot(x,u[:,i],c=c)
-      plt.xlabel('x (m)')
-      plt.ylabel('u (m/s)')
-      plt.ylim([0,3.0])
-      plt.title(title)
-      plt.show()
+   plt.xlabel('x (m)')
+   plt.ylabel('u (m/s)')
+   plt.ylim([0,3.0])
+   plt.title(title)
+   plt.show()
 
 u,x = diffusion(151, 51, 0.5, 2.0, 0.1)
 plot_diffusion(u,x,151,'Figure 1: nu=0.1, nt=151, nx=51, tmax=0.5s')
+
+u,x = diffusion(151, 51, 0.5, 2.0, 0.242)
+plot_diffusion(u,x,151,'Figure 1b: nu=0.242, nt=151, nx=51, tmax=0.5s')
 
 u,x = diffusion(151, 79, 0.5, 2.0, 0.1)
 plot_diffusion(u,x,151,'Figure 2: nu=0.1, nt=151, nx=79, tmax=0.5s')
