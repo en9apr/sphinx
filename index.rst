@@ -32,6 +32,16 @@ CFD Projects:
    non_linear_convection
    diffusion
 
+Literature
+----------
+
+.. toctree::
+   :maxdepth: 1
+   :numbered: 4
+
+   cavaleri
+   
+
 High Performance Scientific Computing:
 --------------------------------------
 

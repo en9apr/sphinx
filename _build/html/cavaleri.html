@@ -1,0 +1,238 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1. Wave Modelling - the State of the Art &mdash; The Visual Room</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/print.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/theme_extras.js"></script>
+    <link rel="top" title="The Visual Room" href="index.html" />
+    <link rel="next" title="1. Workspaces and Projects" href="hpsc.html" />
+    <link rel="prev" title="3. 1D Diffusion - Heat Equation" href="diffusion.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>The Visual Room</span></a></h1>
+        <h2 class="heading"><span>1. Wave Modelling - the State of the Art</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="diffusion.html">3. 1D Diffusion - Heat Equation</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="hpsc.html">1. Workspaces and Projects</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="wave-modelling-the-state-of-the-art">
+<h1>1. Wave Modelling - the State of the Art<a class="headerlink" href="#wave-modelling-the-state-of-the-art" title="Permalink to this headline">¶</a></h1>
+<p>Cavaleri et al. &#8220;Wave Modelling - the State of the Art&#8221;, Progress in Oceanography, 75 (2007) pp 603 - 674</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#numerics" id="id10">Numerics</a><ul>
+<li><a class="reference internal" href="#error-due-to-low-geographic-resolution-and-low-spectral-resolution" id="id11">Error due to low geographic resolution and low spectral resolution</a><ul>
+<li><a class="reference internal" href="#the-problem" id="id12">The Problem</a></li>
+<li><a class="reference internal" href="#existing-solutions" id="id13">Existing Solutions</a></li>
+<li><a class="reference internal" href="#future-solutions" id="id14">Future Solutions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#error-due-to-numerical-scheme-for-geographic-propagation" id="id15">Error due to numerical scheme for geographic propagation</a><ul>
+<li><a class="reference internal" href="#id1" id="id16">The Problem</a></li>
+<li><a class="reference internal" href="#id2" id="id17">Existing Solutions</a></li>
+<li><a class="reference internal" href="#id3" id="id18">Future Solutions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#error-due-to-the-numerical-scheme-for-spectral-propagation" id="id19">Error due to the numerical scheme for spectral propagation</a><ul>
+<li><a class="reference internal" href="#id4" id="id20">The Problem</a></li>
+<li><a class="reference internal" href="#id5" id="id21">Existing Solutions</a></li>
+<li><a class="reference internal" href="#id6" id="id22">Future Solutions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#error-due-to-source-term-integration" id="id23">Error due to source term integration</a><ul>
+<li><a class="reference internal" href="#id7" id="id24">The Problem</a></li>
+<li><a class="reference internal" href="#id8" id="id25">Existing Solutions</a></li>
+<li><a class="reference internal" href="#id9" id="id26">Future Solutions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="numerics">
+<h2><a class="toc-backref" href="#id10">1.1. Numerics</a><a class="headerlink" href="#numerics" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Choice of numerical scheme can result in large errors.</li>
+<li>The central problem for numerics is <strong>cartesian grids</strong></li>
+<li><strong>Why do we even use Cartesian grids?</strong> Grids allow conservation terms to be rigorously enforced</li>
+<li><strong>So what&#8217;s the problem?</strong> Grids require high spatial and spectral resolution</li>
+</ul>
+<div class="section" id="error-due-to-low-geographic-resolution-and-low-spectral-resolution">
+<h3><a class="toc-backref" href="#id11">1.1.1. Error due to low geographic resolution and low spectral resolution</a><a class="headerlink" href="#error-due-to-low-geographic-resolution-and-low-spectral-resolution" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="the-problem">
+<h4><a class="toc-backref" href="#id12">1.1.1.1. The Problem</a><a class="headerlink" href="#the-problem" title="Permalink to this headline">¶</a></h4>
+<p>Errors are caused by:</p>
+<ul class="simple">
+<li>CFL number, which quantifies the number of grid spaces traversed by a packet of energy in one timestep. If ocean scale wind-forcing is present, the resolution depends on the <strong>scale of the metrological features and the wave sensitivity to those features</strong>.</li>
+<li>Relative resolution (i.e. the grid density w.r.t. what we are trying to resolve). Some geographic features may be completely left out in a 0.5 degree to 1 degree resolution global model.</li>
+</ul>
+</div>
+<div class="section" id="existing-solutions">
+<h4><a class="toc-backref" href="#id13">1.1.1.2. Existing Solutions</a><a class="headerlink" href="#existing-solutions" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Just increase the grid density (!) from 1 degree to 0.5 degrees. This increases the computing time and the required temporal resolution (to maintain stability).</li>
+<li><strong>High spectral resolution is mostly needed for swells</strong> and swell attenuation is really linear.</li>
+<li><strong>Unstructured grids could provide efficient use of grid density, although may not be less diffusive.</strong></li>
+<li>High resolution is needed <strong>when we are near the shore</strong></li>
+</ul>
+</div>
+<div class="section" id="future-solutions">
+<h4><a class="toc-backref" href="#id14">1.1.1.3. Future Solutions</a><a class="headerlink" href="#future-solutions" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><strong>Unstructured grids</strong> are expected to become more prevalent, since scales of variation are shorter near the shoreline. <strong>Offshore wave fields only vary on the scale larger than that of the wind field.</strong></li>
+</ul>
+</div>
+</div>
+<div class="section" id="error-due-to-numerical-scheme-for-geographic-propagation">
+<h3><a class="toc-backref" href="#id15">1.1.2. Error due to numerical scheme for geographic propagation</a><a class="headerlink" href="#error-due-to-numerical-scheme-for-geographic-propagation" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h4><a class="toc-backref" href="#id16">1.1.2.1. The Problem</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p>Numerical diffusion is the <strong>smearing</strong> of wave energy during propagation due to discretisation. It is not to be confused with <strong>dissipation</strong> which implies energy loss. It is caused by the <strong>even-ordered</strong> truncation error in the finite difference scheme. It is different from <strong>numerical dispersion</strong> which is caused by the <strong>odd-ordered</strong> truncation error. It depends on:</p>
+<ul class="simple">
+<li>CFL number</li>
+<li>May also depend on propagation direction</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h4><a class="toc-backref" href="#id17">1.1.2.2. Existing Solutions</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<p>There are two effects here:</p>
+<ol class="arabic simple">
+<li>Minimising numerical diffusion in the 1D case:</li>
+</ol>
+<ul class="simple">
+<li>Second order leapfrog scheme, which has zero numerical diffusion (WAM)</li>
+<li>Ultimate Quick-EST scheme and limiter, which is third order in 1D (WW3). Total variance diminishing limiters can be used to control wiggles.</li>
+</ul>
+<ol class="arabic simple" start="2">
+<li>The efficacy of the extension to 2D:</li>
+</ol>
+<ul class="simple">
+<li>Solve for both dimensions simultaneously</li>
+<li>Propagate each dimension in sequence (this decreases the order of accuracy)</li>
+<li>Implicit schemes in 2D, these are less efficient at oceanic scales (SWAN)</li>
+<li>Semi-Lagrangian schemes</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h4><a class="toc-backref" href="#id18">1.1.2.3. Future Solutions</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<p><strong>Semi-Lagrangian schemes</strong> are an attractive alternative to traditional Euler schemes. However, there are two difficulties:</p>
+<ol class="arabic simple">
+<li>Assuring mass conservation is generally less straightforward than with Euler schemes</li>
+<li>Source/sink terms must be applied along the ray at the Lagrangian stage - doing this computationally efficiently is a challenge.</li>
+</ol>
+</div>
+</div>
+<div class="section" id="error-due-to-the-numerical-scheme-for-spectral-propagation">
+<h3><a class="toc-backref" href="#id19">1.1.3. Error due to the numerical scheme for spectral propagation</a><a class="headerlink" href="#error-due-to-the-numerical-scheme-for-spectral-propagation" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id4">
+<h4><a class="toc-backref" href="#id20">1.1.3.1. The Problem</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<p>The <strong>&#8220;Garden sprinkler effect&#8221;</strong>. This where we can&#8217;t resolve the spectral/frequency content and is due to numerical dispersion caused by truncation error. This is due to the <strong>odd ordered</strong> truncation error. It depends on:</p>
+<ul class="simple">
+<li>CFL number</li>
+<li>Relative resolution</li>
+</ul>
+<p>Numerical dispersion can result in non-physical &#8220;wiggles&#8221; in the solution. We can counteract numerical dispersion by:</p>
+<ul class="simple">
+<li>Adding diffusion artificially</li>
+<li>Formulating diffusion and dispersion in roughly equal amounts.</li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h4><a class="toc-backref" href="#id21">1.1.3.2. Existing Solutions</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Nobody wants to increase spectral resolution for this - due to computational cost.</li>
+<li>Controllable diffusion can be added</li>
+<li>Grid point averaging can be used</li>
+<li>Or an angular diffusive operator</li>
+</ul>
+</div>
+<div class="section" id="id6">
+<h4><a class="toc-backref" href="#id22">1.1.3.3. Future Solutions</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Let source/sink terms dictate frequency resolution and increase directional resolution as computing resources allow</li>
+<li>Numerics and physics needs to become coupled through some parameterisations of physical processes.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="error-due-to-source-term-integration">
+<h3><a class="toc-backref" href="#id23">1.1.4. Error due to source term integration</a><a class="headerlink" href="#error-due-to-source-term-integration" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id7">
+<h4><a class="toc-backref" href="#id24">1.1.4.1. The Problem</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
+<p>1st order Euler method requires time steps of around a few minutes, which is too computationally expensive. Various solutions such as semi-implicit methods with limiters have been tried, but are sensitive to time step size, especially for initial wave growth.</p>
+</div>
+<div class="section" id="id8">
+<h4><a class="toc-backref" href="#id25">1.1.4.2. Existing Solutions</a><a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<p>Three solutions:</p>
+<ol class="arabic simple">
+<li>Dynamically adjustment of timestep using a limiter for the maximum timestep. For large scale applications this is good. However, <strong>for small scale applications (where wind and wave changes occur rapidly over the domain), this is bad because of the small timesteps involved.</strong></li>
+<li>Limiter made proportional to step size - but this could prevent convergence. Can also remove limiter proportional to step size.</li>
+<li>Spreading numerical method - semi-analytical solution for integration source term, which includes wind-wave input, dissipation term, and exact non-linear energy transfer.</li>
+</ol>
+</div>
+<div class="section" id="id9">
+<h4><a class="toc-backref" href="#id26">1.1.4.3. Future Solutions</a><a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Alternative non-convergent limiters</li>
+<li>Prototype for convergent limiter with reduced time step dependencies</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="diffusion.html">3. 1D Diffusion - Heat Equation</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="hpsc.html">1. Workspaces and Projects</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, Andrew Roberts.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
