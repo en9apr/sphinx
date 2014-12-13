@@ -56,37 +56,241 @@
 <p>Cavaleri et al. &#8220;Wave Modelling - the State of the Art&#8221;, Progress in Oceanography, 75 (2007) pp 603 - 674</p>
 <div class="contents local topic" id="contents">
 <ul class="simple">
-<li><a class="reference internal" href="#numerics" id="id10">Numerics</a><ul>
-<li><a class="reference internal" href="#error-due-to-low-geographic-resolution-and-low-spectral-resolution" id="id11">Error due to low geographic resolution and low spectral resolution</a><ul>
-<li><a class="reference internal" href="#the-problem" id="id12">The Problem</a></li>
-<li><a class="reference internal" href="#existing-solutions" id="id13">Existing Solutions</a></li>
-<li><a class="reference internal" href="#future-solutions" id="id14">Future Solutions</a></li>
+<li><a class="reference internal" href="#wind-wave-generation" id="id12">Wind-wave Generation</a><ul>
+<li><a class="reference internal" href="#linear-theory" id="id13">Linear Theory</a><ul>
+<li><a class="reference internal" href="#the-problem" id="id14">The Problem</a></li>
+<li><a class="reference internal" href="#the-history" id="id15">The History</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#error-due-to-numerical-scheme-for-geographic-propagation" id="id15">Error due to numerical scheme for geographic propagation</a><ul>
-<li><a class="reference internal" href="#id1" id="id16">The Problem</a></li>
-<li><a class="reference internal" href="#id2" id="id17">Existing Solutions</a></li>
-<li><a class="reference internal" href="#id3" id="id18">Future Solutions</a></li>
+<li><a class="reference internal" href="#nonlinear-effects" id="id16">Nonlinear Effects</a><ul>
+<li><a class="reference internal" href="#id1" id="id17">The Problem</a></li>
+<li><a class="reference internal" href="#observation" id="id18">Observation</a></li>
+<li><a class="reference internal" href="#wave-age" id="id19">Wave age</a></li>
+<li><a class="reference internal" href="#linearity" id="id20">Linearity</a></li>
+<li><a class="reference internal" href="#evidence-in-the-field-of-sea-state-dependence-on-drag-coefficient" id="id21">Evidence in the field of sea state dependence on drag coefficient</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#error-due-to-the-numerical-scheme-for-spectral-propagation" id="id19">Error due to the numerical scheme for spectral propagation</a><ul>
-<li><a class="reference internal" href="#id4" id="id20">The Problem</a></li>
-<li><a class="reference internal" href="#id5" id="id21">Existing Solutions</a></li>
-<li><a class="reference internal" href="#id6" id="id22">Future Solutions</a></li>
+<li><a class="reference internal" href="#gustiness" id="id22">Gustiness</a><ul>
+<li><a class="reference internal" href="#problem" id="id23">Problem</a></li>
+<li><a class="reference internal" href="#solutions" id="id24">Solutions</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#error-due-to-source-term-integration" id="id23">Error due to source term integration</a><ul>
-<li><a class="reference internal" href="#id7" id="id24">The Problem</a></li>
-<li><a class="reference internal" href="#id8" id="id25">Existing Solutions</a></li>
-<li><a class="reference internal" href="#id9" id="id26">Future Solutions</a></li>
+<li><a class="reference internal" href="#open-issues" id="id25">Open Issues</a><ul>
+<li><a class="reference internal" href="#damping-of-low-frequency-swells" id="id26">Damping of Low Frequency Swells</a></li>
+<li><a class="reference internal" href="#momentum-transfer-for-high-wind-speeds" id="id27">Momentum Transfer for High Wind Speeds</a></li>
+<li><a class="reference internal" href="#quality-of-modelled-wind-fields" id="id28">Quality of Modelled Wind Fields</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a class="reference internal" href="#numerics" id="id29">Numerics</a><ul>
+<li><a class="reference internal" href="#error-due-to-low-geographic-resolution-and-low-spectral-resolution" id="id30">Error due to low geographic resolution and low spectral resolution</a><ul>
+<li><a class="reference internal" href="#id2" id="id31">The Problem</a></li>
+<li><a class="reference internal" href="#existing-solutions" id="id32">Existing Solutions</a></li>
+<li><a class="reference internal" href="#future-solutions" id="id33">Future Solutions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#error-due-to-numerical-scheme-for-geographic-propagation" id="id34">Error due to numerical scheme for geographic propagation</a><ul>
+<li><a class="reference internal" href="#id3" id="id35">The Problem</a></li>
+<li><a class="reference internal" href="#id4" id="id36">Existing Solutions</a></li>
+<li><a class="reference internal" href="#id5" id="id37">Future Solutions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#error-due-to-the-numerical-scheme-for-spectral-propagation" id="id38">Error due to the numerical scheme for spectral propagation</a><ul>
+<li><a class="reference internal" href="#id6" id="id39">The Problem</a></li>
+<li><a class="reference internal" href="#id7" id="id40">Existing Solutions</a></li>
+<li><a class="reference internal" href="#id8" id="id41">Future Solutions</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#error-due-to-source-term-integration" id="id42">Error due to source term integration</a><ul>
+<li><a class="reference internal" href="#id9" id="id43">The Problem</a></li>
+<li><a class="reference internal" href="#id10" id="id44">Existing Solutions</a></li>
+<li><a class="reference internal" href="#id11" id="id45">Future Solutions</a></li>
 </ul>
 </li>
 </ul>
 </li>
 </ul>
 </div>
+<div class="section" id="wind-wave-generation">
+<h2><a class="toc-backref" href="#id12">1.1. Wind-wave Generation</a><a class="headerlink" href="#wind-wave-generation" title="Permalink to this headline">¶</a></h2>
+<p>The problem is to accurately model:</p>
+<ul class="simple">
+<li>the <strong>growth</strong> of ocean waves by wind.</li>
+<li>the consequent <strong>feedback</strong> of the ocean waves on the wind</li>
+</ul>
+<p>Field observations in the 1970s and theoretical work on the critical layer in the 1950s led to:</p>
+<ul class="simple">
+<li>parameterisations of the wind-input source function</li>
+<li>realistic representation of the high wave number part of the spectrum</li>
+</ul>
+<p>Problems are:</p>
+<ul class="simple">
+<li>the high frequency variability in atmospheric models</li>
+<li>modelling extreme cases of low wind and high wind</li>
+<li>the drag coefficient may not be well specified in extreme situations, e.g. hurricanes.</li>
+</ul>
+<div class="section" id="linear-theory">
+<h3><a class="toc-backref" href="#id13">1.1.1. Linear Theory</a><a class="headerlink" href="#linear-theory" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="the-problem">
+<h4><a class="toc-backref" href="#id14">1.1.1.1. The Problem</a><a class="headerlink" href="#the-problem" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>The theoretical problem is difficult because we are modelling a turbulent airflow over a surface that varies in space and time.</li>
+<li>The experimental problem is difficult because most instrumentation cannot directly measure the growth of waves by wind.</li>
+</ul>
+</div>
+<div class="section" id="the-history">
+<h4><a class="toc-backref" href="#id15">1.1.1.2. The History</a><a class="headerlink" href="#the-history" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Jeffreys (1924) started by assuming that airflow over a wave was sheltered on it&#8217;s lee side. This would give a pressure difference, so work was done by the wind. However, experiments on solid waves showed that this <em>pressure difference was too small to account for the growth rates</em>.</li>
+<li>Moved on to assume that <strong>waves were generated by resonance</strong>. Two approaches:<ul>
+<li>Miles (1957) &#8220;resonant interaction between pressure fluctuations and free surface waves&#8221;</li>
+<li>Phillips (1957) &#8220;resonant forcing of surface waves by turbulent pressure flucuations&#8221;</li>
+</ul>
+</li>
+<li>Miles (1957) <strong>resonant interaction between pressure fluctuations and free surface waves</strong> was more promising because it implies exponential growth and it is of the order of the density ratio of air and water.</li>
+<li>Problems with Miles:<ul>
+<li>used quasi-laminar approach - <em>airflow is inviscid</em> and <em>turbulence only maintains the shear flow</em>.</li>
+<li><em>neglected non-linear effects</em>, such as wave-mean flow interaction (which are important at the critical height where the phase speed and wind speed match)</li>
+<li>Experiments by Dobson (1971) show rate of energy transfer is an order of magnitude higher than Miles predicts</li>
+<li>Recent experiments show Miles underpredicts energy transfer for low frequency waves with a wave speed close to phase speed</li>
+</ul>
+</li>
+<li>Solutions to Miles&#8217; problems, use <strong>mixing length turbulence model</strong>:<ul>
+<li>model turbulent boundary layer over a moving surface, using mixing length turbulence model for Reynolds stresses, for the effect of small scale turbulence on wave growth. This allows:<ul>
+<li>interaction of wave induced flow with mean flow</li>
+<li>boundary layer turbulence</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>What Miles didn&#8217;t show is then shown:<ul>
+<li>diffusion of momentum is so large with turbulence included that Miles critical mechanism is ineffective</li>
+<li>in adverse winds or when waves are propagating faster than wind speed, damping is present (Miles showed no damping). However no field observations show damping - presumably because damping time scales are quite long.</li>
+</ul>
+</li>
+<li>Problem with mixing length turbulence model:<ul>
+<li>assumes <em>momentum transport caused by turbulence is the fastest process in the fluid</em> - not justified for low frequency waves, which interact with large eddies, whose eddy turnover time is larger than the wave period</li>
+<li><em>inadequate for slowly propagating waves</em>. Far away from the surface, turbulence is slow moving and doesn&#8217;t have time to transfer momentum - causing truncation of the mixing length in the outer-layer. Energy transfer from wind to slow waves only occurs in a thin layer above the surface. The mechanism is non-separated sheltering - Reynolds stresses cause a thickening of the boundary layer on the leeside - This is similar to Jeffreys (1924)</li>
+</ul>
+</li>
+<li>Use instead a <strong>rapid distortion</strong> approach:<ul>
+<li>critical layer mechanism is only relevant for very fast moving ocean waves</li>
+</ul>
+</li>
+<li>Rapid distortion approach may overestimate the effect of eddies:<ul>
+<li>Use eddy resolving model, which shows a critical layer at a wide range of dimensionless phase speeds (but only done for low Re). A rapid fall off of the wave-induced stress was seen at the critical height.</li>
+<li>In-situ observation also shows a critical layer (where the wave-induced stress shows a jump), but only for dimensionless phase speeds &gt; 16.</li>
+<li>reason for the over-estimation of eddies by rapid distortion approach: <em>large eddies too slow to transport momentum</em> - outer layer is approximately inviscid and only a thin layer above the surface applies</li>
+</ul>
+</li>
+<li>Instead of rapid distortion approach, use <strong>truncated mixing length model with turbulent time scale</strong>:<ul>
+<li>Turbulent timescale redifined to give a longer timescale than rapid distortion model</li>
+<li>Mixing length truncated</li>
+<li>Resulting growth rate is a function of the Miles critical layer effect and a small damping term caused by the inner layer viscosity. This is ok for short wavelengths, but <em>not for longer wavelengths</em>.</li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="nonlinear-effects">
+<h3><a class="toc-backref" href="#id16">1.1.2. Nonlinear Effects</a><a class="headerlink" href="#nonlinear-effects" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id1">
+<h4><a class="toc-backref" href="#id17">1.1.2.1. The Problem</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<p>Quasi-laminar Miles theory is fairly good at predicting growth rate. However, it doesn&#8217;t include non-linearity.</p>
+<p>Sources of non-linearity:</p>
+<ul class="simple">
+<li><strong>In wind profile:</strong> Possible change in wind profile as ocean waves are evolving - deviations from the turbulent profile due to a flat plate are expected - profile controlled by both turbulent and wave-induced momentum flux. Momentum transfer from wind to wave can be so large that the wave-induced stress is a substantial fraction of the turbulent stress.</li>
+<li><strong>In surface waves:</strong> Energy transfer from air to waves is probably affected by the sea state. Probably have strong coupling between the surface wave and the atmospheric turbulent boundary layer.</li>
+</ul>
+</div>
+<div class="section" id="observation">
+<h4><a class="toc-backref" href="#id18">1.1.2.2. Observation</a><a class="headerlink" href="#observation" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Measurement confirms that the <strong>drag coefficient is dependent on the sea state</strong>.</li>
+<li>Quasi-linear theory of wind-wave generation keeps track of the evolution of the sea state and it&#8217;s effects on the wind profile and follows Miles theory.</li>
+<li>Parameterization of roughness length in terms of wave-induced stress shows fair agreement with observed roughness. Can determine at every timestep what the momentum transfer is from air to waves.</li>
+</ul>
+</div>
+<div class="section" id="wave-age">
+<h4><a class="toc-backref" href="#id19">1.1.2.3. Wave age</a><a class="headerlink" href="#wave-age" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>Short waves are the fastest growing, so <strong>wave induced stress is largly determined by the high frequency spectrum</strong>. Also young windsea shows steeper short waves than old windsea. Nobody really know why this is. Four wave interactions and Stokes drift may be possible mechanisms.</li>
+</ul>
+</div>
+<div class="section" id="linearity">
+<h4><a class="toc-backref" href="#id20">1.1.2.4. Linearity</a><a class="headerlink" href="#linearity" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><strong>Quasi-linear theory assumes short waves are linear</strong>, but they are probably steep. Therefore the non-linear process of air separation similar to Jeffreys (1924) may play a role in air-sea momentum transfer. This may explain the dependence of drag coefficient in sea state.</li>
+<li><strong>Miles quasi-laminar theory assumed that each spectral component is linear</strong>. Tsimring (1983) studied two wave components and mean airflow finding that the effect is proportional to the air-sea density ratio times the square of the wave spectrum.</li>
+</ul>
+</div>
+<div class="section" id="evidence-in-the-field-of-sea-state-dependence-on-drag-coefficient">
+<h4><a class="toc-backref" href="#id21">1.1.2.5. Evidence in the field of sea state dependence on drag coefficient</a><a class="headerlink" href="#evidence-in-the-field-of-sea-state-dependence-on-drag-coefficient" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><strong>For windsea, it is possible to find a convincing parameterisation of sea state dependence of the surface stress</strong>. The drag coefficient and dynamic roughness under mixed-sea conditions remain difficult to parameterise.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="gustiness">
+<h3><a class="toc-backref" href="#id22">1.1.3. Gustiness</a><a class="headerlink" href="#gustiness" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="problem">
+<h4><a class="toc-backref" href="#id23">1.1.3.1. Problem</a><a class="headerlink" href="#problem" title="Permalink to this headline">¶</a></h4>
+<p>In previous comments we have assumed airflow is constant, but it isn&#8217;t. Wind varies with a timescale longer than the wind generated waves, but still below the resolution of meterological models and may affect wave growth.</p>
+</div>
+<div class="section" id="solutions">
+<h4><a class="toc-backref" href="#id24">1.1.3.2. Solutions</a><a class="headerlink" href="#solutions" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>It is common to assume energy transfer is a function of the nominal wind speed, U and the phase speed, c of the component. The wave growth is non-linear wrt U-c.<ul>
+<li>For c &gt; Um (mean value) there is no interaction between wind and waves.</li>
+<li>For c close to Um, a positive fluctuation in wind speed will result in enhanced wave growth, but a negative fluctuation will not give rise to reduced growth. Growing waves act as a recifier - the <strong>diode effect</strong></li>
+<li>How much they gain in wave height depends on the variability of the wind field (% rms deviation from Um).</li>
+</ul>
+</li>
+<li>Gain in wave height also depends on correlation time scale of the fluctuating wind:<ul>
+<li>if the timescale of the gustiness &lt;= integration timestep (or spatial step), growth curve will be smooth</li>
+<li>if timescale of gustiness &gt; integration timestep, growth curve will be oscillatory around mean growth curve</li>
+</ul>
+</li>
+</ul>
+<p><strong>While there are good practical and theoretical reasons for considering gustiness, operational models don&#8217;t consider it, because there isn&#8217;t much information on gustiness of input wind fields and it complicates validation</strong></p>
+</div>
+</div>
+<div class="section" id="open-issues">
+<h3><a class="toc-backref" href="#id25">1.1.4. Open Issues</a><a class="headerlink" href="#open-issues" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="damping-of-low-frequency-swells">
+<h4><a class="toc-backref" href="#id26">1.1.4.1. Damping of Low Frequency Swells</a><a class="headerlink" href="#damping-of-low-frequency-swells" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>There is uncertainty regarding the damping rates of low frequency swells due to lack of field observations, because the timescales of these swells are quite long.</li>
+</ul>
+</div>
+<div class="section" id="momentum-transfer-for-high-wind-speeds">
+<h4><a class="toc-backref" href="#id27">1.1.4.2. Momentum Transfer for High Wind Speeds</a><a class="headerlink" href="#momentum-transfer-for-high-wind-speeds" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li>There is some debate over whether the drag coefficient within a hurricane or typhoon increases or decreases with wind speed. The reason for this is the lack of observations and there are many complex mechanisms occuring simultaneously, and they affect each other e.g.:<ul>
+<li>momentum</li>
+<li>heat fluxes</li>
+<li>spray</li>
+</ul>
+</li>
+</ul>
+<p>Three reasons why drag might be reduced in a hurricane:</p>
+<ul class="simple">
+<li>Aerodynamic explanations of reduced drag in a hurricane follow the logic of the wind skipping over the crests, so the aerodynamic roughness is reduced.</li>
+<li>Also as spray returns to the sea, it removes small waves (which hold the greatest wave induced stress) hence drag can be reduced in this way.</li>
+<li>Also it is claimed that extremely young seas like in a hurricane would have reduced drag.</li>
+</ul>
+</div>
+<div class="section" id="quality-of-modelled-wind-fields">
+<h4><a class="toc-backref" href="#id28">1.1.4.3. Quality of Modelled Wind Fields</a><a class="headerlink" href="#quality-of-modelled-wind-fields" title="Permalink to this headline">¶</a></h4>
+<ul class="simple">
+<li><strong>At present no model of the atmospheric boundary layer can justify the level of wind variablity measured in the field in certain conditions</strong></li>
+</ul>
+</div>
+</div>
+</div>
 <div class="section" id="numerics">
-<h2><a class="toc-backref" href="#id10">1.1. Numerics</a><a class="headerlink" href="#numerics" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id29">1.2. Numerics</a><a class="headerlink" href="#numerics" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Choice of numerical scheme can result in large errors.</li>
 <li>The central problem for numerics is <strong>cartesian grids</strong></li>
@@ -94,9 +298,9 @@
 <li><strong>So what&#8217;s the problem?</strong> Grids require high spatial and spectral resolution</li>
 </ul>
 <div class="section" id="error-due-to-low-geographic-resolution-and-low-spectral-resolution">
-<h3><a class="toc-backref" href="#id11">1.1.1. Error due to low geographic resolution and low spectral resolution</a><a class="headerlink" href="#error-due-to-low-geographic-resolution-and-low-spectral-resolution" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="the-problem">
-<h4><a class="toc-backref" href="#id12">1.1.1.1. The Problem</a><a class="headerlink" href="#the-problem" title="Permalink to this headline">¶</a></h4>
+<h3><a class="toc-backref" href="#id30">1.2.1. Error due to low geographic resolution and low spectral resolution</a><a class="headerlink" href="#error-due-to-low-geographic-resolution-and-low-spectral-resolution" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id2">
+<h4><a class="toc-backref" href="#id31">1.2.1.1. The Problem</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
 <p>Errors are caused by:</p>
 <ul class="simple">
 <li>CFL number, which quantifies the number of grid spaces traversed by a packet of energy in one timestep. If ocean scale wind-forcing is present, the resolution depends on the <strong>scale of the metrological features and the wave sensitivity to those features</strong>.</li>
@@ -104,7 +308,7 @@
 </ul>
 </div>
 <div class="section" id="existing-solutions">
-<h4><a class="toc-backref" href="#id13">1.1.1.2. Existing Solutions</a><a class="headerlink" href="#existing-solutions" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id32">1.2.1.2. Existing Solutions</a><a class="headerlink" href="#existing-solutions" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li>Just increase the grid density (!) from 1 degree to 0.5 degrees. This increases the computing time and the required temporal resolution (to maintain stability).</li>
 <li><strong>High spectral resolution is mostly needed for swells</strong> and swell attenuation is really linear.</li>
@@ -113,24 +317,24 @@
 </ul>
 </div>
 <div class="section" id="future-solutions">
-<h4><a class="toc-backref" href="#id14">1.1.1.3. Future Solutions</a><a class="headerlink" href="#future-solutions" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id33">1.2.1.3. Future Solutions</a><a class="headerlink" href="#future-solutions" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><strong>Unstructured grids</strong> are expected to become more prevalent, since scales of variation are shorter near the shoreline. <strong>Offshore wave fields only vary on the scale larger than that of the wind field.</strong></li>
 </ul>
 </div>
 </div>
 <div class="section" id="error-due-to-numerical-scheme-for-geographic-propagation">
-<h3><a class="toc-backref" href="#id15">1.1.2. Error due to numerical scheme for geographic propagation</a><a class="headerlink" href="#error-due-to-numerical-scheme-for-geographic-propagation" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id1">
-<h4><a class="toc-backref" href="#id16">1.1.2.1. The Problem</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<h3><a class="toc-backref" href="#id34">1.2.2. Error due to numerical scheme for geographic propagation</a><a class="headerlink" href="#error-due-to-numerical-scheme-for-geographic-propagation" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id3">
+<h4><a class="toc-backref" href="#id35">1.2.2.1. The Problem</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
 <p>Numerical diffusion is the <strong>smearing</strong> of wave energy during propagation due to discretisation. It is not to be confused with <strong>dissipation</strong> which implies energy loss. It is caused by the <strong>even-ordered</strong> truncation error in the finite difference scheme. It is different from <strong>numerical dispersion</strong> which is caused by the <strong>odd-ordered</strong> truncation error. It depends on:</p>
 <ul class="simple">
 <li>CFL number</li>
 <li>May also depend on propagation direction</li>
 </ul>
 </div>
-<div class="section" id="id2">
-<h4><a class="toc-backref" href="#id17">1.1.2.2. Existing Solutions</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id4">
+<h4><a class="toc-backref" href="#id36">1.2.2.2. Existing Solutions</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
 <p>There are two effects here:</p>
 <ol class="arabic simple">
 <li>Minimising numerical diffusion in the 1D case:</li>
@@ -149,8 +353,8 @@
 <li>Semi-Lagrangian schemes</li>
 </ul>
 </div>
-<div class="section" id="id3">
-<h4><a class="toc-backref" href="#id18">1.1.2.3. Future Solutions</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id5">
+<h4><a class="toc-backref" href="#id37">1.2.2.3. Future Solutions</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
 <p><strong>Semi-Lagrangian schemes</strong> are an attractive alternative to traditional Euler schemes. However, there are two difficulties:</p>
 <ol class="arabic simple">
 <li>Assuring mass conservation is generally less straightforward than with Euler schemes</li>
@@ -159,9 +363,9 @@
 </div>
 </div>
 <div class="section" id="error-due-to-the-numerical-scheme-for-spectral-propagation">
-<h3><a class="toc-backref" href="#id19">1.1.3. Error due to the numerical scheme for spectral propagation</a><a class="headerlink" href="#error-due-to-the-numerical-scheme-for-spectral-propagation" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id4">
-<h4><a class="toc-backref" href="#id20">1.1.3.1. The Problem</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<h3><a class="toc-backref" href="#id38">1.2.3. Error due to the numerical scheme for spectral propagation</a><a class="headerlink" href="#error-due-to-the-numerical-scheme-for-spectral-propagation" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id6">
+<h4><a class="toc-backref" href="#id39">1.2.3.1. The Problem</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
 <p>The <strong>&#8220;Garden sprinkler effect&#8221;</strong>. This where we can&#8217;t resolve the spectral/frequency content and is due to numerical dispersion caused by truncation error. This is due to the <strong>odd ordered</strong> truncation error. It depends on:</p>
 <ul class="simple">
 <li>CFL number</li>
@@ -173,8 +377,8 @@
 <li>Formulating diffusion and dispersion in roughly equal amounts.</li>
 </ul>
 </div>
-<div class="section" id="id5">
-<h4><a class="toc-backref" href="#id21">1.1.3.2. Existing Solutions</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id7">
+<h4><a class="toc-backref" href="#id40">1.2.3.2. Existing Solutions</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li>Nobody wants to increase spectral resolution for this - due to computational cost.</li>
 <li>Controllable diffusion can be added</li>
@@ -182,8 +386,8 @@
 <li>Or an angular diffusive operator</li>
 </ul>
 </div>
-<div class="section" id="id6">
-<h4><a class="toc-backref" href="#id22">1.1.3.3. Future Solutions</a><a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id8">
+<h4><a class="toc-backref" href="#id41">1.2.3.3. Future Solutions</a><a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li>Let source/sink terms dictate frequency resolution and increase directional resolution as computing resources allow</li>
 <li>Numerics and physics needs to become coupled through some parameterisations of physical processes.</li>
@@ -191,13 +395,13 @@
 </div>
 </div>
 <div class="section" id="error-due-to-source-term-integration">
-<h3><a class="toc-backref" href="#id23">1.1.4. Error due to source term integration</a><a class="headerlink" href="#error-due-to-source-term-integration" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="id7">
-<h4><a class="toc-backref" href="#id24">1.1.4.1. The Problem</a><a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h4>
+<h3><a class="toc-backref" href="#id42">1.2.4. Error due to source term integration</a><a class="headerlink" href="#error-due-to-source-term-integration" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="id9">
+<h4><a class="toc-backref" href="#id43">1.2.4.1. The Problem</a><a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
 <p>1st order Euler method requires time steps of around a few minutes, which is too computationally expensive. Various solutions such as semi-implicit methods with limiters have been tried, but are sensitive to time step size, especially for initial wave growth.</p>
 </div>
-<div class="section" id="id8">
-<h4><a class="toc-backref" href="#id25">1.1.4.2. Existing Solutions</a><a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id10">
+<h4><a class="toc-backref" href="#id44">1.2.4.2. Existing Solutions</a><a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h4>
 <p>Three solutions:</p>
 <ol class="arabic simple">
 <li>Dynamically adjustment of timestep using a limiter for the maximum timestep. For large scale applications this is good. However, <strong>for small scale applications (where wind and wave changes occur rapidly over the domain), this is bad because of the small timesteps involved.</strong></li>
@@ -205,8 +409,8 @@
 <li>Spreading numerical method - semi-analytical solution for integration source term, which includes wind-wave input, dissipation term, and exact non-linear energy transfer.</li>
 </ol>
 </div>
-<div class="section" id="id9">
-<h4><a class="toc-backref" href="#id26">1.1.4.3. Future Solutions</a><a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h4>
+<div class="section" id="id11">
+<h4><a class="toc-backref" href="#id45">1.2.4.3. Future Solutions</a><a class="headerlink" href="#id11" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li>Alternative non-convergent limiters</li>
 <li>Prototype for convergent limiter with reduced time step dependencies</li>
