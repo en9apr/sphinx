@@ -170,6 +170,11 @@ Three reasons why drag might be reduced in a hurricane:
 * Also as spray returns to the sea, it removes small waves (which hold the greatest wave induced stress) hence drag can be reduced in this way. 
 * Also it is claimed that extremely young seas like in a hurricane would have reduced drag.
 
+Argument using only spray:
+
+* Spray may stay close to the surface, supressing turbulence, inhibiting momentum transfer to the sea - reducing drag
+* Spray may be accelerated by the mean airflow - increasing drag 
+
 Quality of Modelled Wind Fields
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
