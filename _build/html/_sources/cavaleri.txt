@@ -180,6 +180,135 @@ Quality of Modelled Wind Fields
 
 * **At present no model of the atmospheric boundary layer can justify the level of wind variablity measured in the field in certain conditions**
 
+
+Bottom Dissipation
+==================
+
+Problem
+-------
+
+In shallow water bottom dissipation is needed to complete the energy balance. The soruces of bottom dissipation are:
+
+* Percolation into a porous medium
+* Motion of a mobile bed
+* Dissipation through turbulent bed shear stress, with an associated bottom boundary layer.
+
+Wave energy dissipation due to bottom friction
+----------------------------------------------
+
+* Bottom friction can caused a few watts of energy loss per square metre, which is similar to moderate wind input.
+* We need the shear stress and the orbital velocity for each wavenumber at the sea bed.
+* Drag coefficient or friction coefficient or friction factor or equivalent roughness are needed
+* Major problem is that it is difficult to measure bottom friction directly, because other processes such as atmospheric input, nonlinear interactions, whitecap dissipation, refraction and shoaling may also be present.
+
+Common formulations for spectral wave models: waves and currents
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* The effect of the interaction between waves and currents on bottom stress is not completely solved - i.e. whether the interaction is weak or strong.
+
+Bottom roughness model for movable beds
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* Hydraulic roughness is a combination of:
+
+  - skin friction on individual grains
+  - form drag due to bed forms
+
+* Different experiments can produce different roughness values, by orders of magnitude, for large roughness elements or steep ripples, momentum transfer is dominated by vortex-shedding rather than random turbulence.
+
+Energy dissipation due to wave-bottom interaction
+-------------------------------------------------
+
+As well as friction, energy is lost as:
+
+* damping due to percolation in a permeable bed layer
+* absorption of energy in a bottom layer of soft mud
+
+Outstanding Problems
+--------------------
+
+Only way to make further progress on wave dissipation due to interaction with a movable or soft bottom is though a combined study of the wave field and its effect on sediment motion
+
+But flow properties and sediment concentration close to the bottom and in the case of mud also visco-elastic properties of the bottom are difficult to measure. This is so in the lab, but even more so in the field.
+
+Spectral dissipation in deep water
+==================================
+
+Spectral wave energy dissipation is the least understood part of the physics in wave modelling. The mechanisms in order of contribution to this dissipation are:
+
+* wave breaking
+* interaction of waves with turbulence
+* short wave modulation by long waves
+* interaction of waves with the vertical structures of the upper layers of the ocean
+* whitecapping
+
+Studies can be separated in:
+
+* wave physics
+* numerics
+
+Theoretical and experimental research of physics of the spectral dissipation
+----------------------------------------------------------------------------
+
+Three sources considered:
+
+* wave breaking
+* wave-turbulence interaction
+* wave-wave modulation
+
+Spectral dissipation due to wave breaking
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Two main approaches for modelling spectral dissipation:
+
+* prior to breaking
+  
+  - probability model
+  - quasi-saturated model
+ 
+* after wave breaking
+
+  - weak in the mean model
+  - effective turbulent viscosity **note: eddy viscosity approach is not generally accepted**
+  - bubble model
+
+Validation is needed:
+
+  - radar
+  - aerial images
+
+What does breaking depend on? There are many theories:
+
+  - balance of source terms - balance of wind generation and breaking dissipation
+  - spectral dissipation is a function of frequency relative to peak
+  - wave breaking has a maximum in the wavenumber domain
+  - max spectral restoration occurs at intermediate wavelengths, caused by breaking of larger dominant waves
+  - spectral dissipation is a function of wavenumber and spectral energy input
+  - whitecapping dissipation depends on larger scales
+  - two phase bubble dissipation also present
+  - dissipation effect measured by comparing non-breaking with breaking wave spectrum to determine the dissipation due to breaking
+  - breaking dependence on wind direction - directional spectrum
+
+Conclusions:
+
+1) No theoretical consensus exists concerning spectral dissipation of wave energy due to wave breaking 
+2) Theory strongly disagrees with experiment
+3) Experimental results disagree with each other
+
+Wave-turbulence interactions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* For wave periods > 10s viscosity has negigible effect - swells once generated were supposed to dissipate sowly due to the action of the wind, via the **"sheltering theory"** Jeffreys (1925)
+* The sheltering theory was then replaced with **eddy viscosity analogies**. However, no evidence supports the idea that wave induced velocity profiles are unstable and become turbulent - except for the surface viscous layer (a few mm thick) and the wave bottom boundary layer. Therefore except in these two boundary layers, no theory justifies the use of eddy viscosity.
+* Instead, apply **rapid distorsion theory** to model the stretching of eddies by wave motion or consider the **scattering of waves by turbulence**. Assume:
+
+  - Eddy turnover time is less than wave period or
+  - The strain rate of turbulence by wave motion is more than that of the turbulence by itself 
+  - ... and the turbulent velocity is much less than the wave-induced velocity
+
+* A large part of the momentum flux may be carried by long-lived and stable Langmuir rolls, so the weak modulation of the turbulent flux by the waves is possible.
+* Turbulence is probably strongest at the peak of the wave groups where the Stokes drift is largest. This effect produces turbulence at larger depths than that produced by whitecaps.
+
 Numerics
 ========
 
