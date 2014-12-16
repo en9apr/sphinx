@@ -513,17 +513,17 @@
 <div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [62]: </span><span class="n">f</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10000</span><span class="p">)</span>
 
 <span class="gp">In [63]: </span><span class="n">timeit</span> <span class="n">ff</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">f</span><span class="p">)]</span>
-<span class="go">100 loops, best of 3: 3.81 ms per loop</span>
+<span class="go">100 loops, best of 3: 4.64 ms per loop</span>
 </pre></div>
 </div>
 <p>Create a NumPy array and time the addition:</p>
 <div class="highlight-ipython"><div class="highlight"><pre><span class="gp">In [64]: </span><span class="n">g</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
 
 <span class="gp">In [65]: </span><span class="n">timeit</span> <span class="n">gg</span> <span class="o">=</span> <span class="n">g</span> <span class="o">+</span> <span class="n">g</span>
-<span class="go">10000 loops, best of 3: 32.2 us per loop</span>
+<span class="go">10000 loops, best of 3: 52.2 us per loop</span>
 
 <span class="gp">In [66]: </span><span class="n">timeit</span> <span class="n">hh</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">g</span><span class="p">,</span><span class="n">g</span><span class="p">)</span>
-<span class="go">10000 loops, best of 3: 24 us per loop</span>
+<span class="go">10000 loops, best of 3: 51.4 us per loop</span>
 </pre></div>
 </div>
 <ul class="simple">
