@@ -26,8 +26,6 @@ Problems are:
 * modelling extreme cases of low wind and high wind
 * the drag coefficient may not be well specified in extreme situations, e.g. hurricanes.
 
-
-
 Linear Theory
 -------------
 
@@ -298,7 +296,7 @@ Conclusions:
 Wave-turbulence interactions
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* For wave periods > 10s viscosity has negigible effect - swells once generated were supposed to dissipate sowly due to the action of the wind, via the **"sheltering theory"** Jeffreys (1925)
+* For wave periods > 10s viscosity has negigible effect - swells once generated were supposed to dissipate slowly due to the action of the wind, via the **"sheltering theory"** Jeffreys (1925)
 * The sheltering theory was then replaced with **eddy viscosity analogies**. However, no evidence supports the idea that wave induced velocity profiles are unstable and become turbulent - except for the surface viscous layer (a few mm thick) and the wave bottom boundary layer. Therefore except in these two boundary layers, no theory justifies the use of eddy viscosity.
 * Instead, apply **rapid distorsion theory** to model the stretching of eddies by wave motion or consider the **scattering of waves by turbulence**. Assume:
 
@@ -308,6 +306,110 @@ Wave-turbulence interactions
 
 * A large part of the momentum flux may be carried by long-lived and stable Langmuir rolls, so the weak modulation of the turbulent flux by the waves is possible.
 * Turbulence is probably strongest at the peak of the wave groups where the Stokes drift is largest. This effect produces turbulence at larger depths than that produced by whitecaps.
+
+Wave-wave modulations
+~~~~~~~~~~~~~~~~~~~~~
+
+* Exchange of energy and momentum takes place between the wind the long waves via the short waves and not between the waves and the ocean circulation and the turbulence.
+* Modulations of wind stress can be significant:
+
+  - **If the wind stress modulations are directed against the long waves, it dissipates them**
+  - **If the wind stress modulations are directed with the long waves, it amplifies them**
+
+* Modelling using **"rapid distortion theory"** of the air showed that the wind stress effect dissipates swells.
+* As well as wind stress modulation, there is also surface roughness modulation, which may contribute to the growth of the waves in the wind direction.
+
+Modelling the spectral dissipation function
+-------------------------------------------
+
+* Thus far spectral dissipation has been modelled by using "tuning knobs" rather than the parameterisation of the physics of the flow.
+* Wave breaking dissipation mechanisms:
+
+  - breaking threshold based on local spectral saturation
+  - short wave extinction through cumulative nonlinear interaction with longer waves
+  - failure to suppress low frequency spectral energy may result in return energy fluxes to the atmosphere that are up to a quarter of the wind-wave flux in magnitude
+
+* History of the dissipation term:
+
+  - considering the balance of source terms in order to obtain the known integral evolution curves
+  - ensuring known spectrum development is satisfied, by validating spectral balance evolution
+  - uncoupling the dissipation term from the source term balance in an attempt to tune it against known wave breaking characteristics
+  - further tuning the standalone dissipation function against other dissipation-rlated properties and constraints (next step) **turbulent viscosity may play a role at small wave scales but not in white capping** and in shallow water the problem is more complex(!)
+  - employing exact physics both experimental and theoretical (future)
+
+Wave propagation
+================
+
+* Wave propagation is on the LHS of the action balance equation consisting of the well-known effects of:
+
+  - refraction
+  - shoaling
+  - diffraction
+  - reflection
+
+* Wave propagation is important for:
+
+  - evolution of swells over long distances
+  - variation of wave fields over narrow continental shelves
+
+**Wave breaking is the largest source of upper ocean turbulence with profound influence on current velocity profiles**
+
+Dispersion, geometrical optics and the wave action equation
+-----------------------------------------------------------
+
+Spectral description of wind-waves was introduced by **Pierson et al. (1955)** in order to account for the irregularity of waves at sea. Most models consider the waves as linear, but random and uniformly distributed.
+
+The equation for spectral action density can by solved with Lagrangian (rays) or Eulerian coordinate systems.
+
+Limitations of geometrical optics: diffraction, reflection and random scattering
+--------------------------------------------------------------------------------
+
+* Recent models are not phase resolving and don't account for interference patterns.
+* Partial wave reflection is also ignored
+* A proper form of the higher order scattering term is yet to be derived for random waves
+
+Waves over varying currents, nonlinear wave effects and the advection velocity
+------------------------------------------------------------------------------
+
+* Describing waves varying over currents is important for forcasting and for the interpretation of remote-sensing observations. This applies to:
+
+  - micro-wave radar
+  - radiometers from satellites
+
+* Measurements can be:
+
+  - sea surface height
+  - current
+  - wave height
+  - sea surface salinity
+  - winds
+
+* In those cases the instrument is sensitive to short (few centimeter) waves that are modulated by orbital velocities of the longer waves, with additional effects of surface slopes and accelerations.
+* Also applies to high frequency radar (for mapping coastal currents)
+* Short waves can be advected by long waves
+* Current fronts may be a preferential site for wave breaking
+* The Met Office only really considers tidal currents for practical weather forecasting. Quasi-geostrophic currents are not observed or well predicted enough for these calculations.
+* Partial wave reflection may be important for the wave-current interactions that occur in Langmuir circulations.  
+
+Waves blocking
+--------------
+
+* This is where currents oppose each other and stop wave propagation. However, the mechanism by which wave energy is removed at the blocking point is not understood yet.
+
+
+Unsteady water depths and currents
+----------------------------------
+
+* Waves propagating over stationary currents have been considered. This holds true for quasi-stationary currents on timescales comparable with the propagation time of waves through the area. This is true for the Gulf Stream.
+* Currents on continental shelves are likely due to tides (tidal currents). A tidal wave is faster than a wind wave, so is quasi-homogenous not quasi-stationary.
+
+Waves in the real ocean
+-----------------------
+
+* Ice can attenuate waves propagating from the open ocean and prevents wind-wave generation of significance to the ice-free ocean.
+* Swells can break up ice 
+* Oil can also attenuate ice 
+* Surface waves can interact with internal waves
 
 Numerics
 ========
