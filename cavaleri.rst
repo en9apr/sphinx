@@ -4,10 +4,43 @@ Wave Modelling - the State of the Art
 
 Cavaleri et al. "Wave Modelling - the State of the Art", Progress in Oceanography, 75 (2007) pp 603 - 674
 
+SUMMARY
+=======
+
+We can evaluate the integral properties of the sea with good accuracy (significant wave height, period and direction). However, peaks and extreme conditions are frequently not well reproduced because:
+
+* metrological input is not good enough
+* physical assumptions become invalid
+
+Physical Assumptions:
+---------------------
+
+* For wind-wave generation waves are assumed to be a superposition of sinusoidal linear components - **linearity is invalid in a stormy sea with high skewness**. How to proceed is an open question.
+
+* For the dissipation of wind-waves, there is currently no consensus on the physics of the spectral dissipation of wave energy due to wave breaking in theory or experiment. However, the next likely step is probably on the experimental side.
+
+* For non-linear interactions in shallow water, we currently assume waves can be represented either by deterministic (phase-resolving) or stochastic (phase-averaging) models. However, future solutions may lie between these approaches. **Depth induced dissipation and how to distribute energy loss throughout the spectrum are both unknown, and these models often assume extremely simplistic bathymetrics.**
+
+* For bottom dissipation, the true physical characteristics of the bottom are unknown (dimensions of ripples, sheet flow etc). However, the physics is fairly well known, except in the case of anelastic motion of viscous muddy bottoms which applies in the case of a hurricane. 
+
+* For numerics the garden sprinkler effect can be countered with artificial diffusion. **Higher order advection schemes exist but no agreement exists on which is the most suitable**. Unstructured grids are gaining popularity. Semi-Lagrangian schemes may relax the stability/accuracy requirements of the Euler method, but using the same timestep for all frequencies may lead to suitable but articifial changes during each integration step. **Combining Eulerian and Lagrangian schemes may be a future possibility for open and coastal waters.**
+
+What is really going on?
+------------------------
+
+* People are **"tuning"** their models for each individual process to fit the experimental data - using **white capping** as the "tuning knob"
+
+What do we really need?
+-----------------------
+
+* Consider the real driving mechanism: **wind - waves - breaking - circulation** 
+* Requiring interaction between the **atmospheric, wave and circulation** modelling communities.
+* **More fundamental coupling between the sea and the atmosphere** - not via empirical formulations - but by sound physics
+
 .. contents::
    :local:
 
-Wind-wave Generation
+WIND-WAVE GENERATION
 ====================
 
 The problem is to accurately model:
@@ -179,7 +212,7 @@ Quality of Modelled Wind Fields
 * **At present no model of the atmospheric boundary layer can justify the level of wind variablity measured in the field in certain conditions**
 
 
-Bottom Dissipation
+BOTTOM DISSIPATION
 ==================
 
 Problem
@@ -229,7 +262,7 @@ Only way to make further progress on wave dissipation due to interaction with a 
 
 But flow properties and sediment concentration close to the bottom and in the case of mud also visco-elastic properties of the bottom are difficult to measure. This is so in the lab, but even more so in the field.
 
-Spectral dissipation in deep water
+SPECTRAL DISSIPATION IN DEEP WATER
 ==================================
 
 Spectral wave energy dissipation is the least understood part of the physics in wave modelling. The mechanisms in order of contribution to this dissipation are:
@@ -337,7 +370,7 @@ Modelling the spectral dissipation function
   - further tuning the standalone dissipation function against other dissipation-rlated properties and constraints (next step) **turbulent viscosity may play a role at small wave scales but not in white capping** and in shallow water the problem is more complex(!)
   - employing exact physics both experimental and theoretical (future)
 
-Wave propagation
+WAVE PROPAGATION
 ================
 
 * Wave propagation is on the LHS of the action balance equation consisting of the well-known effects of:
@@ -411,7 +444,131 @@ Waves in the real ocean
 * Oil can also attenuate ice 
 * Surface waves can interact with internal waves
 
-Numerics
+NON-LINEAR INTERACTION IN DEEP WATER
+====================================
+
+Resonant, weakly nonlinear interactions between sets of four waves play an important role in the evolution of the energy spectrum of free surface gravity waves propagating at the ocean surface (JONSWAP Project)
+
+Theory
+------
+
+The basic equation describing these interactions is the **Boltzmann integral**.
+
+
+Solution Methods
+----------------
+
+* The Boltzmann integral is rather time consuming to solve due to it's complexity. 
+* It has yet to reach operational wave prediction models.
+* Various discrete solutions have been attempted
+
+Questions and actions
+---------------------
+
+* The range of validity of the Boltzmann integral is not well known.
+* The role of four wave interactions on long period swell waves has not yet been determined.
+* Nobody has compared the numerical solutions to the Boltzmann integral
+
+
+NON-LINEAR INTERACTION IN SHALLOW WATER
+=======================================
+
+There are two approaches here:
+
+* Deterministic equations (e.g. Boussinesq equations or the fully non-linear equations)
+* Stochastic models (i.e. models derived from the deterministic equations under a closure hypothesis - usually the random phase approximation is adopted)
+
+Non-linearity in shallow water
+------------------------------
+
+As waves propagate from deep water into shallow coastal areas:
+
+* frequency dispersion diminishes 
+* quadratic near-resonances transform near-symmetric waves to skewed, pitched forward shapes
+* the radiation of long waves at the 'beat' frequency of the incident wave field is induced ('surfbeat')
+
+**Phenomena:**
+
+* Boussinesq models assume uniform depth, weak dispersion and nonlinearity - i.e. very shallow water (although there have been some advances) 
+* Variable depth theories assume the Stokes Number is O(1) i.e. nonlinearity :math:`a/h`, and dispersion :math:`(kh)^2` are assumed to be the same order
+* The dispersion relation changes as waves propagate from deep to shallow water. The frequency spectrum is broadened and spectral components are phase-coupled causing the characteristic steepening and ptiching forward of near-breaking wave crests.
+
+**Shallow water propagation models:**
+
+1) Deterministic (phase resolving) models:
+
+* These are derived from the Euler equation for potential flows (the Laplace equation plus boundary conditions). Assuming:
+
+  - weak nonlinearity
+  - in the limit of shallow water :math:`kh \rightarrow 0`
+
+* These models include:
+
+  - the physical domain Boussinesq models
+  - the complex amplitude evolution models (spectral models)
+
+2) Stochatic (phase-averaging) models:
+
+* These are derived from the deterministic equations be applying a **turbulence-like closure hypothesis** to the infinite set of coupled equations governing the evolution of the spectral moments.
+* For any deterministic model, a stochastic model can be developed.
+* The closure hypothesis invariably introduces errors, so **the underlying deterministic model is more accurate than the stochastic model**.
+
+As waves approach the shore, additional effects such as **bottom friction** and **depth-induced wave breaking** must be considered.
+
+Deterministic models: time domain and spectral domain
+-----------------------------------------------------
+
+Time Domain
+~~~~~~~~~~~
+
+* Usually time-domain Boussinesq models
+* Limited to spatial scales of around 10 wavelengths and operational nearshore wave prediction, as computational demands are prohibitive for large applications. Because:
+  
+  - Phase-resolving boundary conditions are usually not avaliable 
+  - The need for wave field statistics - random directionally spread waves (as opposed to a single realisation) requires computation of multiple realisations
+
+Spectral Domain
+~~~~~~~~~~~~~~~
+
+* (Complex) amplitude evolution or spectral models
+* Superposition of plane waves (Fourier modes)
+* Fourier models are attractive because:
+
+  - They provide a natural continuation of the deep water approach.
+  - Suited to handling processes of a statistical nature, e.g. dissipation and wind input.
+
+* Similar to time-domain models, these are deterministic models and **Monte Carlo** simulations are needed for wave statistics
+
+Stochastic models
+-----------------
+
+* Solve evolution equations for statistically averaged spectral wave properties.
+* Comparison with experimental data shows good agreement outside the surf zone
+* Higher order statistics (wave skewness and asymmetry) are less well predicted especially in the surf zone
+* Advantages of stochastic models:
+
+  - can predict statistical quantities directly without the need for repeated simulations
+  - can be inisialised with direct measurements 
+
+* Disadvantages of stochastic models:
+
+  - no good over long distances (overly strong non-linearity and negative energy)
+
+Dissipation and wave breaking in shallow water
+----------------------------------------------
+
+* Wave dissipation in the surf zone is not well understood and modelled heuristically.
+
+Open problems
+-------------
+
+* Effects of bottom friction processes are not well understood
+* With deterministic (phase resolving) models is it unclear how many Monte Carlo realisations are needed to obtain statistically reliable predictions of shallow water wave properties - but usually around 50 realizations are reported. It is a balance between accuracy and computing time.
+* Stochastic models are more efficient, but less accurate over long distances or in highly non-linear or dissipative regions.
+* Most models use a moderately sloped beach (1-5%) with 10 characteristic wavelengths and a sandy beach - most beaches are highly irregular.
+* Reflections and standing waves are also ignored.
+
+NUMERICS
 ========
 
 * Choice of numerical scheme can result in large errors. 
