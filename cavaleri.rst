@@ -4,6 +4,9 @@ Wave Modelling - the State of the Art
 
 Cavaleri et al. "Wave Modelling - the State of the Art", Progress in Oceanography, 75 (2007) pp 603 - 674
 
+.. contents::
+   :local:
+
 SUMMARY
 =======
 
@@ -36,9 +39,6 @@ What do we really need?
 * Consider the real driving mechanism: **wind - waves - breaking - circulation** 
 * Requiring interaction between the **atmospheric, wave and circulation** modelling communities.
 * **More fundamental coupling between the sea and the atmosphere** - not via empirical formulations - but by sound physics
-
-.. contents::
-   :local:
 
 WIND-WAVE GENERATION
 ====================
