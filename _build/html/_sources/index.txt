@@ -40,7 +40,7 @@ Literature
    :numbered: 4
 
    cavaleri
-   
+   ravel
 
 High Performance Scientific Computing:
 --------------------------------------

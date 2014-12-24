@@ -15,8 +15,8 @@ We can evaluate the integral properties of the sea with good accuracy (significa
 * metrological input is not good enough
 * physical assumptions become invalid
 
-Physical Assumptions:
----------------------
+Physical Assumptions
+--------------------
 
 * For wind-wave generation waves are assumed to be a superposition of sinusoidal linear components - **linearity is invalid in a stormy sea with high skewness**. How to proceed is an open question.
 

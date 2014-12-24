@@ -1,0 +1,87 @@
+================================================================
+Numerical Simulation of Viscous, Nonlinear and Progressive Waves
+================================================================
+
+Ravel, A., Wen, X., Smith, M.H., "Numerical Simulation of Viscous, Nonlinear and Progressive Water Waves", Jounral of Fluid Mechanics, 637 (2009) pp 443 - 473
+
+.. contents::
+   :local:
+
+Where is this study placed within the wave modelling community?
+===============================================================
+
+* This study is in the category of models attemping to solve the problem of non-linear wave effects in shallow water. 
+* It takes the approach of deterministic (phase resolving) wave modelling in the time domain.
+* It uses one phase per realisation, and seven realisations are performed (which may have been limited by the large computing time needed) but at different depths and frequencies.
+* Unlike other models in this category, it also includes viscous effects, which allows energy decay rate to be observed, which is one of the open questions in this field.
+* It also postulates various mechanisms for this decay rate, to try to explain the physics behind the energy decay rate difference between intermediate and deep water cases.
+
+Assumptions
+===========
+
+1) 2D
+2) Viscous fluid
+3) Non-linear
+4) Non-breaking
+5) Intermediate and deep water - with a slope
+6) Zero wind velocity - air follows wind
+
+Determine
+=========
+
+1) Velocity field
+2) Streamlines
+3) Vorticity
+4) Shear stress
+
+Findings
+========
+
+Near the water surface:
+
+1) Clockwise and anticlockwise rotation of the fluid at the trough and crest
+2) Thicker vorticity layers and larger magnitude of vorticity compared with:
+
+ * Inviscid, rotational flow (the Gerstner wave)
+ * Low Re viscous flow (from Kinsman (1965) and Lamb (1932))
+
+3) Thick shear layer with larger shear stress (-ve and +ve shear stress below crest and troughs of the wave)
+4) Good comparison between wave energy decay rates (numerical, experimental and theoretical)
+
+Literature Review
+=================
+
+3 categories of techniques:
+
+1) Potential flow - inviscid, irrotational, no turbulence (analytical solution via Laplace equation for velocity potential plus boundary conditions):
+
+   * Inaccurate for flows with a boundary layer (e.g. atmospheric boundary layer, bottom boundary layer)
+   * Vorticity is zero, so fluid loses it's infinite degrees of freedom (so the fluid ceases to be a fluid in reality)
+
+2) Inviscid rotational flow:
+
+   * Gersther's trochodial wave theory
+   * Boundary integral method - periodic and solitary waves with constant vorticity - limited due to special application of vorticity distribution
+   * Boundary integral method - interaction of small amplitude waves with bottom ripples
+
+3) Viscous flow:
+
+   * Kinsman and Lamb (low Re): No convection terms, which linearizes the Navier Stokes Equations, such that an analytical solution can be found
+   * Behroozi: conservation of energy for fluid viscosity and decay relation
+   * Wang & Joseph: viscous potential flow and viscous correction potential flow for decay of free gravity wave due to viscosity
+   * Dutykh & Dias: Visco-potential free surface flow
+ 
+What kind of numerical methods are there?
+-----------------------------------------
+
+1) Front tracking method
+2) Boundary integral method
+3) Phase field method
+4) Second gradient method
+5) Level set method
+6) Marker and cell methoed
+7) Smooth particle hydrodynamics
+8) Finite analytic method and modified marker and cell method, using zero shear stress atthe surface for velocity and energy decay rate
+
+
+
