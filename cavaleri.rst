@@ -82,7 +82,7 @@ The History
   - used quasi-laminar approach - *airflow is inviscid* and *turbulence only maintains the shear flow*.
   - *neglected non-linear effects*, such as wave-mean flow interaction (which are important at the critical height where the phase speed and wind speed match)
   - Experiments by Dobson (1971) show rate of energy transfer is an order of magnitude higher than Miles predicts
-  - Recent experiments show Miles underpredicts energy transfer for low frequency waves with a wave speed close to phase speed
+  - Recent experiments show Miles underpredicts energy transfer for low frequency waves with a wind speed close to phase speed
 
 * Solutions to Miles' problems, use **mixing length turbulence model**:
 

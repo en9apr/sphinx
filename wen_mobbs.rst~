@@ -1,0 +1,29 @@
+=============================================================
+Laminar Air-Water Flow of a Non-linear Wave at Low Wind Speed
+=============================================================
+
+Wen, X., Mobbs, S., "Numerical Simulations of Laminar Air-Water Flow of a Non-linear Progressive Wave at Low Wind Speed", Boundary Layer Meteorology, 150 (2014) pp 381 - 398
+
+.. contents::
+   :local:
+
+Where is this study placed within the wave modelling community?
+===============================================================
+
+* This paper is looking at the the issue of the generation of waves by wind. Unlike the Miles (1957) formulation and the subsequent development, it allows non-linear effects. It is known that non-linear effects are important when the phase speed and wind speed match (at the critical height), which is one of the cases reported here. 
+* It is shown that the maximum wind speed moves closer to the surface as the wind speed increases, similar to the non-separated sheltering mechanism from the work of Jeffreys (1924). This has been shown by Belcher and Hunt (1998), in that for c/U < 15 (slow moving waves) and fast waves the mechanism for momemtum transfer is non-separated sheltering.
+* Flow regimes are defined based on wind speed :math:`U = 0` (no wind), :math:`U = um`,  :math:`U = c` to define in terms of the velocity field how momentum is transferred - this has not been defined before.
+* Although the model includes a beach slope, it is not concerned with dissipation in shallow water, because an artifical viscosity is applied to damp out wave energy in the beach region (to allow the derivative of velocity to be zero at the outlet) and it also considers a deep water case (h/L = 0.6).
+
+Summary of Findings
+===================
+
+* In the water, the potential flow versus viscous flow showed good agreement
+* In the air, potential flow is different to viscous flow because of the effects of viscosity
+* 3 wind speeds: :math:`U = 0, U = u_m` and :math:`U = c` are needed to compute the three different flow patterns
+
+Literature Review
+=================
+
+* Studying air-water flows is important for the coupling between 
+

@@ -41,6 +41,7 @@ Literature
 
    cavaleri
    ravel
+   wen_mobbs
 
 High Performance Scientific Computing:
 --------------------------------------

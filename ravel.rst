@@ -268,6 +268,7 @@ Effect of Wave Steepness
 
 * Wave steepness also increases vorticity and shear stress because the velocity gradients are higher.
 
-**The effect of the oscillatory vorticity field with depth seems to be the fundamental phenomenon and affects the shear stress and velocity field directly**
+**The effect of the oscillatory vorticity field with depth seems to be a fundamental phenomenon and affects the shear stress and velocity field**
 
+**The interface between the air and water is the most critical region in the flow, due to the high viscous shear stress created there**
 
