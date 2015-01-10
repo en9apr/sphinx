@@ -130,7 +130,7 @@ Why isn't the square wave maintained?
 
 * The first order backward differencing scheme in space still creates false diffusion as before.
 * However, due to the non-linearity in the governing equation, if the spatial step is reduced, the solution can develop shocks, see Figure 2.
-* Clearly a square wave is not best represented with the invisid Burgers Equation.
+* Clearly a square wave is not best represented with the inviscid Burgers Equation.
 
 Why does the wave shift to the right?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~

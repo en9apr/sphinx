@@ -6,7 +6,7 @@ Comments
 --------
 
 -  Non-computational parts of the program that textually describe the
-   behavior of the program.
+   behaviour of the program.
 -  Comments begin with ``#`` everything to right of the hash is ignored
    by Python.
 -  Comments should be frequent so you and others can understand the
@@ -137,7 +137,7 @@ Errors with Print Command
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 You can also get an error by misspelling 'print.' Notice that again,
-print shows up as a different color than normal.
+print shows up as a different colour than normal.
 
 .. testcode::
 

@@ -41,7 +41,10 @@ Literature
 
    cavaleri
    ravel
+   feng
+   wen
    wen_mobbs
+   
 
 High Performance Scientific Computing:
 --------------------------------------

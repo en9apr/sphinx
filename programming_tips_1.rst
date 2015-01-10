@@ -40,7 +40,7 @@ Example of Docstring and Comment
 Example of Always Giving Conditional Output
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
--  Conditional Output should always be given if no critera are met, i.e. always use else
+-  Conditional Output should always be given if no criteria are met, i.e. always use else
 
 .. testcode::
 

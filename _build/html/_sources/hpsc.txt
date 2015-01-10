@@ -27,7 +27,7 @@ This page contains the following codes:
 
 * `Workspace 5: Load Balancing`_
       * **Makefile** (makefile for the 1D solution)
-      * **functions.f90** (sinusoial function module)
+      * **functions.f90** (sinusoidal function module)
       * **quadrature.f90, test.f90** (trapezoid rule module + test - serial)
       * **quadrature2.f90, test2.f90** (simpson's rule module + test - serial)
       * **quadrature3.f90, test3.f90** (trapezoid rule module + test - OpenMP)

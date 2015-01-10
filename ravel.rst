@@ -1,6 +1,6 @@
-================================================================
-Numerical Simulation of Viscous, Nonlinear and Progressive Waves
-================================================================
+=====================================================================
+Ravel et al. (2009) "Numerical Simulation of Viscous Nonlinear Waves"
+=====================================================================
 
 Ravel, A., Wen, X., Smith, M.H., "Numerical Simulation of Viscous, Nonlinear and Progressive Water Waves", Jounral of Fluid Mechanics, 637 (2009) pp 443 - 473
 
@@ -10,7 +10,7 @@ Ravel, A., Wen, X., Smith, M.H., "Numerical Simulation of Viscous, Nonlinear and
 Where is this study placed within the wave modelling community?
 ===============================================================
 
-* This study is in the category of models attemping to solve the problem of non-linear wave effects in shallow water. 
+* This study is in the category of models attempting to solve the problem of non-linear wave effects in shallow water. 
 * It takes the approach of deterministic (phase resolving) wave modelling in the time domain.
 * It uses one phase per realisation, and seven realisations are performed (which may have been limited by the large computing time needed) but at different depths and frequencies.
 * Unlike other models in this category, it also includes viscous effects, which allows energy decay rate to be observed, which is one of the open questions in this field.
@@ -48,7 +48,7 @@ Literature Review
 
 3) Viscous flow:
 
-   * Kinsman and Lamb (low Re): No convection terms, which linearizes the Navier Stokes Equations, such that an analytical solution can be found
+   * Kinsman and Lamb (low Re): No convection terms, which linearises the Navier Stokes Equations, such that an analytical solution can be found
    * Behroozi: conservation of energy for fluid viscosity and decay relation
    * Wang & Joseph: viscous potential flow and viscous correction potential flow for decay of free gravity wave due to viscosity
    * Dutykh & Dias: Visco-potential free surface flow
@@ -61,9 +61,9 @@ What kind of numerical methods are there?
 3) Phase field method
 4) Second gradient method
 5) Level set method
-6) Marker and cell methoed
+6) Marker and cell method
 7) Smooth particle hydrodynamics
-8) Finite analytic method and modified marker and cell method, using zero shear stress atthe surface for velocity and energy decay rate
+8) Finite analytic method and modified marker and cell method, using zero shear stress at the surface for velocity and energy decay rate
 9) Kinematic boundary condition at the surface - zero shear stress, zero pressure or total zero shear stress on water surface - no air considered only water
 10) Volume of fluid method - Hirt and Nichols (1981) for shape of free surface. Zwart, Burns and Galpin (2007) - VOF - define volume fraction of air and water separately with high resolution scheme for mass conservation in air and water, v, p and aw, af solved simultaneously in coupled system. Advantage of VOF = includes air and water to retain mass continuity and eliminates need to reconstruct the shape of the water surface during the calculation, like MAC, SPH and height function methods
 
@@ -76,13 +76,13 @@ What phenomena are we testing for?
 Do we need vorticity?
 ---------------------
 
-* Yes - parasitic capilliaries cause it - orbital vorticity below waves with wind - causes Langmuir circulations or turbulence balance - strong consequences. Vorticity is proportional to gradient of velocity - applicable for high Re flows. Action of viscous force shown in high vorticity and shear stress.
+* Yes - parasitic capillaries cause it - orbital vorticity below waves with wind - causes Langmuir circulations or turbulence balance - strong consequences. Vorticity is proportional to gradient of velocity - applicable for high Re flows. Action of viscous force shown in high vorticity and shear stress.
 
 Questions arising from literature review
 ----------------------------------------
 
 1) Is there vorticity and shear stress in a progressive wave without wind? (air following water)
-2) If so, what is the maximum value of vorticity and shear stress in the water? Are they symmetic under crest and trough?
+2) If so, what is the maximum value of vorticity and shear stress in the water? Are they symmetric under crest and trough?
 3) Is there an effect of water depth on vorticity and shear stress?
 
 Method

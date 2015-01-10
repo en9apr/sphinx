@@ -50,7 +50,7 @@ Mathematical Model
 
 * Associated boundary conditions
 
-* The non linearity is a source of turbulence, vorticity, shock waves, combustion, multi-phase, bubble dynamics, evapouration, condensation. Therefore the model is associated with a target application - e.g. incompressible, inviscid, turbulent, 2D or 3D model
+* The non linearity is a source of turbulence, vorticity, shock waves, combustion, multi-phase, bubble dynamics, evaporation, condensation. Therefore the model is associated with a target application - e.g. incompressible, inviscid, turbulent, 2D or 3D model
 
 Discretization Method - the major part of CFD
 `````````````````````````````````````````````

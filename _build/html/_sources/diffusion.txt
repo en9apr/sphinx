@@ -157,7 +157,7 @@ Why isn't the square wave maintained?
 Why does increasing the viscosity, spatial points and time period cause instability?
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If the viscosity is too large, or if the number of spatial points is too large or if the timestep is too large, then the central differening method becomes unstable. This is due to the ratio, r. If r is too large, the method becomes unstable:
+If the viscosity is too large, or if the number of spatial points is too large or if the timestep is too large, then the central differencing method becomes unstable. This is due to the ratio, r. If r is too large, the method becomes unstable:
 
 .. math::
 

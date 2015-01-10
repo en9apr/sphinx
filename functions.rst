@@ -69,7 +69,7 @@ Deciding Names
 Unit Test Functions
 ~~~~~~~~~~~~~~~~~~~
 
--  To evalaute a function call, replace the function's parameters in the
+-  To evaluate a function call, replace the function's parameters in the
    body of the function by their associated values in the call and
    execute the body of the function
 -  Do this over a range of values

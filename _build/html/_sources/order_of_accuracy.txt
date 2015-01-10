@@ -91,6 +91,6 @@ Model Equations
 
 **How do we identify whether diffusion, convection and unsteadyness are compatible in terms of the physics?**
 
-* Numerical discretizations: Must be adequate for the physical process :math:`\rightarrow` Convection, Diffision, Unsteadyness
+* Numerical discretizations: Must be adequate for the physical process :math:`\rightarrow` Convection, Diffusion, Unsteadyness
 
 * Model Equations are simplified forms of the Navier Stokes Equations.

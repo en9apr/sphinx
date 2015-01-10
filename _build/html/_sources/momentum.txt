@@ -37,17 +37,17 @@ Sign convention:
   * Normal Stress is positive if it's in the same direction as the outward normal vector
   * Shear Stress is positive if it's in the same direction as the coordinate system w.r.t the outward normal vector
 
-Conservation of Momemtum in x-direction:
+Conservation of Momentum in x-direction:
 ++++++++++++++++++++++++++++++++++++++++
 
 .. math:: \delta F_{sx} = \left( {\partial \sigma_{xx} \over \partial x} + {\partial \tau_{yx} \over \partial y} + {\partial \tau_{zx} \over \partial z} \right) \delta x \delta y \delta z
 
-Conservation of Momemtum in y-direction:
+Conservation of Momentum in y-direction:
 ++++++++++++++++++++++++++++++++++++++++
 
 .. math:: \delta F_{sy} = \left( {\partial \tau_{xy}  \over \partial x} + {\partial \sigma_{yy} \over \partial y} + {\partial \tau_{zy} \over \partial z} \right) \delta x \delta y \delta z
 
-Conservation of Momemtum in z-direction:
+Conservation of Momentum in z-direction:
 ++++++++++++++++++++++++++++++++++++++++
 
 .. math:: \delta F_{sz} = \left( {\partial \tau_{xz} \over \partial x} + {\partial \tau_{yz} \over \partial y} + {\partial \sigma_{zz} \over \partial z} \right) \delta x \delta y \delta z
@@ -64,11 +64,11 @@ Equation of motion:
 Three equations + continuity = Four equations
 +++++++++++++++++++++++++++++++++++++++++++++
 
-Unknowns: u, v, w and nine stresses = Twelve unknowns - need more infomation
-++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+Unknowns: u, v, w and nine stresses = Twelve unknowns - need more information
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-Invisid flow - no shearing stresses
-+++++++++++++++++++++++++++++++++++
+Inviscid flow - no shearing stresses
+++++++++++++++++++++++++++++++++++++
 
 .. math:: \sigma_{xx} = \sigma_{yy} = \sigma_{zz}  = -p
 

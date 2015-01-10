@@ -28,8 +28,8 @@ Mathematical Interpretation
 
 .. math:: \left .  {\partial u \over \partial x} \right \vert_i = \lim_{\Delta x \rightarrow 0} {u(x_i + \Delta x) - u(x_i) \over \Delta x}
 
-Geometric Intepretation
------------------------
+Geometric Interpretation
+------------------------
 
 * Slope of the tangent to the curve with three approximation to the exact solution: Backward, Forward and Central Difference.
 
@@ -75,7 +75,7 @@ Forward Differencing
 
 .. math:: \left . {\partial u \over \partial x} \right \vert_i = {(u_{i+1} - u_i) \over \Delta x} - O(\Delta x)
 
-* There is a possiblity that the derivative :math:`\left . {\partial^2 u \over \partial x^2} \right \vert_i` is large, but we assume that the function is well-behaved.
+* There is a possibility that the derivative :math:`\left . {\partial^2 u \over \partial x^2} \right \vert_i` is large, but we assume that the function is well-behaved.
 
 * Forward differencing approximation neglected terms of :math:`O(\Delta x)` :math:`\rightarrow` TRUNCATION ERROR
 

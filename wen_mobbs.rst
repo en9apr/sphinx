@@ -1,6 +1,6 @@
-=============================================================
-Laminar Air-Water Flow of a Non-linear Wave at Low Wind Speed
-=============================================================
+======================================================================
+Wen and Mobbs (2014) "Numerical Simulations of Laminar Air-Water Flow"
+======================================================================
 
 Wen, X., Mobbs, S., "Numerical Simulations of Laminar Air-Water Flow of a Non-linear Progressive Wave at Low Wind Speed", Boundary Layer Meteorology, 150 (2014) pp 381 - 398
 
@@ -11,9 +11,10 @@ Where is this study placed within the wave modelling community?
 ===============================================================
 
 * This paper is looking at the the issue of the generation of waves by wind. Unlike the Miles (1957) formulation and the subsequent development, it allows non-linear effects. It is known that non-linear effects are important when the phase speed and wind speed match (at the critical height), which is one of the cases reported here. 
-* It is shown that the maximum wind speed moves closer to the surface as the wind speed increases, similar to the non-separated sheltering mechanism from the work of Jeffreys (1924). This has been shown by Belcher and Hunt (1998), in that for c/U < 15 (slow moving waves) and fast waves the mechanism for momemtum transfer is non-separated sheltering.
-* Flow regimes are defined based on wind speed :math:`U = 0` (no wind), :math:`U = um`,  :math:`U = c` to define in terms of the velocity field how momentum is transferred - this has not been defined before.
-* Although the model includes a beach slope, it is not concerned with dissipation in shallow water, because an artifical viscosity is applied to damp out wave energy in the beach region (to allow the derivative of velocity to be zero at the outlet) and it also considers a deep water case (h/L = 0.6).
+* It is shown that the maximum wind speed moves closer to the surface as the wind speed increases, similar to the non-separated sheltering mechanism from the work of Jeffreys (1924). This has been shown by Belcher and Hunt (1998), in that for c/U < 15 (slow moving waves) and fast waves the mechanism for momentum transfer is non-separated sheltering.
+* Flow regimes are defined based on wind speed :math:`U = 0` (no wind), :math:`U = u_m`,  :math:`U = c` to define in terms of the velocity field how momentum is transferred - this has not been defined before.
+* Although the model includes a beach slope, it is not concerned with dissipation in shallow water, because an artificial viscosity is applied to damp out wave energy in the beach region (to allow the derivative of velocity to be zero at the outlet) and it also considers a deep water case (h/L = 0.6).
+* Tsimring (1983) showed that it is valid to analyse components separately because the effect of other components is proportional to the air-sea density ratio times the square of the wave spectrum.
 
 Summary of Findings
 ===================

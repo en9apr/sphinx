@@ -49,7 +49,7 @@ Use
    In [2]: myarray
 
 * If you don't preface the linspace function with `np` python will throw an error:
-* To learn the new functions avaliable to you, visit: `Numpy Reference <http://docs.scipy.org/doc/numpy/reference/>`_
+* To learn the new functions available to you, visit: `Numpy Reference <http://docs.scipy.org/doc/numpy/reference/>`_
 * Or for Matlab users: `Numpy for Matlab Users <http://wiki.scipy.org/NumPy_for_Matlab_Users/>`_
 
 Variables
@@ -115,7 +115,7 @@ Or in Fortran:
        print *, " "
    enddo
 
-Python doesn't use curely braces like C or the enddo like Fortran. The Python equivalent is:
+Python doesn't use curly braces like C or the enddo like Fortran. The Python equivalent is:
 
 .. code-block:: python
 

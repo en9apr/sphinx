@@ -10,8 +10,8 @@ Syntax of Logical Expressions
 -  These constants can be combined to form a Logical Expression via the
    Logical Operators ``and``, ``or`` and ``not``
 
-Sematics of Logical Expressions
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Semantics of Logical Expressions
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 -  ``a and b`` is True only if both expressions are True
 -  ``a or b`` is True if at least one expression is True

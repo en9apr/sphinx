@@ -20,15 +20,15 @@ precedence. A simplified order is given below for common operators:
 
 1. Please (parentheses) ``()``
 
-2. Excuse (exponetiation) ``**`` (this includes roots e.g. :math:`\sqrt 2  = 2^{-0.5}`
+2. Excuse (exponentiation) ``**`` (this includes roots e.g. :math:`\sqrt 2  = 2^{-0.5}`
   
-3. My (muliplication) ``*`` Dear (division) ``/``
+3. My (multiplication) ``*`` Dear (division) ``/``
 
 4. Aunt (addition) ``+`` Sally (subtraction) ``-``
 
 Multiplication and division have equal precedence, so they are
 done in the order they appear. The same applies to addition and
-subtraction. You can remember this because Muliplication is the opposite
+subtraction. You can remember this because Multiplication is the opposite
 of Division and Addition is the opposite of Subtraction.
 
 P E MD AS
