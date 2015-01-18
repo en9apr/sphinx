@@ -43,6 +43,14 @@ Math Module
     print math.e # e^1
     print math.exp(1) #e^1 
 
+    # import only two using capitals for constants
+
+    from math import pi as PI
+    from math import exp as exp
+
+    print PI
+    print exp(1)
+
 .. testoutput::
 
     6.0
@@ -55,7 +63,8 @@ Math Module
     3.14159265359
     2.71828182846
     2.71828182846
-
+    3.14159265359
+    2.71828182846
 
 Random Module
 ~~~~~~~~~~~~~

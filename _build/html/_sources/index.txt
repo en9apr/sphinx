@@ -3,13 +3,13 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-======================
- Notes on Computation
-======================
+====================
+Notes on Computation
+====================
 
-Computational Fluid Dynamics:
------------------------------
-
+CFD Theory:
+-----------
+ 
 .. toctree::
    :maxdepth: 1
    :numbered: 4
@@ -31,6 +31,7 @@ CFD Projects:
    linear_convection   
    non_linear_convection
    diffusion
+   burgers_equation
 
 Literature
 ----------
@@ -39,12 +40,12 @@ Literature
    :maxdepth: 1
    :numbered: 4
 
+   drikakis
    cavaleri
    ravel
    feng
    wen
    wen_mobbs
-   
 
 High Performance Scientific Computing:
 --------------------------------------

@@ -1,6 +1,6 @@
-============================
-1D Diffusion - Heat Equation
-============================
+====================================================
+1D Second-order Linear Diffusion - The Heat Equation
+====================================================
 
 .. contents::
    :local:
@@ -32,7 +32,12 @@ where :math:`e^{\nu k^2 t}` is the exponential damping term. So diffusion is an 
 
 Note: :math:`\nu > 0` for physical diffusion (if :math:`\nu < 0` would represent an exponentially growing phenomenon, e.g. an explosion or 'the rich get richer' model)
 
-* The phenomenon of diffusion is isotropic - so the finite difference formula that represents that physics is **central differencing** CD
+The physics of diffusion are:
+
+* An expotentially damped wave in time
+* Isotropic in space - the same in all spatial directions - it does not distinguish between upstream and downstream
+
+The phenomenon of diffusion is isotropic - so the finite difference formula that represents that physics is **central differencing** CD, because CD takes values from upstream and downstream equally.
  
 Formulate the Problem
 =====================

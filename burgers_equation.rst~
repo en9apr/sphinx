@@ -1,0 +1,275 @@
+===================================================================
+1D Second-order Non-linear Convection-Diffusion - Burgers' Equation
+===================================================================
+
+.. contents::
+   :local:
+
+Understand the Problem
+======================
+
+* What is the final profile for 1D convection-diffusion when the initial conditions are a saw tooth wave and the boundary conditions are constant?
+
+* 1D convection-diffusion is described as follows:
+
+.. math:: {\partial u \over \partial t} + u {\partial u \over \partial x} = \nu {\partial^2 u \over \partial x^2}
+
+Formulate the Problem
+=====================
+
+Input Data
+~~~~~~~~~~
+
+**Constants**
+
+* `nt` = 51 (number of temporal points)
+* `nx` = 21 (number of spatial points)
+* `tmax` = 0.5
+* `xmax = 2 \pi`
+
+Different initial and boundary conditions to linear convection:
+
+**Initial Conditions**
+
+.. math:: u_i^{n=0} = -2 \nu {{\partial \phi / \partial x} \over \phi} + 4
+
+where:
+
+.. math:: \phi = exp \left ({{-x^2} \over {4 \nu}} \right ) + exp \left [ -(x-2 \pi)^2 \over {4 \nu} \right ]
+
+.. math:: {{\partial \phi} \over {\partial x}} =
+ -{2 \over {4 \nu}} exp \left ( {{-x^2} \over {4 \nu}} \right )
+ -{2(x-2 \pi) \over {4 \nu}} exp \left [ -(x-2 \pi)^2 \over {4 \nu} \right ]
+
+.. math:: =
+ -{0.5 \over {\nu}} exp \left ( {{-x^2} \over {4 \nu}} \right )
+ -{0.5(x-2 \pi) \over {\nu}} exp \left [ -(x-2 \pi)^2 \over {4 \nu} \right ]
+
+**Boundary Conditions**
+
+Periodic:
+
+.. math:: u_{i=0}^n = u_{i=imax}^n
+
+Output Data
+~~~~~~~~~~~
+
+For all :math:`x` and :math:`t`:
+
+.. math:: u(x,t)
+
+Verification
+~~~~~~~~~~~~
+
+**Verify the output with the analytical solution**
+
+.. math:: u_i^n = -2 \nu {{\partial \phi / \partial x} \over \phi} + 4
+
+.. math:: \phi = exp \left ({{-(x-4t)^2} \over {4 \nu(t+1)}} \right ) + exp \left [ -(x-4t-2 \pi)^2 \over {4 \nu(t+1)} \right ]
+
+.. math:: {{\partial \phi} \over {\partial x}} =
+ -{{2(x-4t)} \over {4 \nu(t+1)}} exp \left ( {{-(x-4t)^2} \over {4 \nu(t+1)}} \right )
+ -{{2(x-4t-2 \pi)} \over {4 \nu(t+1)}} exp \left [{-(x-4t-2 \pi)^2} \over {4 \nu(t+1)} \right ]
+
+.. math:: =
+ -{{0.5(x-4t)} \over {\nu(t+1)}} exp \left ( {{-(x-4t)^2} \over {4 \nu(t+1)}} \right )
+ -{{0.5(x-4t-2 \pi)} \over {\nu(t+1)}} exp \left [{-(x-4t-2 \pi)^2} \over {4 \nu(t+1)} \right ]
+
+
+Design Algorithm to Solve Problem
+=================================
+
+Space-time discretisation
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* **FD for transient term**
+* **BD for convection term**
+* **CD for diffusion term**
+
+Numerical scheme
+~~~~~~~~~~~~~~~~
+
+* i :math:`\rightarrow` index of grid in x
+* n :math:`\rightarrow` index of grid in t
+
+Discrete equation
+~~~~~~~~~~~~~~~~~
+
+.. math::
+
+   {{u_i^{n+1} - u_i^n} \over {\Delta t}} + u_i^n {{u_i^n - u_{i-1}^n} \over {\Delta x}} = \nu {{u_{i+1}^n -2u_i^n+ u_{i-1}^n} \over \Delta x^2}
+
+Transpose
+~~~~~~~~~
+
+.. math::
+
+   u_i^{n+1} = u_i^n -  u_i^n {\Delta t \over \Delta x} {{(u_i^n - u_{i-1}^n)}} + \nu {\Delta t \over \Delta x^2}(u_{i+1}^n -2u_i^n+ u_{i-1}^n)
+
+   
+Pseudo-code
+~~~~~~~~~~~
+
+::
+
+   # Constants
+
+     nt = 51
+     tmax = 0.5
+     dt =  tmax/(nt-1) 
+     nx =  21
+     xmax = 2
+     dx = xmax/(nx-1)
+     viscosity = 0.1
+
+   # Range of i is between 0 and nx-1
+   # Range of n is between 0 and nt-1
+
+   # This allows the number of points to be nx and nt
+
+   # Periodic Boundary Conditions
+   # Create points outside computational domain and set them to their equivalent within the computational domain
+
+     for i between 0 and nx-1
+        x(i) = i*dx
+        ipos(i) = i+1
+        ineg(i) = i-1
+   
+   # Set Periodicity
+   # i:     -1    0,  1,..  nx-2, nx-1, nx 
+   # ipos:            start =>    =>    end 
+   # ineg:  start =>  =>    end      
+
+     ipos(nx-1) = 0    i.e. nx = 0
+     ineg(0) = nx-1    i.e. -1 = nx-1
+   
+   # Initial Conditions
+     for i between 0 and nx-1
+        phi = exp( -x(i)^2/(4*vis) ) + exp( -(x(i)-2*pi)^2 / (4*vis) )
+
+        dphi = -(0.5/vis)*exp( -(x^2) / (4*vis) ) -
+               (0.5*(x-2*pi) / vis )*exp(-(x-2*pi)^2 / (4*vis) )
+
+        u(i,0) = -2*vis(dphi/phi) + 4
+   
+   # Analytical Solution (this loop is not time marching, 
+     and has no initial conditions, so runs the full range of n)
+    
+     for n between 0 and nt-1
+
+        t = n*dt
+ 
+        for i between 0 and nx-1
+           phi = exp( -(x(i)-4*t)^2/(4*vis*(t+1)) ) + exp( -(x(i)-4*t-2*pi)^2/(4*vis*(t+1)) )
+
+           dphi = -0.5*(x(i)-4*t)^2/(vis*(t+1))*exp( -(x(i)-4*t)^2/(4*vis*(t+1)) )
+                  -0.5*(x(i)-4*t-2*pi)^2/(vis*(t+1))*exp( -(x(i)-4*t-2*pi)^2/(4*vis*(t+1)) )
+
+           u_analytical(i,n) = -2*vis(dphi/phi) + 4        
+
+   # Numerical Computation (this loop is time marching, so stops one before the end)
+
+     for n between 1 and nt-2 
+         for i between 0 and nx-1
+             u(i,n+1) = u(i,n) - u(i,n)*(dt/dx)*(u(i,n)-u(ineg(i),n))+
+                        viscosity*(dt/dx^2)*(u(ipos(i),n)-2*u(i,n)+u(ineg(i),n))
+           
+
+Implement Algorithm in Python
+=============================
+
+* Very similar to Linear Convection
+* Constants are shown with CAPITAL letters
+* Aliases are used for imported functions and constants to shorten formulae
+
+.. plot::
+   :include-source:
+
+   from math import pi as PI
+   from math import exp as exp
+
+   def convection_diffusion(NT, NX, TMAX, XMAX, NU):
+      """
+      Returns the velocity field and distance for 1D non-linear convection-diffusion
+      """
+      # Increments
+      DT = TMAX/(NT-1)
+      DX = XMAX/(NX-1)
+
+      # Initialise data structures
+      import numpy as np
+      u = np.zeros((NX,NT))
+      u_analytical = np.zeros((NX,NT))
+      x = np.zeros(NX)
+      t = np.zeros(NT)
+      ipos = np.zeros(NX)
+      ineg = np.zeros(NX)
+
+      # Periodic boundary conditions
+      for i in range(0,NX):
+          x[i] = i*DX
+          ipos[i] = i+1
+          ineg[i] = i-1
+  
+      ipos[NX-1] = 0
+      ineg[0] = NX-1
+
+      # Initial conditions  
+      for i in range(0,NX):
+          phi = exp( -(x[i]**2)/(4*NU) ) + exp( -(x[i]-2*PI)**2 / (4*NU) )
+          dphi = -(0.5/NU)*exp( -(x[i]**2) / (4*NU) ) - (0.5*(x[i]-2*PI) / NU )*exp(-(x[i]-2*PI)**2 / (4*NU) )
+          u[i,0] = -2*NU*(dphi/phi) + 4
+    
+      # Analytical Solution 
+      for n in range(0,NT):
+          t = n*DT
+ 
+          for i in range(0,NX):
+              phi = exp( -(x[i]-4*t)**2/(4*NU*(t+1)) ) + exp( -(x[i]-4*t-2*PI)**2/(4*NU*(t+1)) )
+
+              dphi = ( -0.5*(x[i]-4*t)/(NU*(t+1))*exp( -(x[i]-4*t)**2/(4*NU*(t+1)) )
+                  -0.5*(x[i]-4*t-2*PI)/(NU*(t+1))*exp( -(x[i]-4*t-2*PI)**2/(4*NU*(t+1)) ) )
+
+              u_analytical[i,n] = -2*NU*(dphi/phi) + 4       
+
+      return u_analytical, x
+ 
+   def plot_diffusion(u,x,nt,title):
+      """
+      Plots the 1D velocity field
+      """
+
+      import matplotlib.pyplot as plt
+      import matplotlib.cm as cm
+      plt.figure()
+      colour=iter(cm.rainbow(np.linspace(0,20,nt)))
+      for i in range(0,nt,20):
+         c=next(colour)
+         plt.plot(x,u[:,i],c=c)
+      plt.xlabel('x (radians)')
+      plt.ylabel('u (m/s)')
+      plt.ylim([0,8.0])
+      plt.xlim([0,2.0*PI])
+      plt.title(title)
+      plt.show()
+
+   u,x = convection_diffusion(151, 151, 0.5, 2.0*PI, 0.1)
+   plot_diffusion(u,x,151,'Figure 1: nu=0.1, nt=151, nx=151, tmax=0.5s')
+
+
+Conclusions
+===========
+
+Why isn't the square wave maintained?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* The square wave isn't maintained because the system is attempting to reach equilibrium - the rate of change of velocity being equal to the shear force per unit mass. There are no external forces and no convective acceleration terms.
+
+Why does increasing the viscosity, spatial points and time period cause instability?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+If the viscosity is too large, or if the number of spatial points is too large or if the timestep is too large, then the central differencing method becomes unstable. This is due to the ratio, r. If r is too large, the method becomes unstable:
+
+.. math::
+
+   r = {\Delta t \over (\Delta x)^2} 
