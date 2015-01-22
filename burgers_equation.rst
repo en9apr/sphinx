@@ -8,7 +8,9 @@
 Understand the Problem
 ======================
 
-* What is the final profile for 1D convection-diffusion when the initial conditions are a saw tooth wave and the boundary conditions are constant?
+* What is the profile for 1D convection-diffusion when the initial conditions are a saw tooth wave and the boundary conditions are periodic?
+
+* How does this compare with the analytical solution?
 
 * 1D convection-diffusion is described as follows:
 
@@ -22,10 +24,10 @@ Input Data
 
 **Constants**
 
-* `nt` = 51 (number of temporal points)
-* `nx` = 21 (number of spatial points)
-* `tmax` = 0.5
-* `xmax = 2 \pi`
+* :math:`nt` = 51 (number of temporal points)
+* :math:`nx` = 21 (number of spatial points)
+* :math:`tmax` = 0.5
+* :math:`xmax = 2 \pi`
 
 Different initial and boundary conditions to linear convection:
 
@@ -38,11 +40,11 @@ where:
 .. math:: \phi = exp \left ({{-x^2} \over {4 \nu}} \right ) + exp \left [ -(x-2 \pi)^2 \over {4 \nu} \right ]
 
 .. math:: {{\partial \phi} \over {\partial x}} =
- -{2 \over {4 \nu}} exp \left ( {{-x^2} \over {4 \nu}} \right )
+ -{{2x} \over {4 \nu}} exp \left ( {{-x^2} \over {4 \nu}} \right )
  -{2(x-2 \pi) \over {4 \nu}} exp \left [ -(x-2 \pi)^2 \over {4 \nu} \right ]
 
 .. math:: =
- -{0.5 \over {\nu}} exp \left ( {{-x^2} \over {4 \nu}} \right )
+ -{{0.5x} \over {\nu}} exp \left ( {{-x^2} \over {4 \nu}} \right )
  -{0.5(x-2 \pi) \over {\nu}} exp \left [ -(x-2 \pi)^2 \over {4 \nu} \right ]
 
 **Boundary Conditions**
@@ -187,10 +189,46 @@ Implement Algorithm in Python
    from math import pi as PI
    from math import exp as exp
 
+
+
+   def analytical_solution(NT, NX, TMAX, XMAX, NU):
+      """
+      Returns the velocity field and distance for the analytical solution
+      """
+
+      # Increments
+      DT = TMAX/(NT-1)
+      DX = XMAX/(NX-1)
+
+      # Initialise data structures
+      import numpy as np
+      u_analytical = np.zeros((NX,NT))
+      x = np.zeros(NX)
+      t = np.zeros(NT)
+    
+      # Distance
+      for i in range(0,NX):
+          x[i] = i*DX
+
+      # Analytical Solution 
+      for n in range(0,NT):
+          t = n*DT
+ 
+          for i in range(0,NX):
+              phi = exp( -(x[i]-4*t)**2/(4*NU*(t+1)) ) + exp( -(x[i]-4*t-2*PI)**2/(4*NU*(t+1)) )
+
+              dphi = ( -0.5*(x[i]-4*t)/(NU*(t+1))*exp( -(x[i]-4*t)**2/(4*NU*(t+1)) )
+                  -0.5*(x[i]-4*t-2*PI)/(NU*(t+1))*exp( -(x[i]-4*t-2*PI)**2/(4*NU*(t+1)) ) )
+
+              u_analytical[i,n] = -2*NU*(dphi/phi) + 4       
+
+      return u_analytical, x
+ 
    def convection_diffusion(NT, NX, TMAX, XMAX, NU):
       """
       Returns the velocity field and distance for 1D non-linear convection-diffusion
       """
+
       # Increments
       DT = TMAX/(NT-1)
       DX = XMAX/(NX-1)
@@ -216,24 +254,18 @@ Implement Algorithm in Python
       # Initial conditions  
       for i in range(0,NX):
           phi = exp( -(x[i]**2)/(4*NU) ) + exp( -(x[i]-2*PI)**2 / (4*NU) )
-          dphi = -(0.5/NU)*exp( -(x[i]**2) / (4*NU) ) - (0.5*(x[i]-2*PI) / NU )*exp(-(x[i]-2*PI)**2 / (4*NU) )
-          u[i,0] = -2*NU*(dphi/phi) + 4
-    
-      # Analytical Solution 
-      for n in range(0,NT):
-          t = n*DT
- 
+          dphi = -(0.5*x[i]/NU)*exp( -(x[i]**2) / (4*NU) ) - (0.5*(x[i]-2*PI) / NU )*exp(-(x[i]-2*PI)**2 / (4*NU) )
+          u[i,0] = -2*NU*(dphi/phi) + 4      
+       
+      # Numerical solution
+      for n in range(0,NT-1): 
           for i in range(0,NX):
-              phi = exp( -(x[i]-4*t)**2/(4*NU*(t+1)) ) + exp( -(x[i]-4*t-2*PI)**2/(4*NU*(t+1)) )
+              u[i,n+1] = (u[i,n]-u[i,n]*(DT/DX)*(u[i,n]-u[ineg[i],n])+
+                         NU*(DT/DX**2)*(u[ipos[i],n]-2*u[i,n]+u[ineg[i],n]))
 
-              dphi = ( -0.5*(x[i]-4*t)/(NU*(t+1))*exp( -(x[i]-4*t)**2/(4*NU*(t+1)) )
-                  -0.5*(x[i]-4*t-2*PI)/(NU*(t+1))*exp( -(x[i]-4*t-2*PI)**2/(4*NU*(t+1)) ) )
+      return u, x
 
-              u_analytical[i,n] = -2*NU*(dphi/phi) + 4       
-
-      return u_analytical, x
- 
-   def plot_diffusion(u,x,nt,title):
+   def plot_diffusion(u_analytical,u,x,NT,TITLE):
       """
       Plots the 1D velocity field
       """
@@ -241,34 +273,42 @@ Implement Algorithm in Python
       import matplotlib.pyplot as plt
       import matplotlib.cm as cm
       plt.figure()
-      colour=iter(cm.rainbow(np.linspace(0,20,nt)))
-      for i in range(0,nt,20):
+      ax=plt.subplot(111)
+      colour=iter(cm.rainbow(np.linspace(0,20,NT)))   
+      for n in range(0,NT,20):
          c=next(colour)
-         plt.plot(x,u[:,i],c=c)
+         ax.plot(x,u[:,n],'ko', markerfacecolor='none', alpha=0.5, label='i='+str(n)+' numerical')
+         ax.plot(x,u_analytical[:,n],linestyle='-',c=c,label='i='+str(n)+' analytical')
+      box=ax.get_position()
+      ax.set_position([box.x0, box.y0, box.width*0.7,box.height])
+      ax.legend( bbox_to_anchor=(1.02,1), loc=2)
       plt.xlabel('x (radians)')
       plt.ylabel('u (m/s)')
       plt.ylim([0,8.0])
       plt.xlim([0,2.0*PI])
-      plt.title(title)
+      plt.title(TITLE)
       plt.show()
 
    u,x = convection_diffusion(151, 151, 0.5, 2.0*PI, 0.1)
-   plot_diffusion(u,x,151,'Figure 1: nu=0.1, nt=151, nx=151, tmax=0.5s')
+   u_analytical,x = analytical_solution(151, 151, 0.5, 2.0*PI, 0.1)
+   plot_diffusion(u_analytical,u,x,151,'Figure 1: nu=0.1, nt=151, nx=151, tmax=0.5s')
 
+   u,x = convection_diffusion(151, 151, 0.5, 2.0*PI, 0.01)
+   u_analytical,x = analytical_solution(151, 151, 0.5, 2.0*PI, 0.01)
+   plot_diffusion(u_analytical,u,x,151,'Figure 2: nu=0.01, nt=151, nx=151, tmax=0.5s')
 
 Conclusions
 ===========
 
-Why isn't the square wave maintained?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Why doesn't the numerical simulation agree with the analytical solution exactly?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-* The square wave isn't maintained because the system is attempting to reach equilibrium - the rate of change of velocity being equal to the shear force per unit mass. There are no external forces and no convective acceleration terms.
+* The numerical solution shows more dissipation through time and space than the analytical solution, despite the fact that the viscosity is the same in both cases (a lot in time, perhaps less in space)
+* It is likely that **numerical dissipation** is the cause of the difference between the analytic and numerical solutions
+* When physical viscosity is reduced, so reducing physical dissipation, the effect of numerical dissipation is seen more clearly (compare Figure 1 and Figure 2)
+* This is caused by the truncation error in the discretisation of the governing equations
+* The first order approximations for the transient and convection terms contain numerical diffusion in time and space respectively - probably need to use a higher than first order method for the transient term at least.
 
-Why does increasing the viscosity, spatial points and time period cause instability?
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If the viscosity is too large, or if the number of spatial points is too large or if the timestep is too large, then the central differencing method becomes unstable. This is due to the ratio, r. If r is too large, the method becomes unstable:
 
-.. math::
 
-   r = {\Delta t \over (\Delta x)^2} 

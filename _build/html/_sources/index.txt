@@ -20,6 +20,7 @@ CFD Theory:
    cfd
    finite_difference_method
    order_of_accuracy
+   explicit_implicit
 
 CFD Projects:
 -------------

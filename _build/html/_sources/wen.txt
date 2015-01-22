@@ -372,7 +372,7 @@ State           :math:`L_a`             :math:`L_w`
 =============== ======================= =======================
 100% air        :math:`\Delta x`        0
 100% water      0                       :math:`\Delta x`
-air-water mix   :math:`\Delta x - L_w`   :math:`\Delta x - L_w`
+air-water mix   :math:`\Delta x - L_w`   :math:`\Delta x - L_a`
 =============== ======================= =======================
 
 **Outward Normal Vector**

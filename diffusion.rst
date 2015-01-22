@@ -166,4 +166,5 @@ If the viscosity is too large, or if the number of spatial points is too large o
 
 .. math::
 
-   r = {\Delta t \over (\Delta x)^2} 
+   r = \nu {\Delta t \over (\Delta x)^2} 
+

@@ -35,7 +35,7 @@ Subscript notation:
 
 Sign convention:
   * Normal Stress is positive if it's in the same direction as the outward normal vector
-  * Shear Stress is positive if it's in the same direction as the coordinate system w.r.t the outward normal vector
+  * Shear Stress is positive if it's in the same direction as the coordinate system w.r.t the outward normal vector (i.e. the right hand rule applies - thumb is the direction of the outward normal vector, the two fingers are the shear stresses)
 
 Conservation of Momentum in x-direction:
 ++++++++++++++++++++++++++++++++++++++++
