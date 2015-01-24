@@ -25,6 +25,11 @@ Explicit Solution
   
   - **Explicit Method** = a formulation of a continuum equation into a FD equation that expresses **one** unknown in terms of the known values
 
+
+.. math::
+
+   \left . {{u_i^{n+1} - u_i^n} \over {\Delta t}}  \right \vert_{n} = \left . \nu {{u_{i+1}^{n} -2u_i^{n}+ u_{i-1}^{n}} \over \Delta x^2} \right \vert_{n}
+
 .. figure:: _images/stencil_1.png
    :scale: 75%
    :align: center
@@ -46,12 +51,12 @@ Implicit Solution
 
 * How can we have a scheme that includes the BCs at every time level for the computations?
 
-  - Approximate :math:`{\partial^2 u} \over {\partial x^2}` at :math:`n+1`
+  - Approximate :math:`{\partial u} \over {\partial t}` and  :math:`{\partial^2 u} \over {\partial x^2}` at :math:`n+1`
   - So that :math:`{\partial u} \over {\partial t}` is effectively looking **backwards in time** (in other words if you took 1 off all the :math:`n` values, you would get backward differencing on the LHS - but we want to march forwards on time, not backwards, so using :math:`n+1` instead of :math:`n` is better).
 
 .. math::
 
-   {{u_i^{n+1} - u_i^n} \over {\Delta t}}  = \nu {{u_{i+1}^{n+1} -2u_i^{n+1}+ u_{i-1}^{n+1}} \over \Delta x^2}
+   \left . {{u_i^{n+1} - u_i^n} \over {\Delta t}}  \right \vert_{n+1} = \left . \nu {{u_{i+1}^{n+1} -2u_i^{n+1}+ u_{i-1}^{n+1}} \over \Delta x^2} \right \vert_{n+1}
 
 * 3 unknowns, producing this stencil:
 
@@ -95,6 +100,8 @@ Crank-Nicholson method
 
 * Average of explicit and implicit schemes for :math:`{\partial^2 u} \over {\partial x^2}`
 
+* This makes :math:`{\partial u} \over {\partial t}` at :math:`n+{1 \over 2}` represent second order central differencing in time
+
 .. figure:: _images/stencil_4.png
    :scale: 75%
    :align: center
@@ -103,7 +110,7 @@ Crank-Nicholson method
 
 .. math::
 
-   {{u_i^{n+1} - u_i^n} \over {\Delta t}}  = {1 \over 2} \nu {{u_{i+1}^{n} -2u_i^{n}+ u_{i-1}^{n}} \over \Delta x^2}+{1 \over 2} \nu {{u_{i+1}^{n+1} -2u_i^{n+1}+ u_{i-1}^{n+1}} \over \Delta x^2}
+   \left . {{u_i^{n+1} - u_i^n} \over {\Delta t}}  \right \vert_{n+{1 \over 2}}  = \left . {1 \over 2} \nu {{u_{i+1}^{n} -2u_i^{n}+ u_{i-1}^{n}} \over \Delta x^2} \right \vert_{n} +  \left . {1 \over 2} \nu {{u_{i+1}^{n+1} -2u_i^{n+1}+ u_{i-1}^{n+1}} \over \Delta x^2}  \right \vert_{n+1}
 
 * Re-arrange in the form of the tri-diagonal matrix:
 
@@ -139,14 +146,15 @@ Crank-Nicholson: Two step Interpretation
 
 .. math::
 
-   {{u_i^{n+ {1 \over 2}}-u_i^n} \over {\Delta t / 2}} =  \nu { {{u_{i+1}^{n} -2u_i^{n}+ u_{i-1}^{n}}} \over \Delta x^2}
+   \left . {{u_i^{n+ {1 \over 2}}-u_i^n} \over {\Delta t / 2}}  \right \vert_{n}   = \left . \nu { {{u_{i+1}^{n} -2u_i^{n}+ u_{i-1}^{n}}} \over \Delta x^2}   \right \vert_{n} 
 
 2) Implicit Step (BD in time, CD in space):
 
 .. math::
 
-   {{u_i^{n+1}-u_i^{n+ {1 \over 2}}} \over {\Delta t / 2}} = \nu { {{u_{i+1}^{n+1} -2u_i^{n+1}+ u_{i-1}^{n+1}}} \over \Delta x^2}
+   \left . {{u_i^{n+1}-u_i^{n+ {1 \over 2}}} \over {\Delta t / 2}}  \right \vert_{n+1}    = \left . \nu { {{u_{i+1}^{n+1} -2u_i^{n+1}+ u_{i-1}^{n+1}}} \over \Delta x^2}   \right \vert_{n+1} 
 
 
 .. figure:: _images/stencil_5.png
+   :scale: 75%
    :align: center

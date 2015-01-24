@@ -86,6 +86,8 @@
 </ul>
 </li>
 </ul>
+<div class="math">
+\[\left . {{u_i^{n+1} - u_i^n} \over {\Delta t}}  \right \vert_{n} = \left . \nu {{u_{i+1}^{n} -2u_i^{n}+ u_{i-1}^{n}} \over \Delta x^2} \right \vert_{n}\]</div>
 <div class="figure align-center">
 <a class="reference internal image-reference" href="_images/stencil_1.png"><img alt="_images/stencil_1.png" src="_images/stencil_1.png" style="width: 375.0px; height: 135.0px;" /></a>
 </div>
@@ -107,13 +109,13 @@
 <h3>7.1.2. Implicit Solution<a class="headerlink" href="#implicit-solution" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>How can we have a scheme that includes the BCs at every time level for the computations?<ul>
-<li>Approximate <span class="math">\({\partial^2 u} \over {\partial x^2}\)</span> at <span class="math">\(n+1\)</span></li>
+<li>Approximate <span class="math">\({\partial u} \over {\partial t}\)</span> and  <span class="math">\({\partial^2 u} \over {\partial x^2}\)</span> at <span class="math">\(n+1\)</span></li>
 <li>So that <span class="math">\({\partial u} \over {\partial t}\)</span> is effectively looking <strong>backwards in time</strong> (in other words if you took 1 off all the <span class="math">\(n\)</span> values, you would get backward differencing on the LHS - but we want to march forwards on time, not backwards, so using <span class="math">\(n+1\)</span> instead of <span class="math">\(n\)</span> is better).</li>
 </ul>
 </li>
 </ul>
 <div class="math">
-\[{{u_i^{n+1} - u_i^n} \over {\Delta t}}  = \nu {{u_{i+1}^{n+1} -2u_i^{n+1}+ u_{i-1}^{n+1}} \over \Delta x^2}\]</div>
+\[\left . {{u_i^{n+1} - u_i^n} \over {\Delta t}}  \right \vert_{n+1} = \left . \nu {{u_{i+1}^{n+1} -2u_i^{n+1}+ u_{i-1}^{n+1}} \over \Delta x^2} \right \vert_{n+1}\]</div>
 <ul class="simple">
 <li>3 unknowns, producing this stencil:</li>
 </ul>
@@ -151,6 +153,7 @@ r{u_{i+1}^{n+1}}=u_i^n\]</div>
 </li>
 <li>Of these methods, <strong>Crank-Nicholson</strong> shows the highest accuracy and stability</li>
 <li>Average of explicit and implicit schemes for <span class="math">\({\partial^2 u} \over {\partial x^2}\)</span></li>
+<li>This makes <span class="math">\({\partial u} \over {\partial t}\)</span> at <span class="math">\(n+{1 \over 2}\)</span> represent second order central differencing in time</li>
 </ul>
 <div class="figure align-center">
 <a class="reference internal image-reference" href="_images/stencil_4.png"><img alt="_images/stencil_4.png" src="_images/stencil_4.png" style="width: 375.0px; height: 165.0px;" /></a>
@@ -159,7 +162,7 @@ r{u_{i+1}^{n+1}}=u_i^n\]</div>
 <li>Numerical scheme:</li>
 </ul>
 <div class="math">
-\[{{u_i^{n+1} - u_i^n} \over {\Delta t}}  = {1 \over 2} \nu {{u_{i+1}^{n} -2u_i^{n}+ u_{i-1}^{n}} \over \Delta x^2}+{1 \over 2} \nu {{u_{i+1}^{n+1} -2u_i^{n+1}+ u_{i-1}^{n+1}} \over \Delta x^2}\]</div>
+\[\left . {{u_i^{n+1} - u_i^n} \over {\Delta t}}  \right \vert_{n+{1 \over 2}}  = \left . {1 \over 2} \nu {{u_{i+1}^{n} -2u_i^{n}+ u_{i-1}^{n}} \over \Delta x^2} \right \vert_{n} +  \left . {1 \over 2} \nu {{u_{i+1}^{n+1} -2u_i^{n+1}+ u_{i-1}^{n+1}} \over \Delta x^2}  \right \vert_{n+1}\]</div>
 <ul class="simple">
 <li>Re-arrange in the form of the tri-diagonal matrix:</li>
 </ul>
@@ -189,14 +192,14 @@ r{u_{i+1}^{n+1}}=u_i^n\]</div>
 <li>Explicit Step (FD in time, CD in space):</li>
 </ol>
 <div class="math">
-\[{{u_i^{n+ {1 \over 2}}-u_i^n} \over {\Delta t / 2}} =  \nu { {{u_{i+1}^{n} -2u_i^{n}+ u_{i-1}^{n}}} \over \Delta x^2}\]</div>
+\[\left . {{u_i^{n+ {1 \over 2}}-u_i^n} \over {\Delta t / 2}}  \right \vert_{n}   = \left . \nu { {{u_{i+1}^{n} -2u_i^{n}+ u_{i-1}^{n}}} \over \Delta x^2}   \right \vert_{n}\]</div>
 <ol class="arabic simple" start="2">
 <li>Implicit Step (BD in time, CD in space):</li>
 </ol>
 <div class="math">
-\[{{u_i^{n+1}-u_i^{n+ {1 \over 2}}} \over {\Delta t / 2}} = \nu { {{u_{i+1}^{n+1} -2u_i^{n+1}+ u_{i-1}^{n+1}}} \over \Delta x^2}\]</div>
+\[\left . {{u_i^{n+1}-u_i^{n+ {1 \over 2}}} \over {\Delta t / 2}}  \right \vert_{n+1}    = \left . \nu { {{u_{i+1}^{n+1} -2u_i^{n+1}+ u_{i-1}^{n+1}}} \over \Delta x^2}   \right \vert_{n+1}\]</div>
 <div class="figure align-center">
-<img alt="_images/stencil_5.png" src="_images/stencil_5.png" />
+<a class="reference internal image-reference" href="_images/stencil_5.png"><img alt="_images/stencil_5.png" src="_images/stencil_5.png" style="width: 375.0px; height: 165.0px;" /></a>
 </div>
 </div>
 </div>

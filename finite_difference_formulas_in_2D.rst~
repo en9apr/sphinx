@@ -1,0 +1,32 @@
+================================
+Finite Difference Formulas in 2D
+================================
+
+Extend 1D formulas to 2D
+========================
+
+* Just apply the definition of a partial derivative w.r.t. :math:`x` is the variation in :math:`x` holding :math:`y` constant
+
+* Build 2D grid defined by the following:
+
+* For i between :math:`0` and :math:`nx-1`:
+
+.. math::
+
+   x_i = x_0 + i \Delta x
+
+* For j between :math:`0` and :math:`nj-1`:
+ 
+.. math::
+
+   y_j = y_0 + j \Delta y
+
+.. figure:: _images/2D.png
+   :scale: 75%
+   :align: center
+
+* Define :math:`u_{i,j} = u(x_i,y_j)`
+
+* For the point :math:`(i+1,j+1)`, Taylor series in 2D:
+
+   

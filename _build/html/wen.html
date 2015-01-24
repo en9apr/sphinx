@@ -306,13 +306,13 @@
 <h4><a class="toc-backref" href="#id18">5.4.3.1. Transient Terms: Second Order Backward Euler</a><a class="headerlink" href="#transient-terms-second-order-backward-euler" title="Permalink to this headline">¶</a></h4>
 <div class="math" id="equation-trans_1">
 <span class="eqno">(8)</span>\[{\partial m \over \partial t} =
-        {m_{n+1}-m_{n} \over  \Delta t} +
-        {m_{n+1}-2m_{n}+m_{n-1} \over 2 \Delta t}\]</div>
+        {m_{n+1}-m^{n} \over  \Delta t} +
+        {m_{n+1}-2m^{n}+m^{n-1} \over 2 \Delta t}\]</div>
 <div class="math" id="equation-trans_2">
 <span class="eqno">(9)</span>\[{\partial (u_Pm) \over \partial t} =
-        {(mu_P)_{n+1}-(mu_P)_{n} \over  \Delta t} +
-        {(mu_P)_{n+1}-2(mu_P)_{n}+(mu_P)_{n-1} \over 2 \Delta t}\]</div>
-<p><strong>Simplification to 1st Order (to illutrate numerical scheme):</strong> all values are at n+1 unless stated otherwise</p>
+        {(mu_P)^{n+1}-(mu_P)^{n} \over  \Delta t} +
+        {(mu_P)^{n+1}-2(mu_P)^{n}+(mu_P)^{n-1} \over 2 \Delta t}\]</div>
+<p><strong>Simplification to 1st Order (to illutrate numerical scheme):</strong> all values are at n+1 unless stated otherwise (including the derivative)</p>
 <div class="math" id="equation-trans_3">
 <span class="eqno">(10)</span>\[{\partial m \over \partial t} =
         {m-m^n \over  \Delta t}\]</div>

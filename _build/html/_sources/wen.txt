@@ -204,16 +204,16 @@ Transient Terms: Second Order Backward Euler
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. math::  {\partial m \over \partial t} = 
-           {m_{n+1}-m_{n} \over  \Delta t} +
-           {m_{n+1}-2m_{n}+m_{n-1} \over 2 \Delta t} 
+           {m_{n+1}-m^{n} \over  \Delta t} +
+           {m_{n+1}-2m^{n}+m^{n-1} \over 2 \Delta t} 
    :label: trans_1
 
 .. math::  {\partial (u_Pm) \over \partial t} = 
-           {(mu_P)_{n+1}-(mu_P)_{n} \over  \Delta t} +
-           {(mu_P)_{n+1}-2(mu_P)_{n}+(mu_P)_{n-1} \over 2 \Delta t}
+           {(mu_P)^{n+1}-(mu_P)^{n} \over  \Delta t} +
+           {(mu_P)^{n+1}-2(mu_P)^{n}+(mu_P)^{n-1} \over 2 \Delta t}
    :label: trans_2
 
-**Simplification to 1st Order (to illutrate numerical scheme):** all values are at n+1 unless stated otherwise
+**Simplification to 1st Order (to illutrate numerical scheme):** all values are at n+1 unless stated otherwise (including the derivative)
 
 .. math::  {\partial m \over \partial t} = 
            {m-m^n \over  \Delta t} 
