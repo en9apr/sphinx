@@ -1,0 +1,222 @@
+====================================================
+2D First-order Linear Convection - The Wave Equation
+====================================================
+
+.. contents::
+   :local:
+
+Understand the Problem
+======================
+
+* What is the final velocity profile for 2D linear convection when the initial conditions are a square wave and the boundary conditions are unity?
+
+* 2D linear convection is described as follows:
+
+.. math:: {\partial u \over \partial t} + c {\partial u \over \partial x} + c {\partial u \over \partial y} = 0
+
+Formulate the Problem
+=====================
+
+Input Data
+~~~~~~~~~~
+
+* `nt` = 51 (number of temporal points)
+* `tmax` = 0.5
+* `nx` = 21 (number of x spatial points)
+* `nj` = 21 (number of y spatial points)
+* `xmax` = 2
+* `ymax` = 2
+* `c` = 1
+
+**Initial Conditions:** :math:`t=0`
+
+====================== ========================== ========================= ======================== ===========
+x                      i                           y                        j                        u(x,y,t)
+====================== ========================== ========================= ======================== ===========
+:math:`0`              :math:`0`                  :math:`0`                 :math:`0`                :math:`1`
+:math:`0 < x \le 0.5`  :math:`0 < i \le 5`        :math:`0 < y \le 0.5`     :math:`0 < j \le 5`      :math:`1`
+:math:`0.5 < x \le 1`  :math:`5 < i \le 10`       :math:`0.5 < y \le 1`     :math:`5 < j \le 10`     :math:`2`
+:math:`1 < x < 2`      :math:`10 < i < 20`        :math:`1 < y < 2`         :math:`10 < j < 20`      :math:`1`
+:math:`2`              :math:`20`                 :math:`2`                 :math:`20`               :math:`1`
+====================== ========================== ========================= ======================== ===========
+
+**Boundary Conditions:** :math:`x=0` and :math:`x=2`, :math:`y=0` and :math:`y=2`
+
+========================= ======================== ===========
+t                         n                        u(x,y,t)
+========================= ======================== ===========
+:math:`0 \le t \le 0.5`   :math:`0 \le n \le 50`   :math:`1`
+========================= ======================== ===========
+
+Output Data
+~~~~~~~~~~~
+
+========================= =========================== ========================= =========================
+x                         y                           t                         u(x,y,t)
+========================= =========================== ========================= =========================
+:math:`0 \le x \le 2`     :math:`0 \le y \le 2`       :math:`0 \le t \le 0.5`   :math:`?`
+========================= =========================== ========================= =========================
+
+
+Design Algorithm to Solve Problem
+=================================
+
+Space-time discretisation
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* i :math:`\rightarrow` index of grid in x
+* j :math:`\rightarrow` index of grid in y
+* n :math:`\rightarrow` index of grid in t
+
+Numerical scheme
+~~~~~~~~~~~~~~~~
+
+* FD in time
+* BD in space
+
+Discrete equation
+~~~~~~~~~~~~~~~~~
+
+.. math::
+
+   {{u_{i,j}^{n+1} - u_{i,j}^n} \over {\Delta t}} + 
+   c {{u_{i,j}^n - u_{i-1,j}^n} \over \Delta x} + 
+   c {{u_{i,j}^n - u_{i,j-1}^n} \over \Delta y} = 0 
+
+Transpose
+~~~~~~~~~
+
+.. math::
+
+   u_{i,j}^{n+1} = u_{i,j}^n - c \Delta t \left( {1 \over \Delta x}(u_{i,j}^n - u_{i-1,j}^n)+ 
+                   {1 \over \Delta y}(u_{i,j}^n - u_{i,j-1}^n) \right)
+   
+Pseudo-code
+~~~~~~~~~~~
+
+::
+
+   #Constants
+   nt = 51
+   tmax = 0.5
+   dt =  tmax/(nt-1) 
+   nx =  21
+   xmax = 2
+   ny = 21
+   ymax = 2
+   dx = xmax/(nx-1)
+   dy = ymax/(ny-1)
+
+   #Boundary Conditions
+   for n between 0 and 50
+      for i between 0 and 20
+         u(i,0,n)=1
+         u(i,20,n)=1 
+      for j between 0 and 20
+         u(0,j,n)=1
+         u(20,j,n)=1
+   
+   #Initial Conditions
+   for i between 1 and 19
+      for j between 1 and 19
+         if(5 < i < 10 OR 5 < j < 10)
+            u(i,j,0) = 2
+         else
+            u(i,j,0) = 1
+   
+   #Iteration
+   for n between 0 and 49
+      for i between 1 and 19
+         for j between 1 and 19
+             u(i,j,n+1) = u(i,j,n)-c*dt*[(1/dx)*(u(i,j,n)-u(i-1,j,n))+
+                                         (1/dy)*(u(i,j,n)-u(i,j-1,n))]
+   
+
+Implement Algorithm in Python
+=============================
+
+.. plot::
+   :include-source:
+
+   def convection(nt, nx, ny, tmax, xmax, ymax, c):
+      """
+      Returns the velocity field and distance for 2D linear convection
+      """
+      # Increments
+      dt = tmax/(nt-1)
+      dx = xmax/(nx-1)
+      dy = ymax/(ny-1)
+
+      # Initialise data structures
+      import numpy as np
+      u = np.zeros(((nx,ny,nt)))
+      x = np.zeros(nx)
+      y = np.zeros(ny)
+
+      # Boundary conditions
+      u[0,:,:] = u[nx-1,:,:] = u[:,0,:] = u[:,ny-1,:] = 1
+
+      # Initial conditions      
+      for i in range(1,nx-1):
+         for j in range(1,ny-1):
+            if((i > (nx-1)/4 and i < (nx-1)/2)) or ((j > (ny-1)/4 and j < (ny-1)/2)):
+               u[i,j,0] = 2
+            else:
+               u[i,j,0] = 1
+
+      # Loop
+      for n in range(0,nt-1):
+         for i in range(1,nx-1):
+            for j in range(1,ny-1):
+               u[i,j,n+1] = (u[i,j,n]-c*dt*((1/dx)*(u[i,j,n]-u[i-1,j,n])+
+                                            (1/dy)*(u[i,j,n]-u[i,j-1,n])))
+
+      # X Loop
+      for i in range(0,nx):
+         x[i] = i*dx
+
+      # Y Loop
+      for j in range(0,ny):
+         y[j] = j*dy
+
+      return u, x, y
+
+   def plot_convection(u,x,nt,ny,title):
+      """
+      Plots the 2D velocity field
+      """
+
+      import matplotlib.pyplot as plt
+      plt.figure()
+      for n in range(0,nt,10):
+         plt.plot(x,u[:,(ny-1)/2,n],'r')
+         plt.xlabel('x (m)')
+         plt.ylabel('u (m/s)')
+         plt.ylim([0,2.2])
+         plt.title(title)
+         plt.show()
+
+   u,x,y = convection(51, 21, 21, 0.5, 2.0, 2.0, 0.5)
+   plot_convection(u,x,51,21,'Figure 1: c=0.5m/s, nt=51, nx=21, ny=21, j=10, tmax=0.5s')
+
+
+Conclusions
+===========
+
+Why isn't the square wave maintained?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* The first order backward differencing scheme in space creates false diffusion.
+* If the spatial step is reduced, the error reduces - compare Figure 1 and Figure 2
+
+Why does the wave shift to the right?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* The square wave is being convected by the constant linear wave speed `c`
+* For :math:`c > 0` profiles shift to the right by :math:`c \Delta t` - see Figure 2 
+
+What happens at the wall?
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* As there is no viscosity, there is a non-physical change the the profile near the wall.
+
