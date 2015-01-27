@@ -45,8 +45,11 @@ def plot_initial_conditions(u,x,y,nt,ny,title):
    from mpl_toolkits.mplot3d import Axes3D
    fig=plt.figure(figsize=(11,7),dpi=100)
    ax=fig.gca(projection='3d')
+   ax.set_xlabel('x (m)')
+   ax.set_ylabel('y (m)')
+   ax.set_zlabel('u (m/s)')
    X,Y=np.meshgrid(x,y)
-   surf=ax.plot_surface(X,Y,u[:,:,0],rstride=1,cstride=1)
+   surf=ax.plot_surface(X,Y,u[:,:,0],rstride=2,cstride=2)
    plt.title(title)
    plt.show()
 
@@ -59,8 +62,11 @@ def plot_middle_conditions(u,x,y,nt,ny,title):
    from mpl_toolkits.mplot3d import Axes3D
    fig=plt.figure(figsize=(11,7),dpi=100)
    ax=fig.gca(projection='3d')
+   ax.set_xlabel('x (m)')
+   ax.set_ylabel('y (m)')
+   ax.set_zlabel('u (m/s)')
    X,Y=np.meshgrid(x,y)
-   surf=ax.plot_surface(X,Y,u[:,:,((nt-1)/2)],rstride=1,cstride=1)
+   surf=ax.plot_surface(X,Y,u[:,:,((nt-1)/2)],rstride=2,cstride=2)
    plt.title(title)
    plt.show()
 
@@ -73,13 +79,16 @@ def plot_final_conditions(u,x,y,nt,ny,title):
    from mpl_toolkits.mplot3d import Axes3D
    fig=plt.figure(figsize=(11,7),dpi=100)
    ax=fig.gca(projection='3d')
+   ax.set_xlabel('x (m)')
+   ax.set_ylabel('y (m)')
+   ax.set_zlabel('u (m/s)')
    X,Y=np.meshgrid(x,y)
-   surf=ax.plot_surface(X,Y,u[:,:,nt-1],rstride=1,cstride=1)
+   surf=ax.plot_surface(X,Y,u[:,:,nt-1],rstride=2,cstride=2)
    plt.title(title)
    plt.show()
 
 
-u,x,y = convection(51, 21, 21, 0.5, 2.0, 2.0, 0.5)
-plot_initial_conditions(u,x,y,51,21,'Figure 1: c=0.5m/s, nt=51, nx=21, ny=21, t=0sec')
-plot_middle_conditions(u,x,y,51,21,'Figure 2: c=0.5m/s, nt=51, nx=21, ny=21, t=0.25sec')
-plot_final_conditions(u,x,y,51,21,'Figure 3: c=0.5m/s, nt=51, nx=21, ny=21, t=0.5sec')
+u,x,y = convection(101, 81, 81, 0.5, 2.0, 2.0, 0.5)
+plot_initial_conditions(u,x,y,51,81,'Figure 1: c=0.5m/s, nt=101, nx=81, ny=81, t=0sec')
+plot_middle_conditions(u,x,y,51,81,'Figure 2: c=0.5m/s, nt=101, nx=81, ny=81, t=0.25sec')
+plot_final_conditions(u,x,y,51,81,'Figure 3: c=0.5m/s, nt=101, nx=81, ny=81, t=0.5sec')
