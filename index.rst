@@ -37,6 +37,7 @@ CFD Projects:
    2D_linear_convection
    2D_non_linear_convection
    2D_linear_diffusion
+   2D_burgers_equation
 
 Literature
 ----------
