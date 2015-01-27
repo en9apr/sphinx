@@ -29,7 +29,7 @@
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/theme_extras.js"></script>
     <link rel="top" title="The Visual Room" href="index.html" />
-    <link rel="next" title="1. Drikakis (2003) “Advances in Turbulent Flow Computations”" href="drikakis.html" />
+    <link rel="next" title="7. 2D Second-order Linear Diffusion" href="2D_linear_diffusion.html" />
     <link rel="prev" title="5. 2D First-order Linear Convection" href="2D_linear_convection.html" /> 
   </head>
   <body>
@@ -44,7 +44,7 @@
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a href="drikakis.html">1. Drikakis (2003) &#8220;Advances in Turbulent Flow Computations&#8221;</a>&#160;&#160;»
+        <a href="2D_linear_diffusion.html">7. 2D Second-order Linear Diffusion</a>&#160;&#160;»
         </p>
 
       </div>
@@ -99,7 +99,6 @@
 <li><cite>nj</cite> = 21 (number of y spatial points)</li>
 <li><cite>xmax</cite> = 2</li>
 <li><cite>ymax</cite> = 2</li>
-<li><cite>c</cite> = 1</li>
 </ul>
 <p><strong>Initial Conditions:</strong> <span class="math">\(t=0\)</span></p>
 <table border="1" class="docutils">
@@ -321,7 +320,7 @@ for n between 0 and 49
 
    <span class="k">return</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span>
 
-<span class="k">def</span> <span class="nf">plot_initial_conditions_u</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">nt</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">title</span><span class="p">):</span>
+<span class="k">def</span> <span class="nf">plot_3D</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">time</span><span class="p">,</span><span class="n">title</span><span class="p">,</span><span class="n">label</span><span class="p">):</span>
    <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">   Plots the 2D velocity field</span>
 <span class="sd">   &quot;&quot;&quot;</span>
@@ -332,94 +331,37 @@ for n between 0 and 49
    <span class="n">ax</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s">&#39;3d&#39;</span><span class="p">)</span>
    <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;x (m)&#39;</span><span class="p">)</span>
    <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;y (m)&#39;</span><span class="p">)</span>
-   <span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s">&#39;u (m/s)&#39;</span><span class="p">)</span>
+   <span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="n">label</span><span class="p">)</span>
    <span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
-   <span class="n">surf</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">u</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">],</span><span class="n">rstride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">cstride</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+   <span class="n">surf</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">u</span><span class="p">[:,:,</span><span class="n">time</span><span class="p">],</span><span class="n">rstride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">cstride</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
    <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>(<a class="reference external" href=".//2D_non_linear_convection-1.py">Source code</a>)</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">plot_final_conditions_u</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">nt</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">title</span><span class="p">):</span>
-   <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">   Plots the 2D velocity field</span>
-<span class="sd">   &quot;&quot;&quot;</span>
-
-   <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-   <span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
-   <span class="n">fig</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-   <span class="n">ax</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s">&#39;3d&#39;</span><span class="p">)</span>
-   <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;x (m)&#39;</span><span class="p">)</span>
-   <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;y (m)&#39;</span><span class="p">)</span>
-   <span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s">&#39;u (m/s)&#39;</span><span class="p">)</span>
-   <span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
-   <span class="n">surf</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">u</span><span class="p">[:,:,</span><span class="n">nt</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">rstride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">cstride</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-   <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
-   <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>()</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">plot_initial_conditions_v</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">nt</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">title</span><span class="p">):</span>
-   <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">   Plots the 2D velocity field</span>
-<span class="sd">   &quot;&quot;&quot;</span>
-
-   <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-   <span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
-   <span class="n">fig</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-   <span class="n">ax</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s">&#39;3d&#39;</span><span class="p">)</span>
-   <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;x (m)&#39;</span><span class="p">)</span>
-   <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;y (m)&#39;</span><span class="p">)</span>
-   <span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s">&#39;v (m/s)&#39;</span><span class="p">)</span>
-   <span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
-   <span class="n">surf</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">v</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">],</span><span class="n">rstride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">cstride</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-   <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
-   <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>()</p>
-<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">plot_final_conditions_v</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">nt</span><span class="p">,</span><span class="n">ny</span><span class="p">,</span><span class="n">title</span><span class="p">):</span>
-   <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">   Plots the 2D velocity field</span>
-<span class="sd">   &quot;&quot;&quot;</span>
-
-   <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
-   <span class="kn">from</span> <span class="nn">mpl_toolkits.mplot3d</span> <span class="kn">import</span> <span class="n">Axes3D</span>
-   <span class="n">fig</span><span class="o">=</span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">11</span><span class="p">,</span><span class="mi">7</span><span class="p">),</span><span class="n">dpi</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-   <span class="n">ax</span><span class="o">=</span><span class="n">fig</span><span class="o">.</span><span class="n">gca</span><span class="p">(</span><span class="n">projection</span><span class="o">=</span><span class="s">&#39;3d&#39;</span><span class="p">)</span>
-   <span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s">&#39;x (m)&#39;</span><span class="p">)</span>
-   <span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s">&#39;y (m)&#39;</span><span class="p">)</span>
-   <span class="n">ax</span><span class="o">.</span><span class="n">set_zlabel</span><span class="p">(</span><span class="s">&#39;v (m/s)&#39;</span><span class="p">)</span>
-   <span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span>
-   <span class="n">surf</span><span class="o">=</span><span class="n">ax</span><span class="o">.</span><span class="n">plot_surface</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="n">Y</span><span class="p">,</span><span class="n">v</span><span class="p">[:,:,</span><span class="n">nt</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">rstride</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span><span class="n">cstride</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-   <span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
-   <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-</div>
-<p>()</p>
 <div class="highlight-python"><div class="highlight"><pre><span class="n">u</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span> <span class="o">=</span> <span class="n">non_linear_convection</span><span class="p">(</span><span class="mi">101</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mi">81</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">)</span>
 
-<span class="n">plot_initial_conditions_u</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="mi">51</span><span class="p">,</span><span class="mi">81</span><span class="p">,</span><span class="s">&#39;Figure 1: c=0.5m/s, nt=101, nx=81, ny=81, t=0sec&#39;</span><span class="p">)</span>
-<span class="n">plot_final_conditions_u</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="mi">51</span><span class="p">,</span><span class="mi">81</span><span class="p">,</span><span class="s">&#39;Figure 2: c=0.5m/s, nt=101, nx=81, ny=81, t=0.5sec&#39;</span><span class="p">)</span>
-<span class="n">plot_initial_conditions_v</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="mi">51</span><span class="p">,</span><span class="mi">81</span><span class="p">,</span><span class="s">&#39;Figure 3: c=0.5m/s, nt=101, nx=81, ny=81, t=0sec&#39;</span><span class="p">)</span>
-<span class="n">plot_final_conditions_v</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="mi">51</span><span class="p">,</span><span class="mi">81</span><span class="p">,</span><span class="s">&#39;Figure 4: c=0.5m/s, nt=101, nx=81, ny=81, t=0.5sec&#39;</span><span class="p">)</span>
+<span class="n">plot_3D</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s">&#39;Figure 1: c=0.5m/s, nt=101, nx=81, ny=81, t=0sec&#39;</span><span class="p">,</span><span class="s">&#39;u (m/s)&#39;</span><span class="p">)</span>
+<span class="n">plot_3D</span><span class="p">(</span><span class="n">u</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="s">&#39;Figure 2: c=0.5m/s, nt=101, nx=81, ny=81, t=0.5sec&#39;</span><span class="p">,</span><span class="s">&#39;u (m/s)&#39;</span><span class="p">)</span>
+<span class="n">plot_3D</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="s">&#39;Figure 3: c=0.5m/s, nt=101, nx=81, ny=81, t=0sec&#39;</span><span class="p">,</span><span class="s">&#39;v (m/s)&#39;</span><span class="p">)</span>
+<span class="n">plot_3D</span><span class="p">(</span><span class="n">v</span><span class="p">,</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="mi">100</span><span class="p">,</span><span class="s">&#39;Figure 4: c=0.5m/s, nt=101, nx=81, ny=81, t=0.5sec&#39;</span><span class="p">,</span><span class="s">&#39;v (m/s)&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="figure">
-<img alt="_images/2D_non_linear_convection-1_04_00.png" src="_images/2D_non_linear_convection-1_04_00.png" />
-<p class="caption">(<a class="reference external" href=".//2D_non_linear_convection-1_04_00.png">png</a>, <a class="reference external" href=".//2D_non_linear_convection-1_04_00.hires.png">hires.png</a>, <a class="reference external" href=".//2D_non_linear_convection-1_04_00.pdf">pdf</a>)</p>
+<img alt="_images/2D_non_linear_convection-1_01_00.png" src="_images/2D_non_linear_convection-1_01_00.png" />
+<p class="caption">(<a class="reference external" href=".//2D_non_linear_convection-1_01_00.png">png</a>, <a class="reference external" href=".//2D_non_linear_convection-1_01_00.hires.png">hires.png</a>, <a class="reference external" href=".//2D_non_linear_convection-1_01_00.pdf">pdf</a>)</p>
 </div>
 <div class="figure">
-<img alt="_images/2D_non_linear_convection-1_04_01.png" src="_images/2D_non_linear_convection-1_04_01.png" />
-<p class="caption">(<a class="reference external" href=".//2D_non_linear_convection-1_04_01.png">png</a>, <a class="reference external" href=".//2D_non_linear_convection-1_04_01.hires.png">hires.png</a>, <a class="reference external" href=".//2D_non_linear_convection-1_04_01.pdf">pdf</a>)</p>
+<img alt="_images/2D_non_linear_convection-1_01_01.png" src="_images/2D_non_linear_convection-1_01_01.png" />
+<p class="caption">(<a class="reference external" href=".//2D_non_linear_convection-1_01_01.png">png</a>, <a class="reference external" href=".//2D_non_linear_convection-1_01_01.hires.png">hires.png</a>, <a class="reference external" href=".//2D_non_linear_convection-1_01_01.pdf">pdf</a>)</p>
 </div>
 <div class="figure">
-<img alt="_images/2D_non_linear_convection-1_04_02.png" src="_images/2D_non_linear_convection-1_04_02.png" />
-<p class="caption">(<a class="reference external" href=".//2D_non_linear_convection-1_04_02.png">png</a>, <a class="reference external" href=".//2D_non_linear_convection-1_04_02.hires.png">hires.png</a>, <a class="reference external" href=".//2D_non_linear_convection-1_04_02.pdf">pdf</a>)</p>
+<img alt="_images/2D_non_linear_convection-1_01_02.png" src="_images/2D_non_linear_convection-1_01_02.png" />
+<p class="caption">(<a class="reference external" href=".//2D_non_linear_convection-1_01_02.png">png</a>, <a class="reference external" href=".//2D_non_linear_convection-1_01_02.hires.png">hires.png</a>, <a class="reference external" href=".//2D_non_linear_convection-1_01_02.pdf">pdf</a>)</p>
 </div>
 <div class="figure">
-<img alt="_images/2D_non_linear_convection-1_04_03.png" src="_images/2D_non_linear_convection-1_04_03.png" />
-<p class="caption">(<a class="reference external" href=".//2D_non_linear_convection-1_04_03.png">png</a>, <a class="reference external" href=".//2D_non_linear_convection-1_04_03.hires.png">hires.png</a>, <a class="reference external" href=".//2D_non_linear_convection-1_04_03.pdf">pdf</a>)</p>
+<img alt="_images/2D_non_linear_convection-1_01_03.png" src="_images/2D_non_linear_convection-1_01_03.png" />
+<p class="caption">(<a class="reference external" href=".//2D_non_linear_convection-1_01_03.png">png</a>, <a class="reference external" href=".//2D_non_linear_convection-1_01_03.hires.png">hires.png</a>, <a class="reference external" href=".//2D_non_linear_convection-1_01_03.pdf">pdf</a>)</p>
 </div>
 </div>
 <div class="section" id="conclusions">
@@ -449,7 +391,7 @@ for n between 0 and 49
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a href="drikakis.html">1. Drikakis (2003) &#8220;Advances in Turbulent Flow Computations&#8221;</a>&#160;&#160;»
+        <a href="2D_linear_diffusion.html">7. 2D Second-order Linear Diffusion</a>&#160;&#160;»
         </p>
 
       </div>

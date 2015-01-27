@@ -28,7 +28,6 @@ Input Data
 * `nj` = 21 (number of y spatial points)
 * `xmax` = 2
 * `ymax` = 2
-* `c` = 1
 
 **Initial Conditions:** :math:`t=0`
 
@@ -195,7 +194,7 @@ Implement Algorithm in Python
 
       return u, v, x, y
 
-   def plot_initial_conditions_u(u,x,y,nt,ny,title):
+   def plot_3D(u,x,y,time,title,label):
       """
       Plots the 2D velocity field
       """
@@ -206,69 +205,18 @@ Implement Algorithm in Python
       ax=fig.gca(projection='3d')
       ax.set_xlabel('x (m)')
       ax.set_ylabel('y (m)')
-      ax.set_zlabel('u (m/s)')
+      ax.set_zlabel(label)
       X,Y=np.meshgrid(x,y)
-      surf=ax.plot_surface(X,Y,u[:,:,0],rstride=2,cstride=2)
-      plt.title(title)
-      plt.show()
-
-   def plot_final_conditions_u(u,x,y,nt,ny,title):
-      """
-      Plots the 2D velocity field
-      """
-
-      import matplotlib.pyplot as plt
-      from mpl_toolkits.mplot3d import Axes3D
-      fig=plt.figure(figsize=(11,7),dpi=100)
-      ax=fig.gca(projection='3d')
-      ax.set_xlabel('x (m)')
-      ax.set_ylabel('y (m)')
-      ax.set_zlabel('u (m/s)')
-      X,Y=np.meshgrid(x,y)
-      surf=ax.plot_surface(X,Y,u[:,:,nt-1],rstride=2,cstride=2)
-      plt.title(title)
-      plt.show()
-
-   def plot_initial_conditions_v(v,x,y,nt,ny,title):
-      """
-      Plots the 2D velocity field
-      """
-
-      import matplotlib.pyplot as plt
-      from mpl_toolkits.mplot3d import Axes3D
-      fig=plt.figure(figsize=(11,7),dpi=100)
-      ax=fig.gca(projection='3d')
-      ax.set_xlabel('x (m)')
-      ax.set_ylabel('y (m)')
-      ax.set_zlabel('v (m/s)')
-      X,Y=np.meshgrid(x,y)
-      surf=ax.plot_surface(X,Y,v[:,:,0],rstride=2,cstride=2)
-      plt.title(title)
-      plt.show()
-
-   def plot_final_conditions_v(v,x,y,nt,ny,title):
-      """
-      Plots the 2D velocity field
-      """
-
-      import matplotlib.pyplot as plt
-      from mpl_toolkits.mplot3d import Axes3D
-      fig=plt.figure(figsize=(11,7),dpi=100)
-      ax=fig.gca(projection='3d')
-      ax.set_xlabel('x (m)')
-      ax.set_ylabel('y (m)')
-      ax.set_zlabel('v (m/s)')
-      X,Y=np.meshgrid(x,y)
-      surf=ax.plot_surface(X,Y,v[:,:,nt-1],rstride=2,cstride=2)
+      surf=ax.plot_surface(X,Y,u[:,:,time],rstride=2,cstride=2)
       plt.title(title)
       plt.show()
 
    u,v,x,y = non_linear_convection(101, 81, 81, 0.5, 2.0, 2.0)
 
-   plot_initial_conditions_u(u,x,y,51,81,'Figure 1: c=0.5m/s, nt=101, nx=81, ny=81, t=0sec')
-   plot_final_conditions_u(u,x,y,51,81,'Figure 2: c=0.5m/s, nt=101, nx=81, ny=81, t=0.5sec')
-   plot_initial_conditions_v(v,x,y,51,81,'Figure 3: c=0.5m/s, nt=101, nx=81, ny=81, t=0sec')
-   plot_final_conditions_v(v,x,y,51,81,'Figure 4: c=0.5m/s, nt=101, nx=81, ny=81, t=0.5sec')
+   plot_3D(u,x,y,0,'Figure 1: c=0.5m/s, nt=101, nx=81, ny=81, t=0sec','u (m/s)')
+   plot_3D(u,x,y,100,'Figure 2: c=0.5m/s, nt=101, nx=81, ny=81, t=0.5sec','u (m/s)')
+   plot_3D(v,x,y,0,'Figure 3: c=0.5m/s, nt=101, nx=81, ny=81, t=0sec','v (m/s)')
+   plot_3D(v,x,y,100,'Figure 4: c=0.5m/s, nt=101, nx=81, ny=81, t=0.5sec','v (m/s)')
 
 
 Conclusions
