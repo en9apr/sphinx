@@ -23,6 +23,7 @@ CFD Theory:
    explicit_implicit
    finite_difference_formulas_in_2D
    numerical_scheme_1
+   numerical_schemes_2
 
 CFD Projects:
 -------------

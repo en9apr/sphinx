@@ -5,7 +5,7 @@ Numerical Schemes 1
 Setting the Scene: Stability
 ============================
 
-* Doing the first assignment, we encounter several instances when the solution "blows up". Why?
+* We encounter several instances when the solution "blows up". Why?
 * Upwind schemes, implicit schemes, 2nd order schemes, leapfrog schemes
 
 Consistency, stability and error analysis
