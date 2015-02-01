@@ -1,0 +1,159 @@
+===================
+Numerical Schemes 1
+===================
+
+Setting the Scene: Stability
+============================
+
+* Doing the first assignment, we encounter several instances when the solution "blows up". Why?
+* Upwind schemes, implicit schemes, 2nd order schemes, leapfrog schemes
+
+Consistency, stability and error analysis
+=========================================
+
+Recall step one: 1D Linear Convection:
+
+.. math:: {\partial u \over \partial t} + c {\partial u \over \partial x} = 0
+
+FD in time, BD in space
+-----------------------
+
+**Explicit version:**
+
+.. math:: {{u_i^{n+1} - u_i^n} \over {\Delta t}} + c {{u_i^n - u_{i-1}^n} \over \Delta x}=0 
+
+Explicit schemes: 
+
+* Very simple and economical
+* Restrictions for stability
+
+**Implicit version:**
+
+.. math:: {{u_i^{n+1} - u_i^n} \over {\Delta t}} + c {{u_i^{n+1} - u_{i-1}^{n+1}} \over \Delta x}=0
+
+FD in time, CD in space
+-----------------------
+
+**Explicit version:**
+
+.. math:: {{u_i^{n+1} - u_i^n} \over {\Delta t}} + c {{u_{i+1}^n - u_{i-1}^n} \over {2 \Delta x}}=0 
+
+**Implicit version:** :math:`n=n+1` in the CD scheme
+
+.. math:: {{u_i^{n+1} - u_i^n} \over {\Delta t}} + c {{u_{i+1}^{n+1} - u_{i-1}^{n+1}} \over {2 \Delta x}}=0 
+
+Results in linear system of equation with tridiagonal matrix
+
+FD in time, FD in space
+-----------------------
+
+**Explicit version:**
+
+.. math:: {{u_i^{n+1} - u_i^n} \over {\Delta t}} + c {{u_{i+1}^n - u_{i}^n} \over {\Delta x}}=0 
+
+**Implicit version:**
+
+.. math:: {{u_i^{n+1} - u_i^n} \over {\Delta t}} + c {{u_{i+1}^{n+1} - u_{i}^{n+1}} \over {\Delta x}}=0 
+
+FD or BD in space and implicit versions are called **first order upwind** schemes for the **convection equation**.
+
+FD in time, 2nd order BD in space
+---------------------------------
+
+**Explicit version:**
+
+.. math:: {{u_i^{n+1} - u_i^n} \over {\Delta t}} + c {{3u_i^n - 4 u_{i-1}^n + u_{i-2}^n} \over {2 \Delta x}}=0 
+
+**Implicit version:**
+
+.. math:: {{u_i^{n+1} - u_i^n} \over {\Delta t}} + c {{3u_i^{n+1} - 4 u_{i-1}^{n+1} + u_{i-2}^{n+1}} \over {2 \Delta x}}=0 
+
+2nd order CD in time, 2nd order CD in space
+-------------------------------------------
+
+**Explicit version:** (Leapfrog scheme)
+
+.. math:: {{u_i^{n+1} - u_i^{n-1}} \over {2 \Delta t}} + c {{u_{i+1}^n - u_{i-1}^n} \over {2 \Delta x}}=0 
+
+**Implicit version:** 
+
+.. math:: {{u_i^{n+1} - u_i^{n-1}} \over {2 \Delta t}} + c {{u_{i+1}^{n+1} - u_{i-1}^{n+1}} \over {2 \Delta x}}=0
+
+
+Example
+=======
+
+Recall step one: 1D Linear Convection:
+
+.. math:: {\partial u \over \partial t} + c {\partial u \over \partial x} = 0
+
+With these initial conditions:
+
+.. math:: x \le 0.9 \Rightarrow u_0(x) = 0 
+
+.. math:: 0.9 \le x \le 1.0 \Rightarrow u_0(x) = 10(x-0.9)
+
+.. math:: 1.0 \le x \le 1.1 \Rightarrow u_0(x) = 10(1.1-x)
+
+.. math:: x \ge 1.1 \Rightarrow u_0(x) = 0
+
+.. plot::
+   :include-source:
+
+   def diffusion(nt, nx, tmax, xmax, nu):
+      """
+      Returns the velocity field and distance for 2D diffusion
+      """
+      # Increments
+      dt = tmax/(nt-1)
+      dx = xmax/(nx-1)
+
+      # Initialise data structures
+      import numpy as np
+      u = np.zeros((nx,nt))
+      x = np.zeros(nx)
+
+      # Boundary conditions
+      u[0,:] = u[nx-1,:] = 1
+
+      # Initial conditions
+      u[:,:]  = 1  
+      u[(nx-1)/4:(nx-1)/2,0] = 2
+
+      # Loop
+      for n in range(0,nt-1):
+         for i in range(1,nx-1):
+            u[i,n+1] = u[i,n]+dt*nu*( ( u[i-1,n]-2*u[i,n]+u[i+1,n] ) /dx**2 )
+
+      # X Loop
+      for i in range(0,nx):
+         x[i] = i*dx
+
+      return u, x
+
+   def plot_3D(u,x,y,time,title,label):
+      """
+      Plots the 2D velocity field
+      """
+
+      import matplotlib.pyplot as plt
+      from mpl_toolkits.mplot3d import Axes3D
+      fig=plt.figure(figsize=(11,7),dpi=100)
+      ax=fig.gca(projection='3d')
+      ax.set_xlabel('x (m)')
+      ax.set_ylabel('y (m)')
+      ax.set_zlabel(label)
+      X,Y=np.meshgrid(x,y)
+      surf=ax.plot_surface(X,Y,u[:,:,time],rstride=2,cstride=2)
+      plt.title(title)
+      plt.show()
+
+   u,x = diffusion(151, 51, 51, 0.5, 2.0, 2.0, 0.1)
+
+   plot_3D(u,x,y,0,'Figure 1: nu=0.1, nt=151, nx=51, ny=51, t=0sec','u (m/s)')
+   plot_3D(u,x,y,100,'Figure 2: nu=0.1, nt=151, nx=51, ny=51, t=0.5sec','u (m/s)')
+   plot_3D(v,x,y,0,'Figure 3: nu=0.1, nt=151, nx=51, ny=51, t=0sec','v (m/s)')
+   plot_3D(v,x,y,100,'Figure 4: nu=0.1, nt=151, nx=51, ny=51, t=0.5sec','v (m/s)')
+
+
+

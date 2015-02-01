@@ -22,6 +22,7 @@ CFD Theory:
    order_of_accuracy
    explicit_implicit
    finite_difference_formulas_in_2D
+   numerical_scheme_1
 
 CFD Projects:
 -------------
