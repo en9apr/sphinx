@@ -24,6 +24,7 @@ CFD Theory:
    finite_difference_formulas_in_2D
    numerical_scheme_1
    numerical_schemes_2
+   analysis_of_numerical_schemes
 
 CFD Projects:
 -------------

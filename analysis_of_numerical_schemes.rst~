@@ -1,0 +1,74 @@
+=============================
+Analysis of Numerical Schemes
+=============================
+
+The Truncation Error
+====================
+
+* The *truncation error* is the difference between the numerical scheme and the differential equation.
+
+* NOTE: The exact solution of the numerical scheme satisfies a MODIFIED differential equation 
+
+* Consider **exact** solution of the **discretised** equation :math:`\rightarrow \bar{u}_i^n`:
+
+.. math:: {{\bar{u}_i^{n+1} - \bar{u}_i^n} \over {\Delta t}} + {c \over {2 \Delta x}} {(\bar{u}_{i+1}^n - \bar{u}_{i-1}^n)} \equiv 0 
+
+* From before, with :math:`u = \bar{u}`
+
+.. math:: {{\bar{u}_i^{n+1} - \bar{u}_i^n} \over {\Delta t}} + {c \over {2 \Delta x}} {{(\bar{u}_{i+1}^n - \bar{u}_{i-1}^n)} } - 
+          \left ( \left . {\partial \bar{u} \over \partial t}  \right \vert_i^n  +
+          \left . {{c}} {\partial \bar{u} \over \partial x} \right \vert_i^n \right )  =
+           \left .{{\Delta t} \over 2} {\partial^2 \bar{u} \over \partial t^2} \right \vert_i^n +
+          O(\Delta t^2) + O(\Delta x^2)
+
+* The above implies that for the exact solution:
+
+.. math:: \left . {\partial \bar{u} \over \partial t}  \right \vert_i^n  +
+          \left . c {\partial \bar{u} \over \partial x} \right \vert_i^n =
+          -{\Delta t \over 2} \left . {\partial^2 \bar{u} \over \partial t^2} \right \vert_i^n -
+          O(\Delta t^2) - O(\Delta x^2)
+   :label: one
+
+* Hence:
+
+.. math:: \left . {\partial \bar{u} \over \partial t}  \right \vert_i^n = -
+          \left . c {\partial \bar{u} \over \partial x} \right \vert_i^n - O(\Delta t) - O(\Delta x^2)
+
+* Take :math:`\partial \over {\partial t}`:
+
+.. math:: \left . {\partial^2 \bar{u} \over \partial t^2}  \right \vert_i^n = -
+          \left . c {\partial^2 \bar{u} \over \partial x \partial t} \right \vert_i^n - O(\Delta t) - O(\Delta x^2)
+
+* Or:
+
+.. math:: \left . {\partial^2 \bar{u} \over \partial t^2}  \right \vert_i^n = -
+          \left . c {{\partial \over \partial x}{\left (\partial \bar{u} \over \partial t \right) }} \right \vert_i^n - O(\Delta t) - O(\Delta x^2)
+
+* i.e.
+
+.. math:: \left . {\partial^2 \bar{u} \over \partial t^2}  \right \vert_i^n =
+          \left . c^2 {{\left (\partial^2 \bar{u} \over \partial x^2 \right) }} \right \vert_i^n - O(\Delta t) - O(\Delta x^2)
+   :label: two
+
+* Substitute Equation :eq:`two` into Equation :eq:`one`. The exact solution to the numerical scheme :math:`\bar{u}` satisfies the following differential equation:
+
+.. math:: \left . {\partial \bar{u} \over \partial t}  \right \vert_i^n  +
+          \left . c {\partial \bar{u} \over \partial x} \right \vert_i^n = -
+          \left . {{c^2 \Delta t} \over 2}  {{\left (\partial^2 \bar{u} \over \partial x^2 \right) }} \right \vert_i^n -
+          O(\Delta t^2) - O(\Delta x^2)
+ 
+Modified Differential Equation
+==============================
+
+
+Convection with CD in x
+=======================
+
+
+Convection with 1st order Upwind
+================================
+
+
+CFL Condition
+=============
+
