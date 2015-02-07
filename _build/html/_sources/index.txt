@@ -25,6 +25,7 @@ CFD Theory:
    numerical_scheme_1
    numerical_schemes_2
    analysis_of_numerical_schemes
+   von_neumann_stability_analysis
 
 CFD Projects:
 -------------
