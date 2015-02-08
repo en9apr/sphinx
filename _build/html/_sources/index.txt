@@ -26,6 +26,7 @@ CFD Theory:
    numerical_schemes_2
    analysis_of_numerical_schemes
    von_neumann_stability_analysis
+   poisson_for_pressure
 
 CFD Projects:
 -------------
