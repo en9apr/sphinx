@@ -43,7 +43,11 @@ CFD Projects:
    2D_non_linear_convection
    2D_linear_diffusion
    2D_burgers_equation
-   laplace_equation
+
+CFD Projects in iPython Notebooks on GitHub:
+--------------------------------------------
+   
+* `2D Laplace Equation <http://nbviewer.ipython.org/github/en9apr/sphinx/blob/master/Laplace.ipynb>`_
 
 Literature
 ----------
