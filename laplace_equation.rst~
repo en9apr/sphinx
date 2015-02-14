@@ -1,0 +1,305 @@
+===================
+2D Laplace Equation
+===================
+
+.. contents::
+   :local:
+
+Understand the Problem
+======================
+
+* What is the 2D pressure field for the **Laplace equation** when the initial conditions are **zero everywhere** and the x-boundary conditions are 0 and 1  and the y-boundary conditions are von Neumann (zero gradient)?
+
+* The Laplace Equation for pressure is described as follows:
+
+.. math:: {\partial^2 p \over \partial x^2} + {\partial^2 p \over \partial y^2} = 0
+
+* This equation has an analytical solution:
+
+.. math:: p(x,y) = {x \over 4} - 4 \sum_{m=1 (odd)}^\infty {{sinh(m \pi x) cos(m \pi y)} \over {(m \pi)^2sinh(2 \pi m)}}
+
+Formulate the Problem
+=====================
+
+Input Data
+~~~~~~~~~~
+
+This problem has **no temporal component**, so we use a number of iterations.
+
+* `niter` = 51 (maximum number of iterations)
+* `nx` = 21 (number of x spatial points)
+* `ny` = 11 (number of y spatial points)
+* `xmax` = 2
+* `ymax` = 1
+* `infinity` = 100 (a large number)
+
+**Initial Conditions:** 
+
+* :math:`\forall (x, y) \text{ if } n = 0 \rightarrow p = 0`
+
+**Boundary Conditions:**
+
+* :math:`\forall (n, y) \text{ if } x = 0 \rightarrow p = 0`
+* :math:`\forall (n, y) \text{ if } x = 2 \rightarrow p = y`
+* :math:`\forall (n, x) \text{ if } y = 0 \rightarrow {\partial p} / {\partial y} = 0`
+* :math:`\forall (n, x) \text{ if } y = 1 \rightarrow {\partial p} / {\partial y} = 0`
+
+Output Data
+~~~~~~~~~~~
+
+* :math:`\forall (x,y,n) \ p = ?`
+
+
+Design Algorithm to Solve Problem
+=================================
+
+Space-time discretisation
+~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* i :math:`\rightarrow` index of grid in x
+* j :math:`\rightarrow` index of grid in y
+* n :math:`\rightarrow` index of iterations
+* m :math:`\rightarrow` index of odd numbers in analytical solution
+
+Numerical scheme
+~~~~~~~~~~~~~~~~
+
+* 2nd order CD in space
+
+Discrete equation
+~~~~~~~~~~~~~~~~~
+
+.. math::
+
+   {{p_{i+1,j}^n -2p_{i,j}^n + p_{i-1,j}^n} \over \Delta x^2} + 
+   {{p_{i,j+1}^n -2p_{i,j}^n + p_{i,j-1}^n} \over \Delta y^2} = 0 
+
+Transpose
+~~~~~~~~~
+
+.. math::
+
+   p_{i,j}^{n} ={ {\Delta y^2 (p_{i+1,j}^{n}+p_{i-1,j}^{n}) + \Delta x^2 (p_{i,j+1}^{n}+p_{i,j-1}^{n})} \over 
+                 {2(\Delta x^2 + \Delta y^2)} }
+   
+Pseudo-code
+~~~~~~~~~~~
+
+::
+
+   # Constants
+
+      niter = 51 
+      nx =  21
+      xmax = 2
+      ny = 11
+      ymax = 1
+      dx = xmax/(nx-1)
+      dy = ymax/(ny-1)
+      infinity = 100
+
+   # Dirichlet Boundary Conditions
+
+     # p boundary, left:
+        p(0,:,:) = 0
+     # p boundary, right:
+        p(nx-1,:,:) = ymax 
+
+   # von Neumann Boundary Conditions
+
+     # Values for correction at boundaries:
+        for j between 0 and ny-1
+           jpos(j) = j + 1
+           jneg(j) = j - 1
+       
+     # Set Reflection:
+     # j:    -1  0,  1,... ny-2, ny-1, ny
+     # jpos:         start =>    =>    end     
+     # jneg: start =>  =>  end  
+   
+        jpos(ny-1) = ny-2 # i.e. ny = ny-2
+        jneg(0) = 1       # i.e. -1 = 1
+   
+   #Initial Conditions
+
+      p(:,:,0) = 0
+   
+   # Numerical Computation
+
+      for n between 0 and niter-1
+         for i between 1 and nx-1
+            for j between 1 and ny-1
+               p(i,j,n) = { dy^2 * [ p(i+1,j,n)+p(i-1,j,n) ] + dx^2 * [ p(i,jpos(j),n)+p(i,jneg(j),n) ] } / {2(dx^2 + dy^2)}
+
+   # Analytical Solution 
+    
+      p_coefficient(i,j,1) = { 4 * [sinh(1*pi*x(i)]*[cos(1*pi*y(j)] } / { [(1*pi)**2]*sinh(2*pi*1) } 
+
+      for m between 3 and infinity in odd steps
+         for i between 0 and nx-1
+            for j between 0 and ny-1
+               p_coefficient(i,j) += {[sinh(m*pi*x(i)]*[cos(m*pi*y(j)] } / { [(m*pi)**2]*sinh(2*pi*m) } 
+  
+      for i between 0 and nx-1
+          p_analytical(i,j)= (x(i) / 4) - 4*p_coefficient(i,j)
+
+
+Implement Algorithm in Python
+=============================
+
+.. plot::
+   :include-source:
+
+   def laplace_equation_numerical(niter, nx, ny, xmax, ymax):
+      """
+      Numerical solution to Laplace's Equation
+      """
+      # Increments:
+      dx = xmax/(nx-1)
+      dy = ymax/(ny-1)
+
+      # Initialise data structures:
+      import numpy as np
+      p = np.zeros(((nx,ny,niter)))
+      x = np.zeros(nx)
+      y = np.zeros(ny)
+      jpos = np.zeros(ny)
+      jneg = np.zeros(ny)
+
+      # X Loop
+      for i in range(0,nx):
+         x[i] = i*dx
+
+      # Y Loop
+      for j in range(0,ny):
+         y[j] = j*dy
+    
+      # Initial conditions
+      p[:,:,0] = 0
+
+      # Dirichlet Boundary Conditions:
+
+      # p boundary, left:
+      p[0,:,:] = 0
+
+      # p boundary, right:
+      for j in range(0,ny):
+         p[nx-1,j,:] = y[j] 
+
+      # von Neumann Boundary Conditions:
+
+      # Values for correction at boundaries:
+      for j in range(0,ny-1):
+         jpos[j] = j + 1
+         jneg[j] = j - 1
+
+      # Set Reflection: 
+      jpos[ny-1] = ny-2 
+      jneg[0] = 1 
+
+      # Loop
+      for n in range(0,niter-1):
+         for i in range(1,nx-1):
+            for j in range(0,ny):
+               p[i,j,n+1] = (( dy**2 * ( p[i+1,j,n]+p[i-1,j,n] ) 
+                   + dx**2 * ( p[i,jpos[j],n]+p[i,jneg[j],n] ) ) 
+                   / (2*(dx**2 + dy**2)))
+
+      return p, x, y
+
+   def plot_3D(p,x,y,time,title,label):
+      """
+      Plots the 2D velocity field
+      """
+
+      import matplotlib.pyplot as plt
+      from mpl_toolkits.mplot3d import Axes3D
+      fig=plt.figure(figsize=(11,7),dpi=100)
+      ax=fig.gca(projection='3d')
+      ax.set_xlabel('x (m)')
+      ax.set_ylabel('y (m)')
+      ax.set_zlabel(label)
+      ax.set_xlim(0,2)
+      ax.set_ylim(0,1)
+      ax.view_init(30,225)
+      Y,X=np.meshgrid(y,x) #note meshgrid uses y,x not x,y!!!
+      surf=ax.plot_surface(X,Y,p[:,:,time], rstride=1, cstride=1)
+      plt.title(title)
+      plt.show()
+
+   def plot_2D(p,x,nt,title):
+      """
+      Plots the 1D velocity field
+      """
+
+      import matplotlib.pyplot as plt
+      import matplotlib.cm as cm
+      plt.figure()
+      ax=plt.subplot(111)
+      colour=iter(cm.rainbow(np.linspace(0,20,nt)))   
+      for n in range(0,nt,20):
+         c=next(colour)
+         ax.plot(x,p[:,-1,n],linestyle='-',c=c,label='n='+str(n)+' numerical')
+      box=ax.get_position()
+      ax.set_position([box.x0, box.y0, box.width*0.7,box.height])
+      ax.legend( bbox_to_anchor=(1.02,1), loc=2)
+      plt.xlabel('x (m)')
+      plt.ylabel('p (Pa)')
+      plt.ylim([0,1.0])
+      plt.xlim([0,2.0])
+      plt.title(title)
+      plt.show()
+
+
+   p,x,y = laplace_equation_numerical(100, 51, 51, 2.0, 1.0)
+
+   plot_3D(p,x,y,0,'Figure 1: Initial Conditions (n=0) nt=100, nx=51, ny=51','p (Pa)')
+
+   plot_3D(p,x,y,99,'Figure 2: Final Conditions (n=99) nt=100, nx=51, ny=51','p (Pa)')
+
+   plot_2D(p,x,99,'Figure 3: At far von Neumann Boundary y=2')
+
+
+Implement Algorithm in Python 2
+===============================
+
+* The above shows that the numerical algorithm works, but depends on the number of iterations for convergence.
+* I want to remove this dependence and use an error. I define the error like this:
+
+.. math:: \text{Relative Error} = {{\sum_{n=0}^{n=n_{max}}(\left\vert p_{n+1} \right\vert - \left\vert p_{n} \right\vert)}
+          \over {\sum_{n=0}^{n=n_{max}}{\left\vert p_{n} \right\vert}}}
+
+* So now we need a target Relative Error, so choose :math:`1x10^-3` i.e. the data is the same to the third decimal point.
+
+* This changes the pseudo-code a bit:
+
+* For safety we can still include the maximum number of iterations
+
+Pseudo-code
+~~~~~~~~~~~
+
+::
+   error_target=1*10^-3
+
+   # Numerical Computation
+
+      while error is less than error_target 
+         for n between 0 and niter
+            for i between 1 and nx-1
+               for j between 1 and ny-1
+                  p(i,j,n+1) = { dy^2 * [ p(i+1,j,n)+p(i-1,j,n) ] + dx^2 * [ p(i,jpos(j),n)+p(i,jneg(j),n) ] } / {2(dx^2 + dy^2)}
+                  error = [ sum(abs(p(i,j,n+1)-abs(p(i,j,n)) ] / sum(abs(p(i,j,n)))
+
+Conclusions
+===========
+
+Why isn't the square wave maintained?
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+* As with 1D, the first order backward differencing scheme in space creates false diffusion.
+
+Why does the wave shift?
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+* The square wave is being convected by the  wave speed `u` and `v` in 2 dimensions
+* Profiles shift by :math:`u \Delta t` and :math:`v \Delta t` - compare Figure 1, 2, 3 and 4 
