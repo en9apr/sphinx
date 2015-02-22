@@ -1,0 +1,186 @@
+============================================================
+Thompson et al. (2001) "Investigation of Rigid-Roll Coating"
+============================================================
+
+Thommpson, H.M., Kapur, N., Gaskell, P.H., Summers, J.L. and Abbott, S.J. "A theoretical and experimental investigation of reservoir-fed rigid-roll coating", Chemical Engineering Science, vol 56, 2001.
+
+.. contents::
+   :local:
+
+Abstract
+========
+
+A variant of reverse roll coating is studied via:
+
+* Experimental
+* Analytical (lubriation)
+* Computational (finite element)
+
+Experimental results:
+
+* Flow rate and wetting line position over range of roll speed ratios and capillary numbers
+* Provided the wetting line is suffciently far from the nib, the flow rate depends linearly on reservoir level
+
+What is unique about this study:
+
+* Variation of dynamic contact angle with metering roll speed has been accounted for
+
+Lubriation model boundary conditions:
+
+* Free surface
+* Surface tension
+* Wetting line effects 
+
+Physics:
+
+* The effect of gravity is influential
+* Flow in the reservoir is recirculating in nature
+* The size and number of recirculations depends on reservoir geometry
+
+Good agreement between models and experimental data
+
+Introduction
+============
+
+Rigid-roll coating systems operating in reverse mode are used for applying thin liquid films, in the production of:
+
+* Magnetic media
+* Adhesive tapes
+* Films
+* Foils
+
+Types of rigid-roll coating systems:
+
+* Pan-fed
+* Direct-fed
+
+Physics:
+
+* Flow in the **positive metering gap** between the co-rotating applicator and metering rolls plays a crucial role in determining the **final wet film thickness trasferred to the substrate**
+
+Discrepancy between FE model and experiment:
+
+* Neglect of gravity
+* Absence of dynamic wetting line
+
+Discrepancy between lubrication model and experiment:
+
+* At high speed ratio and capillary number
+* Importance of the position of the dynamic wetting line relative to the nip - w.r.t onset of cascade instability
+
+Other effects:
+
+* Effect of feed condition on the flow structure
+
+Direct-fed reverse roll coating is investigated. The web thickness is determined by:
+
+* Competition between metering action of the reverse roll configuration
+* Influence of gravity in the form of hydrostatic head provided by the reservoir
+
+Aim of this paper
+-----------------
+
+Quantify the effect of the reservoir on:
+
+* The coated film thickness
+* Dynamic wetting line position
+
+
+Experimental Method
+===================
+
+A rig was designed to:
+
+* Retain the important features of the industrial model
+* Be flexible in operation
+* Allow optical access
+
+Conditions:
+
+* Large bank of liquid ensured that ambient temperature changes did not affect liquid properties
+* 0.5kg weight was applied to the hosing of the tank to seat it on the rolls
+* Doctor blade used to remove any residue
+
+Fluid:
+
+* Newtonian mineral oil
+* Surface tension measured with a torsion balance
+* Viscosity measured with a viscometer
+* Density measured by measuring the mass of a known volume of fluid
+
+Visualisation:
+
+* Liquid illuminated
+* Illumination of nip region achieved using a mirror
+* Flow patterns recorded on a video system via a microscope and CCD camera
+
+
+Flux and wetting line location measurements
+-------------------------------------------
+
+Flow visualisation
+------------------
+
+Mathematical Models
+===================
+
+Assumptions:
+
+* Isothermal
+* 2D
+* Newtonian
+* Incompressible
+* Governed by the Navier Stokes Equations
+
+Lubrication Analysis
+--------------------
+
+Boundary Conditions
+~~~~~~~~~~~~~~~~~~~
+
+Finite Element Solutions
+~~~~~~~~~~~~~~~~~~~~~~~~
+
+Results
+=======
+
+Variables of interest:
+
+* Flow rate
+* Wetting line position is useful w.r.t cascade instability when it migrates upstream of the nip
+
+
+Conclusions
+===========
+
+1) This is a study of the equilibrium flow in a variant of reverse roll coating, where the metering gap sits beneath a large reservoir
+
+2) Experimental data shows:
+
+* If wetting line is sufficiently far downstream of the nip: flow rate increases **linearly** with reservoir level
+* If wetting line is close to the nip: effect of level on flow rate is **non-linear** and influences the onset of the **cascade instability**
+
+3) Hydrodynamic model:
+
+* Dynamic contact angle with metering roll speed is incorperated using a hydrodynamic model for wetting. 
+* However, data is lacking for the hydrodynamic model, so a calibration method is proposed, in terms of the interfacial layer thickness.
+* This interfacial layer thickness is calibrated by matching the prediction against theory for one data point only.
+
+4) FE solutions can predict accuractely:
+
+* Flow rate
+* Wetting line positions (even at high Capillary Numbers)
+
+5) Lubrication model predicts the flow rate over a range of Capillary Numbers, however:
+
+* Wetting line prediction is sensitive to the way the free surface is represented
+* Free surface profile should be represented by a parabolic rather than a circular arc
+* But the lubrication prediction demonstrates the benefit of incorperating the effects of free surface, surface tension and the wetting line - especially the abiility to predict the flow rate mininum casued by wetting line migration through the nip
+
+6) Experimental results vs FE solutions show good comparison
+
+7) Flow in reservoir should not be overlooked - given the possiblity of recirculations there
+
+ 
+
+

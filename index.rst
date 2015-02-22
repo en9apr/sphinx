@@ -55,7 +55,8 @@ Literature
 .. toctree::
    :maxdepth: 1
    :numbered: 4
-
+   
+   thompson
    noakes
    drikakis
    fawehinmi
