@@ -2,7 +2,7 @@
 Thompson et al. (2001) "Investigation of Rigid-Roll Coating"
 ============================================================
 
-Thommpson, H.M., Kapur, N., Gaskell, P.H., Summers, J.L. and Abbott, S.J. "A theoretical and experimental investigation of reservoir-fed rigid-roll coating", Chemical Engineering Science, vol 56, 2001.
+Thompson, H.M., Kapur, N., Gaskell, P.H., Summers, J.L. and Abbott, S.J. "A theoretical and experimental investigation of reservoir-fed rigid-roll coating", Chemical Engineering Science, vol 56, 2001.
 
 .. contents::
    :local:
@@ -221,7 +221,7 @@ Limitation:
 This requires fully non-linear 2D finite element simulation
 
 Finite Element Solutions
-~~~~~~~~~~~~~~~~~~~~~~~~
+------------------------
 
 Flow in the reservoir is solved using FE method (due to it's topological flexibility)
 
