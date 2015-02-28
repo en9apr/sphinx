@@ -48,6 +48,7 @@ CFD Projects in iPython Notebooks on GitHub:
 --------------------------------------------
    
 * `2D Laplace Equation <http://nbviewer.ipython.org/github/en9apr/sphinx/blob/master/Laplace.ipynb>`_
+* `2D Poisson Equation <http://nbviewer.ipython.org/github/en9apr/sphinx/blob/master/Poisson.ipynb>`_
 
 Literature
 ----------
