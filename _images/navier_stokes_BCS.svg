@@ -14,7 +14,7 @@
    inkscape:version="0.48.3.1 r9886"
    width="400"
    height="550"
-   sodipodi:docname="discretisation_schemes.svg">
+   sodipodi:docname="navier_stokes_BCS.png">
   <metadata
      id="metadata3042">
     <rdf:RDF>
@@ -23,7 +23,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
