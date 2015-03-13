@@ -51,6 +51,7 @@ CFD Projects in iPython Notebooks on GitHub:
 * `2D Poisson Equation <http://nbviewer.ipython.org/github/en9apr/sphinx/blob/master/Poisson.ipynb>`_
 * `2D Cavity Flow: Loop Method <http://nbviewer.ipython.org/github/en9apr/sphinx/blob/master/Navier_Stokes_Cavity_Loops.ipynb>`_
 * `2D Cavity Flow: NumPy Method <http://nbviewer.ipython.org/github/en9apr/sphinx/blob/master/Navier_Stokes_Cavity_Slices.ipynb>`_
+* `2D Channel Flow <http://nbviewer.ipython.org/github/en9apr/sphinx/blob/master/Navier_Stokes_Channel_Flow.ipynb>`_
 
 Literature
 ----------
