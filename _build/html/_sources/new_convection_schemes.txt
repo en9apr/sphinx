@@ -1,0 +1,108 @@
+
+==========================
+New Schemes for Convection
+==========================
+
+Leapfrog Scheme
+---------------
+
+Equations
+~~~~~~~~~
+
+**For linear convection** the schemes we have considered so far are:
+
+* Unconditionally unstable (1st order FD in time, **2nd order CD in space**)
+
+.. math:: {{u_i^{n+1} - u_i^n} \over {\Delta t}} + c {{u_{i+1}^n - u_{i-1}^n} \over 2\Delta x}=0 
+ 
+.. math:: u_i^{n+1} = u_i^{n} - {\sigma \over 2} (u_{i+1}^n - u_{i-1}^n) 
+   :label: FTCS
+
+* Introduce numerical diffusion (1st order FD in time, **1st order BD in space**)
+
+.. math:: {{u_i^{n+1} - u_i^n} \over {\Delta t}} + c {{u_i^n - u_{i-1}^n} \over \Delta x}=0 
+ 
+.. math:: u_i^{n+1} = u_i^{n} - \sigma (u_{i}^n - u_{i-1}^n) 
+   :label: FTBS
+
+For demonstrations of this, see numerical_scheme_1_
+
+.. _numerical_scheme_1: http://www.thevisualroom.com/numerical_scheme_1.html
+
+For the leapfrog scheme, both space and time are discretised by 2nd order CD formulas
+
+.. math:: {{u_i^{n+1} - u_i^{n-1}} \over {2 \Delta t}} + c {{u_{i-1}^n - u_{i-1}^n} \over {2 \Delta x}}=0 
+
+i.e.
+
+.. math:: u_i^{n+1} = u_i^{n-1} - {{c \Delta t} \over \Delta x} (u_{i+1}^n - u_{i-1}^n) 
+
+.. math:: u_i^{n+1} = u_i^{n-1} - \sigma (u_{i+1}^n - u_{i-1}^n) 
+
+where the CFL number is :math:`\sigma =  {{c \Delta t} \over \Delta x}` 
+
+.. figure:: _images/leapfrog_scheme.png
+   :scale: 75%
+   :align: center
+
+
+* :math:`u_i^{n+1} \Rightarrow` New Solution
+* :math:`u_i^{n}` Does not contribute (leapfrogging)
+* 3 time levels in the discretisation
+* Requires initialisation by using another method - e.g. **upwind** (a starting scheme)
+
+von Neumann analysis
+~~~~~~~~~~~~~~~~~~~~
+
+.. math:: V^{n+1} = V^{n-1} - \sigma V^n(e^{I \phi} - e^{-I \phi})
+
+As G is independent of n, write: 
+
+.. math:: G = {V^{n+1} \over V^n} = {{V^{n}} \over {V^{n-1}}} 
+
+Quadratic Equation for G:
+
+.. math:: G - {1 \over G} = - \sigma (e^{I \phi} - e^{-I \phi}) 
+
+Solution:
+
+.. math:: G = I \sigma sin \phi \pm \sqrt{ 1 - \sigma^2 sin^2 \phi  }
+
+* If :math:`\sigma > 1` the scheme is unstable, since sqrt term can be negative, thus G pure imaginary and magnitude of G > 0 (e.g. :math:`\phi = \pi / 2`)
+
+* If :math:`\sigma < 1` them in sqrt is always real and 
+
+.. math:: G.G^* = Re(G)^2 + Im(G)^2 = (1- \sigma^2 sin^2 \phi)+\sigma^2 sin^2 \phi = 1
+
+Therefore the scheme is **neutrally stable** (oscillations will neither grow nor reduce) because the amplification factor is equal to 1 for the convection equation.
+
+Lax-Friedrichs Scheme
+---------------------
+
+Introduced in the paper:
+
+Lax P.D. "Weak Solutions of Nonlinear Hyperbolic Equations and Their Numerical Computation", Communications on Pure and Applied Mathematics (1954)
+
+History:
+
+* Peter Lax laid the foundations for the modern theory of non-linear hyperbolic equations and shock wave theory. In 2005 he won the Abel Prize for mathematics. 
+
+Equations
+~~~~~~~~~
+
+The idea of the Lax-Friedrichs scheme is to replace :math:`u_i^n` in :eq:`FTCS` by the average:
+
+.. math:: u_i^n = {1 \over 2} (u_{i-1}^n + u_{i+1}^n) 
+
+This will stabilize FD in t / CD in x (Forward Time, Centred Scheme - FTCS)
+
+.. math:: u_i^{n+1} = {1 \over 2} (u_{i-1}^n + u_{i+1}^n) - {\sigma \over 2}(u_{i+1}^n - u_{i-1}^n)
+
+Substitution introduces an error :math:`O(\Delta x) \Rightarrow` Reduces the order of the scheme to **first order** - however it is now stable (FTCS was unconditionally unstable for the convection equation)
+
+.. figure:: _images/lax_friedrichs.png
+   :scale: 75%
+   :align: center
+
+
+

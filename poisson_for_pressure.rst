@@ -46,6 +46,11 @@ Using the nabla operator :math:`\nabla` and Laplacian operators (:math:`\nabla^2
 Navier Stokes Equations in Partial Notation
 -------------------------------------------
 
+* Divergence of a **vector** gives a scalar (via the scalar product)
+* Divergence of a **scalar** doesn't exist
+* Gradient of a **vector** gives a vector
+* Gradient of a **scalar** gives a scalar
+
 2D Vector Notation:  Divergence Operations
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -62,8 +67,8 @@ Navier Stokes Equations in Partial Notation
    * - :math:`\nabla \cdot \mathbf{u}(x,y)`
      - :math:`\text{div } \mathbf{u}`
      - :math:`\left[ {\partial \over {\partial x}},  {\partial \over {\partial y}} \right]`
-     - :math:`\begin{bmatrix} u \\ v  \end{bmatrix}`
-     - Dot product
+     - :math:`\begin{bmatrix} {u} \ \mathbf{i} \\ {v} \ \mathbf{j}  \end{bmatrix}`
+     - Scalar Product
      - :math:`{{\partial u} \over {\partial x}} + {{\partial v} \over {\partial y}}`
 
 2D Vector Notation:  Gradient Operations
@@ -84,37 +89,37 @@ Navier Stokes Equations in Partial Notation
      - N/A
      - :math:`{\partial \over {\partial t}}`
      - :math:`u` or :math:`v`
-     - Scalar multiply
+     - Time Derivative
      - :math:`{\partial u} \over {\partial t}`
      - :math:`{\partial v} \over {\partial t}`
    * - :math:`\nabla \mathbf{u}(x,y)`
      - :math:`\text{grad } \mathbf{u}`
      - :math:`\left[ {\partial \over {\partial x}},  {\partial \over {\partial y}} \right]`
-     - :math:`u` or :math:`v`
-     - Scalar multiply
-     - :math:`{{\partial u} \over {\partial x}} + {{\partial u} \over {\partial y}}`
-     - :math:`{{\partial v} \over {\partial x}} + {{\partial v} \over {\partial y}}`
+     - :math:`\begin{bmatrix} {u} \ \mathbf{i} \\ {u} \ \mathbf{j}  \end{bmatrix}` or :math:`\begin{bmatrix} {v} \ \mathbf{i} \\ {v} \  \mathbf{j}  \end{bmatrix}`
+     - Vector Gradient
+     - :math:`{{\partial u} \over {\partial x}} \mathbf{i} + {{\partial u} \over {\partial y}} \mathbf{j}`
+     - :math:`{{\partial v} \over {\partial x}} \mathbf{i} + {{\partial v} \over {\partial y}} \mathbf{j}`
    * - :math:`\mathbf{u} \cdot \nabla \mathbf{u}(x,y)`
      - :math:`\mathbf{u} \cdot \text{grad } \mathbf{u}`
      - :math:`\left[ u, v \right]`
-     - :math:`\begin{bmatrix} {{\partial u} \over {\partial x}} \\ {{\partial u} \over {\partial y}}  \end{bmatrix}` or :math:`\begin{bmatrix} {{\partial v} \over {\partial x}} \\ {{\partial v} \over {\partial y}}  \end{bmatrix}`
-     - Dot Product
+     - :math:`\begin{bmatrix} {{\partial u} \over {\partial x}} \mathbf{i} \\ {{\partial u} \over {\partial y}} \mathbf{j} \end{bmatrix}` or :math:`\begin{bmatrix} {{\partial v} \over {\partial x}} \mathbf{i} \\ {{\partial v} \over {\partial y}} \mathbf{j} \end{bmatrix}`
+     - Scalar Product
      - :math:`u{{\partial u} \over {\partial x}} + v {{\partial u} \over {\partial y}}`
      - :math:`u{{\partial v} \over {\partial x}} + v {{\partial v} \over {\partial y}}`
    * - :math:`\nabla p(x)` or :math:`\nabla p(y)`
      - :math:`\text{grad } p`
      - :math:`{\partial \over {\partial x}}` or :math:`{\partial \over {\partial y}}`
      - :math:`p`
-     - Scalar multiply
+     - Scalar Gradient
      - :math:`{{\partial p} \over {\partial x}}`
      - :math:`{{\partial p} \over {\partial y}}`
    * - :math:`\nabla^2 \mathbf{u}(x,y)`
      - N/A
      - :math:`\left[ {\partial^2 \over {\partial x^2}},  {\partial^2 \over {\partial y^2}} \right]`
-     - :math:`u` or :math:`v`
-     - Scalar multiply
-     - :math:`{{\partial^2 u} \over {\partial x^2}} + {{\partial^2 u} \over {\partial y^2}}`
-     - :math:`{{\partial^2 v} \over {\partial x^2}} + {{\partial^2 v} \over {\partial y^2}}`
+     - :math:`\begin{bmatrix} {u} \ \mathbf{i} \\ {u} \ \mathbf{j}  \end{bmatrix}` or :math:`\begin{bmatrix} {v} \ \mathbf{i} \\ {v} \  \mathbf{j}  \end{bmatrix}`
+     - Vector Gradient
+     - :math:`{{\partial^2 u} \over {\partial x^2}} \mathbf{i} + {{\partial^2 u} \over {\partial y^2}} \mathbf{j}`
+     - :math:`{{\partial^2 v} \over {\partial x^2}} \mathbf{i} + {{\partial^2 v} \over {\partial y^2}} \mathbf{j}`
 
 Continuity Equation
 ~~~~~~~~~~~~~~~~~~~

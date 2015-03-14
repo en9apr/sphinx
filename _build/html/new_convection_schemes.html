@@ -1,0 +1,160 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>14. New Schemes for Convection &mdash; The Visual Room</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/print.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/theme_extras.js"></script>
+    <link rel="top" title="The Visual Room" href="index.html" />
+    <link rel="next" title="1. 1D First-order Linear Convection - The Wave Equation" href="linear_convection.html" />
+    <link rel="prev" title="13. Poisson Equation for Pressure" href="poisson_for_pressure.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>The Visual Room</span></a></h1>
+        <h2 class="heading"><span>14. New Schemes for Convection</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="poisson_for_pressure.html">13. Poisson Equation for Pressure</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="linear_convection.html">1. 1D First-order Linear Convection - The Wave Equation</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="new-schemes-for-convection">
+<h1>14. New Schemes for Convection<a class="headerlink" href="#new-schemes-for-convection" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="leapfrog-scheme">
+<h2>14.1. Leapfrog Scheme<a class="headerlink" href="#leapfrog-scheme" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="equations">
+<h3>14.1.1. Equations<a class="headerlink" href="#equations" title="Permalink to this headline">¶</a></h3>
+<p><strong>For linear convection</strong> the schemes we have considered so far are:</p>
+<ul class="simple">
+<li>Unconditionally unstable (1st order FD in time, <strong>2nd order CD in space</strong>)</li>
+</ul>
+<div class="math">
+\[{{u_i^{n+1} - u_i^n} \over {\Delta t}} + c {{u_{i+1}^n - u_{i-1}^n} \over 2\Delta x}=0\]</div>
+<div class="math" id="equation-FTCS">
+<span class="eqno">(1)</span>\[u_i^{n+1} = u_i^{n} - {\sigma \over 2} (u_{i+1}^n - u_{i-1}^n)\]</div>
+<ul class="simple">
+<li>Introduce numerical diffusion (1st order FD in time, <strong>1st order BD in space</strong>)</li>
+</ul>
+<div class="math">
+\[{{u_i^{n+1} - u_i^n} \over {\Delta t}} + c {{u_i^n - u_{i-1}^n} \over \Delta x}=0\]</div>
+<div class="math" id="equation-FTBS">
+<span class="eqno">(2)</span>\[u_i^{n+1} = u_i^{n} - \sigma (u_{i}^n - u_{i-1}^n)\]</div>
+<p>For demonstrations of this, see <a class="reference external" href="http://www.thevisualroom.com/numerical_scheme_1.html">numerical_scheme_1</a></p>
+<p>For the leapfrog scheme, both space and time are discretised by 2nd order CD formulas</p>
+<div class="math">
+\[{{u_i^{n+1} - u_i^{n-1}} \over {2 \Delta t}} + c {{u_{i-1}^n - u_{i-1}^n} \over {2 \Delta x}}=0\]</div>
+<p>i.e.</p>
+<div class="math">
+\[u_i^{n+1} = u_i^{n-1} - {{c \Delta t} \over \Delta x} (u_{i+1}^n - u_{i-1}^n)\]</div>
+<div class="math">
+\[u_i^{n+1} = u_i^{n-1} - \sigma (u_{i+1}^n - u_{i-1}^n)\]</div>
+<p>where the CFL number is <span class="math">\(\sigma =  {{c \Delta t} \over \Delta x}\)</span></p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/leapfrog_scheme.png"><img alt="_images/leapfrog_scheme.png" src="_images/leapfrog_scheme.png" style="width: 375.0px; height: 225.0px;" /></a>
+</div>
+<ul class="simple">
+<li><span class="math">\(u_i^{n+1} \Rightarrow\)</span> New Solution</li>
+<li><span class="math">\(u_i^{n}\)</span> Does not contribute (leapfrogging)</li>
+<li>3 time levels in the discretisation</li>
+<li>Requires initialisation by using another method - e.g. <strong>upwind</strong> (a starting scheme)</li>
+</ul>
+</div>
+<div class="section" id="von-neumann-analysis">
+<h3>14.1.2. von Neumann analysis<a class="headerlink" href="#von-neumann-analysis" title="Permalink to this headline">¶</a></h3>
+<div class="math">
+\[V^{n+1} = V^{n-1} - \sigma V^n(e^{I \phi} - e^{-I \phi})\]</div>
+<p>As G is independent of n, write:</p>
+<div class="math">
+\[G = {V^{n+1} \over V^n} = {{V^{n}} \over {V^{n-1}}}\]</div>
+<p>Quadratic Equation for G:</p>
+<div class="math">
+\[G - {1 \over G} = - \sigma (e^{I \phi} - e^{-I \phi})\]</div>
+<p>Solution:</p>
+<div class="math">
+\[G = I \sigma sin \phi \pm \sqrt{ 1 - \sigma^2 sin^2 \phi  }\]</div>
+<ul class="simple">
+<li>If <span class="math">\(\sigma &gt; 1\)</span> the scheme is unstable, since sqrt term can be negative, thus G pure imaginary and magnitude of G &gt; 0 (e.g. <span class="math">\(\phi = \pi / 2\)</span>)</li>
+<li>If <span class="math">\(\sigma &lt; 1\)</span> them in sqrt is always real and</li>
+</ul>
+<div class="math">
+\[G.G^* = Re(G)^2 + Im(G)^2 = (1- \sigma^2 sin^2 \phi)+\sigma^2 sin^2 \phi = 1\]</div>
+<p>Therefore the scheme is <strong>neutrally stable</strong> (oscillations will neither grow nor reduce) because the amplification factor is equal to 1 for the convection equation.</p>
+</div>
+</div>
+<div class="section" id="lax-friedrichs-scheme">
+<h2>14.2. Lax-Friedrichs Scheme<a class="headerlink" href="#lax-friedrichs-scheme" title="Permalink to this headline">¶</a></h2>
+<p>Introduced in the paper:</p>
+<p>Lax P.D. &#8220;Weak Solutions of Nonlinear Hyperbolic Equations and Their Numerical Computation&#8221;, Communications on Pure and Applied Mathematics (1954)</p>
+<p>History:</p>
+<ul class="simple">
+<li>Peter Lax laid the foundations for the modern theory of non-linear hyperbolic equations and shock wave theory. In 2005 he won the Abel Prize for mathematics.</li>
+</ul>
+<div class="section" id="id1">
+<h3>14.2.1. Equations<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>The idea of the Lax-Friedrichs scheme is to replace <span class="math">\(u_i^n\)</span> in <a href="#equation-FTCS">(1)</a> by the average:</p>
+<div class="math">
+\[u_i^n = {1 \over 2} (u_{i-1}^n + u_{i+1}^n)\]</div>
+<p>This will stabilize FD in t / CD in x (Forward Time, Centred Scheme - FTCS)</p>
+<div class="math">
+\[u_i^{n+1} = {1 \over 2} (u_{i-1}^n + u_{i+1}^n) - {\sigma \over 2}(u_{i+1}^n - u_{i-1}^n)\]</div>
+<p>Substitution introduces an error <span class="math">\(O(\Delta x) \Rightarrow\)</span> Reduces the order of the scheme to <strong>first order</strong> - however it is now stable (FTCS was unconditionally unstable for the convection equation)</p>
+<div class="figure align-center">
+<a class="reference internal image-reference" href="_images/lax_friedrichs.png"><img alt="_images/lax_friedrichs.png" src="_images/lax_friedrichs.png" style="width: 375.0px; height: 225.0px;" /></a>
+</div>
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="poisson_for_pressure.html">13. Poisson Equation for Pressure</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="linear_convection.html">1. 1D First-order Linear Convection - The Wave Equation</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, Andrew Roberts.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>
