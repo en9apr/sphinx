@@ -53,6 +53,7 @@ CFD Projects in iPython Notebooks on GitHub:
 * `2D Navier Stokes Equations: Cavity Flow (Loop Method) <http://nbviewer.ipython.org/github/en9apr/sphinx/blob/master/Navier_Stokes_Cavity_Loops.ipynb>`_
 * `2D Navier Stokes Equations: Cavity Flow (NumPy Method) <http://nbviewer.ipython.org/github/en9apr/sphinx/blob/master/Navier_Stokes_Cavity_Slices.ipynb>`_
 * `2D Navier Stokes Equations: Channel Flow <http://nbviewer.ipython.org/github/en9apr/sphinx/blob/master/Navier_Stokes_Channel.ipynb>`_
+* `Leapfrog, Lax-Friedrichs and Lax-Wendroff Schemes <http://nbviewer.ipython.org/github/en9apr/sphinx/blob/master/New_Convection_Schemes.ipynb>`_
 
 Literature
 ----------
