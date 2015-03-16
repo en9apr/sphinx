@@ -28,6 +28,7 @@ CFD Theory:
    von_neumann_stability_analysis
    poisson_for_pressure
    new_convection_schemes
+   multi_step_methods
 
 CFD Projects:
 -------------
