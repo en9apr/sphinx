@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>9. Numerical Schemes 1 &mdash; The Visual Room</title>
+    <title>1. Numerical Schemes 1 &mdash; The Visual Room</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -29,22 +29,22 @@
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/theme_extras.js"></script>
     <link rel="top" title="The Visual Room" href="index.html" />
-    <link rel="next" title="1. 1D First-order Linear Convection - The Wave Equation" href="linear_convection.html" />
-    <link rel="prev" title="8. Finite Difference Formulas in 2D" href="finite_difference_formulas_in_2D.html" /> 
+    <link rel="next" title="2. Numerical Schemes 2" href="numerical_schemes_2.html" />
+    <link rel="prev" title="4. Finite Difference Formulas in 2D" href="finite_difference_formulas_in_2D.html" /> 
   </head>
   <body>
       <div class="header"><h1 class="heading"><a href="index.html">
           <span>The Visual Room</span></a></h1>
-        <h2 class="heading"><span>9. Numerical Schemes 1</span></h2>
+        <h2 class="heading"><span>1. Numerical Schemes 1</span></h2>
       </div>
       <div class="topnav">
       
         <p>
-        «&#160;&#160;<a href="finite_difference_formulas_in_2D.html">8. Finite Difference Formulas in 2D</a>
+        «&#160;&#160;<a href="finite_difference_formulas_in_2D.html">4. Finite Difference Formulas in 2D</a>
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a href="linear_convection.html">1. 1D First-order Linear Convection - The Wave Equation</a>&#160;&#160;»
+        <a href="numerical_schemes_2.html">2. Numerical Schemes 2</a>&#160;&#160;»
         </p>
 
       </div>
@@ -52,21 +52,21 @@
         
         
   <div class="section" id="numerical-schemes-1">
-<h1>9. Numerical Schemes 1<a class="headerlink" href="#numerical-schemes-1" title="Permalink to this headline">¶</a></h1>
+<h1>1. Numerical Schemes 1<a class="headerlink" href="#numerical-schemes-1" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="setting-the-scene-stability">
-<h2>9.1. Setting the Scene: Stability<a class="headerlink" href="#setting-the-scene-stability" title="Permalink to this headline">¶</a></h2>
+<h2>1.1. Setting the Scene: Stability<a class="headerlink" href="#setting-the-scene-stability" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>We encounter several instances when the solution &#8220;blows up&#8221;. Why?</li>
 <li>Upwind schemes, implicit schemes, 2nd order schemes, leapfrog schemes</li>
 </ul>
 </div>
 <div class="section" id="consistency-stability-and-error-analysis">
-<h2>9.2. Consistency, stability and error analysis<a class="headerlink" href="#consistency-stability-and-error-analysis" title="Permalink to this headline">¶</a></h2>
+<h2>1.2. Consistency, stability and error analysis<a class="headerlink" href="#consistency-stability-and-error-analysis" title="Permalink to this headline">¶</a></h2>
 <p>Recall step one: 1D Linear Convection:</p>
 <div class="math">
 \[{\partial u \over \partial t} + c {\partial u \over \partial x} = 0\]</div>
 <div class="section" id="fd-in-time-bd-in-space">
-<h3>9.2.1. FD in time, BD in space<a class="headerlink" href="#fd-in-time-bd-in-space" title="Permalink to this headline">¶</a></h3>
+<h3>1.2.1. FD in time, BD in space<a class="headerlink" href="#fd-in-time-bd-in-space" title="Permalink to this headline">¶</a></h3>
 <p><strong>Explicit version:</strong></p>
 <div class="math">
 \[{{u_i^{n+1} - u_i^n} \over {\Delta t}} + c {{u_i^n - u_{i-1}^n} \over \Delta x}=0\]</div>
@@ -80,7 +80,7 @@
 \[{{u_i^{n+1} - u_i^n} \over {\Delta t}} + c {{u_i^{n+1} - u_{i-1}^{n+1}} \over \Delta x}=0\]</div>
 </div>
 <div class="section" id="fd-in-time-cd-in-space">
-<h3>9.2.2. FD in time, CD in space<a class="headerlink" href="#fd-in-time-cd-in-space" title="Permalink to this headline">¶</a></h3>
+<h3>1.2.2. FD in time, CD in space<a class="headerlink" href="#fd-in-time-cd-in-space" title="Permalink to this headline">¶</a></h3>
 <p><strong>Explicit version:</strong></p>
 <div class="math">
 \[{{u_i^{n+1} - u_i^n} \over {\Delta t}} + c {{u_{i+1}^n - u_{i-1}^n} \over {2 \Delta x}}=0\]</div>
@@ -90,7 +90,7 @@
 <p>Results in linear system of equation with tridiagonal matrix</p>
 </div>
 <div class="section" id="fd-in-time-fd-in-space">
-<h3>9.2.3. FD in time, FD in space<a class="headerlink" href="#fd-in-time-fd-in-space" title="Permalink to this headline">¶</a></h3>
+<h3>1.2.3. FD in time, FD in space<a class="headerlink" href="#fd-in-time-fd-in-space" title="Permalink to this headline">¶</a></h3>
 <p><strong>Explicit version:</strong></p>
 <div class="math">
 \[{{u_i^{n+1} - u_i^n} \over {\Delta t}} + c {{u_{i+1}^n - u_{i}^n} \over {\Delta x}}=0\]</div>
@@ -100,7 +100,7 @@
 <p>FD or BD in space and implicit versions are called <strong>first order upwind</strong> schemes for the <strong>convection equation</strong>.</p>
 </div>
 <div class="section" id="fd-in-time-2nd-order-bd-in-space">
-<h3>9.2.4. FD in time, 2nd order BD in space<a class="headerlink" href="#fd-in-time-2nd-order-bd-in-space" title="Permalink to this headline">¶</a></h3>
+<h3>1.2.4. FD in time, 2nd order BD in space<a class="headerlink" href="#fd-in-time-2nd-order-bd-in-space" title="Permalink to this headline">¶</a></h3>
 <p><strong>Explicit version:</strong></p>
 <div class="math">
 \[{{u_i^{n+1} - u_i^n} \over {\Delta t}} + c {{3u_i^n - 4 u_{i-1}^n + u_{i-2}^n} \over {2 \Delta x}}=0\]</div>
@@ -109,7 +109,7 @@
 \[{{u_i^{n+1} - u_i^n} \over {\Delta t}} + c {{3u_i^{n+1} - 4 u_{i-1}^{n+1} + u_{i-2}^{n+1}} \over {2 \Delta x}}=0\]</div>
 </div>
 <div class="section" id="nd-order-cd-in-time-2nd-order-cd-in-space">
-<h3>9.2.5. 2nd order CD in time, 2nd order CD in space<a class="headerlink" href="#nd-order-cd-in-time-2nd-order-cd-in-space" title="Permalink to this headline">¶</a></h3>
+<h3>1.2.5. 2nd order CD in time, 2nd order CD in space<a class="headerlink" href="#nd-order-cd-in-time-2nd-order-cd-in-space" title="Permalink to this headline">¶</a></h3>
 <p><strong>Explicit version:</strong> (Leapfrog scheme)</p>
 <div class="math">
 \[{{u_i^{n+1} - u_i^{n-1}} \over {2 \Delta t}} + c {{u_{i+1}^n - u_{i-1}^n} \over {2 \Delta x}}=0\]</div>
@@ -119,7 +119,7 @@
 </div>
 </div>
 <div class="section" id="example">
-<h2>9.3. Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
+<h2>1.3. Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <p>Recall step one: 1D Linear Convection:</p>
 <div class="math">
 \[{\partial u \over \partial t} + c {\partial u \over \partial x} = 0\]</div>
@@ -216,7 +216,7 @@
 </div>
 </div>
 <div class="section" id="what-happened">
-<h2>9.4. What Happened?<a class="headerlink" href="#what-happened" title="Permalink to this headline">¶</a></h2>
+<h2>1.4. What Happened?<a class="headerlink" href="#what-happened" title="Permalink to this headline">¶</a></h2>
 <ol class="loweralpha simple">
 <li>Explicit CD scheme with the parameter <span class="math">\(\sigma = {{c \Delta t} \over {\Delta x}} = 0.8 \Rightarrow\)</span> <strong>UNSTABLE</strong></li>
 <li>1st order upwind (Step 1) BD scheme <span class="math">\(\sigma = 0.8 \Rightarrow\)</span> <strong>STABLE, but significantly diffused</strong></li>
@@ -224,7 +224,7 @@
 </ol>
 </div>
 <div class="section" id="basic-questions">
-<h2>9.5. Basic Questions<a class="headerlink" href="#basic-questions" title="Permalink to this headline">¶</a></h2>
+<h2>1.5. Basic Questions<a class="headerlink" href="#basic-questions" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>What <strong>conditions</strong> should we impose on a numerical scheme to obtain an acceptable approximation to the problem?</li>
 <li>Why do various schemes have such different behaviour?</li>
@@ -245,11 +245,11 @@
       <div class="bottomnav">
       
         <p>
-        «&#160;&#160;<a href="finite_difference_formulas_in_2D.html">8. Finite Difference Formulas in 2D</a>
+        «&#160;&#160;<a href="finite_difference_formulas_in_2D.html">4. Finite Difference Formulas in 2D</a>
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a href="linear_convection.html">1. 1D First-order Linear Convection - The Wave Equation</a>&#160;&#160;»
+        <a href="numerical_schemes_2.html">2. Numerical Schemes 2</a>&#160;&#160;»
         </p>
 
       </div>

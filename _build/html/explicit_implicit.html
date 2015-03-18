@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>7. Explicit and Implicit Finite Difference Formulas &mdash; The Visual Room</title>
+    <title>3. Explicit and Implicit Finite Difference Formulas &mdash; The Visual Room</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -29,22 +29,22 @@
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/theme_extras.js"></script>
     <link rel="top" title="The Visual Room" href="index.html" />
-    <link rel="next" title="8. Finite Difference Formulas in 2D" href="finite_difference_formulas_in_2D.html" />
-    <link rel="prev" title="6. Order of Accuracy, Midpoint Scheme and Model Equations" href="order_of_accuracy.html" /> 
+    <link rel="next" title="4. Finite Difference Formulas in 2D" href="finite_difference_formulas_in_2D.html" />
+    <link rel="prev" title="2. Order of Accuracy, Midpoint Scheme and Model Equations" href="order_of_accuracy.html" /> 
   </head>
   <body>
       <div class="header"><h1 class="heading"><a href="index.html">
           <span>The Visual Room</span></a></h1>
-        <h2 class="heading"><span>7. Explicit and Implicit Finite Difference Formulas</span></h2>
+        <h2 class="heading"><span>3. Explicit and Implicit Finite Difference Formulas</span></h2>
       </div>
       <div class="topnav">
       
         <p>
-        «&#160;&#160;<a href="order_of_accuracy.html">6. Order of Accuracy, Midpoint Scheme and Model Equations</a>
+        «&#160;&#160;<a href="order_of_accuracy.html">2. Order of Accuracy, Midpoint Scheme and Model Equations</a>
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a href="finite_difference_formulas_in_2D.html">8. Finite Difference Formulas in 2D</a>&#160;&#160;»
+        <a href="finite_difference_formulas_in_2D.html">4. Finite Difference Formulas in 2D</a>&#160;&#160;»
         </p>
 
       </div>
@@ -52,16 +52,16 @@
         
         
   <div class="section" id="explicit-and-implicit-finite-difference-formulas">
-<h1>7. Explicit and Implicit Finite Difference Formulas<a class="headerlink" href="#explicit-and-implicit-finite-difference-formulas" title="Permalink to this headline">¶</a></h1>
+<h1>3. Explicit and Implicit Finite Difference Formulas<a class="headerlink" href="#explicit-and-implicit-finite-difference-formulas" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="d-diffusion-equation">
-<h2>7.1. 1D Diffusion Equation<a class="headerlink" href="#d-diffusion-equation" title="Permalink to this headline">¶</a></h2>
+<h2>3.1. 1D Diffusion Equation<a class="headerlink" href="#d-diffusion-equation" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Recall the 1D diffusion equation (Parabolic type):</li>
 </ul>
 <div class="math">
 \[{\partial u \over \partial t} = \nu {\partial^2 u \over \partial x^2}\]</div>
 <div class="section" id="explicit-solution">
-<h3>7.1.1. Explicit Solution<a class="headerlink" href="#explicit-solution" title="Permalink to this headline">¶</a></h3>
+<h3>3.1.1. Explicit Solution<a class="headerlink" href="#explicit-solution" title="Permalink to this headline">¶</a></h3>
 <ul>
 <li><p class="first">In step 3, we had:</p>
 <ul>
@@ -106,7 +106,7 @@
 </div>
 </div>
 <div class="section" id="implicit-solution">
-<h3>7.1.2. Implicit Solution<a class="headerlink" href="#implicit-solution" title="Permalink to this headline">¶</a></h3>
+<h3>3.1.2. Implicit Solution<a class="headerlink" href="#implicit-solution" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li>How can we have a scheme that includes the BCs at every time level for the computations?<ul>
 <li>Approximate <span class="math">\({\partial u} \over {\partial t}\)</span> and  <span class="math">\({\partial^2 u} \over {\partial x^2}\)</span> at <span class="math">\(n+1\)</span></li>
@@ -126,7 +126,7 @@
 <li>Need a set of <strong>coupled</strong> FD equations found by writing FD formulas for <strong>all</strong> grid points.</li>
 </ul>
 <div class="section" id="tranpose">
-<h4>7.1.2.1. Tranpose<a class="headerlink" href="#tranpose" title="Permalink to this headline">¶</a></h4>
+<h4>3.1.2.1. Tranpose<a class="headerlink" href="#tranpose" title="Permalink to this headline">¶</a></h4>
 <div class="math">
 \[-r{u_{i-1}^{n+1}}+
 (1+2r) {u_i^{n+1}}-
@@ -141,7 +141,7 @@ r{u_{i+1}^{n+1}}=u_i^n\]</div>
 </ul>
 </div>
 <div class="section" id="crank-nicholson-method">
-<h4>7.1.2.2. Crank-Nicholson method<a class="headerlink" href="#crank-nicholson-method" title="Permalink to this headline">¶</a></h4>
+<h4>3.1.2.2. Crank-Nicholson method<a class="headerlink" href="#crank-nicholson-method" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li>There are many numerical methods:<ul>
 <li>Forward Differencing - 1st order, conditionally stable</li>
@@ -182,7 +182,7 @@ r{u_{i+1}^{n+1}}=u_i^n\]</div>
 </ul>
 </div>
 <div class="section" id="crank-nicholson-two-step-interpretation">
-<h4>7.1.2.3. Crank-Nicholson: Two step Interpretation<a class="headerlink" href="#crank-nicholson-two-step-interpretation" title="Permalink to this headline">¶</a></h4>
+<h4>3.1.2.3. Crank-Nicholson: Two step Interpretation<a class="headerlink" href="#crank-nicholson-two-step-interpretation" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><strong>Note</strong> we noted before than an expression like <span class="math">\({u_i^{n+1}-u_i^n} \over {\Delta t}\)</span> can be a CD approximation for the <strong>midpoint</strong> <span class="math">\(n+1/2\)</span></li>
 <li>In terms of the grid points, we have a CD representation of <span class="math">\(\partial u / \partial t\)</span> at the midpoint and the average of the diffusion at the same point</li>
@@ -211,11 +211,11 @@ r{u_{i+1}^{n+1}}=u_i^n\]</div>
       <div class="bottomnav">
       
         <p>
-        «&#160;&#160;<a href="order_of_accuracy.html">6. Order of Accuracy, Midpoint Scheme and Model Equations</a>
+        «&#160;&#160;<a href="order_of_accuracy.html">2. Order of Accuracy, Midpoint Scheme and Model Equations</a>
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a href="finite_difference_formulas_in_2D.html">8. Finite Difference Formulas in 2D</a>&#160;&#160;»
+        <a href="finite_difference_formulas_in_2D.html">4. Finite Difference Formulas in 2D</a>&#160;&#160;»
         </p>
 
       </div>

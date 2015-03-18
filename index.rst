@@ -7,9 +7,19 @@
 Notes on Computation
 ====================
 
-CFD Theory:
------------
+The notes that follow are based on the following MOOCs:
+
+* "12 Steps to Navier Stokes" by `Professor Lorena Barba <http://www.seas.gwu.edu/lorena-barba>`_
+* "High Performance Scientific Computing" by `Professor Randall LeVeque <http://depts.washington.edu/amath/staff-members/randy-leveque/>`_
+* "An Introduction to Interactive Programming in Python" by `Professor Joe Warren <http://report.rice.edu/sir/faculty.detail?p=A2D78585F9777919>`_ et al.
+* "Algorithmic Thinking" by `Professor Luay Nakhleh <http://www.cs.rice.edu/~nakhleh/>`_ et al.
+
+CFD Theory
+----------
  
+Derivation of the Fundamental CFD Equations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 .. toctree::
    :maxdepth: 1
    :numbered: 4
@@ -17,18 +27,59 @@ CFD Theory:
    continuity
    momentum
    navier_stokes
+
+Introduction to CFD
+~~~~~~~~~~~~~~~~~~~
+
+.. toctree::
+   :maxdepth: 1
+   :numbered: 4
+
    cfd
+
+The Finite Difference Method
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. toctree::
+   :maxdepth: 1
+   :numbered: 4
+
    finite_difference_method
    order_of_accuracy
    explicit_implicit
    finite_difference_formulas_in_2D
+
+Analysis of Numerical Schemes
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. toctree::
+   :maxdepth: 1
+   :numbered: 4
+
    numerical_scheme_1
    numerical_schemes_2
    analysis_of_numerical_schemes
    von_neumann_stability_analysis
+
+Computing Navier-Stokes Pressure Field
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. toctree::
+   :maxdepth: 1
+   :numbered: 4
+
    poisson_for_pressure
+
+Schemes for Non-linear Hyperbolic Equations
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+.. toctree::
+   :maxdepth: 1
+   :numbered: 4
+
    new_convection_schemes
    multi_step_methods
+   conservative_form
 
 CFD Projects:
 -------------
@@ -114,5 +165,6 @@ Helpful Links:
 --------------
 
 * `MathJax Syntax <http://en.wikipedia.org/wiki/Help:Displaying_a_formula>`_
+* `12 Steps to Navier Stokes <https://itunes.apple.com/gb/itunes-u/computational-fluid-dynamics/id452560554?mt=10>`_
 * :ref:`search`
 

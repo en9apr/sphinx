@@ -119,3 +119,11 @@ MacCormack Method
 .. figure:: _images/MacCormack_scheme.png
    :scale: 100%
    :align: center
+
+Conclusion
+----------
+
+* The majority of PDEs in fluid mechanics are **non-linear**
+* You can learn a lot by just studying Burgers Equation, that are especially important if you are studying the Euler Equations (for compressible flows)
+* In general, the **non-linearity dominates over viscous terms** - especially in high Reynolds Number flows - but not for mixing flows, e.g. Stokes flow (where viscous terms dominate)
+* So studying inviscid Burgers equation has **important consequences** for fluid mechanics

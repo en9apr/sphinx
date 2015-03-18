@@ -191,4 +191,24 @@ Examples of Functions
     Hello, world
     None
 
+Lambda Functions
+~~~~~~~~~~~~~~~~
+
+Python supports the creation of anonymous functions (i.e. functions that are not bound to a name) at runtime, using a construct called "lambda". This is not exactly the same as lambda in functional programming languages, but it is a very powerful concept that's well integrated into Python and is often used in conjunction with typical functional concepts like filter(), map() and reduce().
+
+This piece of code shows the difference between a normal function definition ("f") and a lambda function ("g"):
+
+.. ipython::
+   
+   In [1]: def f (x): return x**2
+
+   In [2]: print f(8)
+
+   In [3]: g = lambda x: x**2
+
+   In [4]: print g(8)
+
+
+As you can see, f() and g() do exactly the same and can be used in the same ways. Note that the lambda definition does not include a "return" statement -- it always contains an expression which is returned. Also note that you can put a lambda definition anywhere a function is expected, and you don't have to assign it to a variable at all.
+
 

@@ -181,6 +181,30 @@ Slicing Arrays
 
    In [1]: myvals[0:3]
 
+* For a[start:end] THE INDEX DENOTES THE POSITION OF THE SLICE - NOT THE ELEMENT:
+
+.. code-block:: python
+
+    #                  +------+------+---   ---+------+------+
+    #                  |  11  |  22  |   33    |  44  |  55  |
+    #                  +------+------+---   ---+------+------+
+    # Long version:    0      1      2      nx-2   nx-1     nx
+    # Short version:                          -2     -1      
+
+.. ipython::
+
+   In [1]: hello = np.array([11, 22, 33, 44, 55])
+
+* So now test it:
+ 
+.. ipython::
+
+   In [1]: hello[0:-1]
+
+   In [2]: hello[1:-2]
+
+   In [3]: hello[:-1]
+
 
 Assigning Array Variables
 -------------------------
