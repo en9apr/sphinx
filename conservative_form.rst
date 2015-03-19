@@ -81,6 +81,14 @@ Conservative Form
 
 i.e. Conservative Form gives :math:`\text{flux}_{out} - \text{flux}_{in}` which is how it should be
 
+In other words, if:
+
+.. math:: {\partial u \over \partial t} + {\partial \over \partial x} (F(u)) = 0
+
+Then the time derivative of the integral of the **conserved quantity** equals the difference between the outlet and inlet fluxes.
+
+.. math:: {d \over dt} \int_{out}^{in} u(x,t) dx = F(u(out,t))-F(u(in,t))
+
 Non-Conservative Form
 ---------------------
 

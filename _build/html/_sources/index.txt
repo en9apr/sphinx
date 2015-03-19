@@ -9,16 +9,16 @@ Notes on Computation
 
 The notes that follow are based on the following MOOCs:
 
-* "12 Steps to Navier Stokes" by `Professor Lorena Barba <http://www.seas.gwu.edu/lorena-barba>`_
-* "High Performance Scientific Computing" by `Professor Randall LeVeque <http://depts.washington.edu/amath/staff-members/randy-leveque/>`_
+* "12 Steps to Navier-Stokes" by `Professor Lorena Barba <http://www.seas.gwu.edu/lorena-barba>`_
+* "High Performance Scientific Computing" by `Professor Randall LeVeque <http://depts.washington.edu/amath/staff-members/randy-leveque/>`_ 
 * "An Introduction to Interactive Programming in Python" by `Professor Joe Warren <http://report.rice.edu/sir/faculty.detail?p=A2D78585F9777919>`_ et al.
-* "Algorithmic Thinking" by `Professor Luay Nakhleh <http://www.cs.rice.edu/~nakhleh/>`_ et al.
+* "Algorithmic Thinking" by `Professor Luay Nakhleh <http://www.cs.rice.edu/~nakhleh/>`_ et al. 
 
+==========
 CFD Theory
-----------
+==========
  
-Derivation of the Fundamental CFD Equations
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Derivation of the Fundamental CFD Equations:
 
 .. toctree::
    :maxdepth: 1
@@ -28,8 +28,7 @@ Derivation of the Fundamental CFD Equations
    momentum
    navier_stokes
 
-Introduction to CFD
-~~~~~~~~~~~~~~~~~~~
+Introduction to CFD:
 
 .. toctree::
    :maxdepth: 1
@@ -37,8 +36,7 @@ Introduction to CFD
 
    cfd
 
-The Finite Difference Method
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+The Finite Difference Method:
 
 .. toctree::
    :maxdepth: 1
@@ -49,8 +47,7 @@ The Finite Difference Method
    explicit_implicit
    finite_difference_formulas_in_2D
 
-Analysis of Numerical Schemes
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Analysis of Numerical Schemes:
 
 .. toctree::
    :maxdepth: 1
@@ -61,17 +58,16 @@ Analysis of Numerical Schemes
    analysis_of_numerical_schemes
    von_neumann_stability_analysis
 
-Computing Navier-Stokes Pressure Field
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Numerical Solutions of the Navier-Stokes Equations:
 
 .. toctree::
    :maxdepth: 1
    :numbered: 4
 
    poisson_for_pressure
+   marker_and_cell_method
 
-Schemes for Non-linear Hyperbolic Equations
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Schemes for Non-linear Hyperbolic Equations:
 
 .. toctree::
    :maxdepth: 1
@@ -81,8 +77,9 @@ Schemes for Non-linear Hyperbolic Equations
    multi_step_methods
    conservative_form
 
-CFD Projects:
--------------
+============
+CFD Projects
+============
 
 .. toctree::
    :maxdepth: 1
@@ -97,8 +94,9 @@ CFD Projects:
    2D_linear_diffusion
    2D_burgers_equation
 
-CFD Projects in iPython Notebooks on GitHub:
---------------------------------------------
+===========================================
+CFD Projects in iPython Notebooks on GitHub
+===========================================
    
 * `2D Laplace Equation <http://nbviewer.ipython.org/github/en9apr/sphinx/blob/master/Laplace.ipynb>`_
 * `2D Poisson Equation <http://nbviewer.ipython.org/github/en9apr/sphinx/blob/master/Poisson.ipynb>`_
@@ -107,8 +105,9 @@ CFD Projects in iPython Notebooks on GitHub:
 * `2D Navier Stokes Equations: Channel Flow <http://nbviewer.ipython.org/github/en9apr/sphinx/blob/master/Navier_Stokes_Channel.ipynb>`_
 * `Leapfrog, Lax-Friedrichs and Lax-Wendroff Schemes <http://nbviewer.ipython.org/github/en9apr/sphinx/blob/master/New_Convection_Schemes.ipynb>`_
 
+==========
 Literature
-----------
+==========
 
 .. toctree::
    :maxdepth: 1
@@ -124,8 +123,9 @@ Literature
    wen
    wen_mobbs
 
-High Performance Scientific Computing:
---------------------------------------
+=====================================
+High Performance Scientific Computing
+=====================================
 
 .. toctree::
    :maxdepth: 1
@@ -133,8 +133,9 @@ High Performance Scientific Computing:
    
    hpsc
 
-Python:
--------
+======
+Python
+======
 
 .. toctree::
    :maxdepth: 1
@@ -152,8 +153,9 @@ Python:
    modules
    practice   
 
-Programming Tips:
------------------
+================
+Programming Tips
+================
 
 .. toctree::
    :maxdepth: 1
@@ -161,10 +163,10 @@ Programming Tips:
 
    programming_tips_1
 
-Helpful Links:
---------------
+=============
+Helpful Links
+=============
 
 * `MathJax Syntax <http://en.wikipedia.org/wiki/Help:Displaying_a_formula>`_
-* `12 Steps to Navier Stokes <https://itunes.apple.com/gb/itunes-u/computational-fluid-dynamics/id452560554?mt=10>`_
 * :ref:`search`
 
