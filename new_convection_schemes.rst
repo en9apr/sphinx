@@ -1,6 +1,6 @@
-==========================
-New Schemes for Convection
-==========================
+====================================================
+Higher Order Numerical Methods for Linear Convection
+====================================================
 
 .. contents::
    :local:

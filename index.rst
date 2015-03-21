@@ -58,7 +58,7 @@ Analysis of Numerical Schemes:
    analysis_of_numerical_schemes
    von_neumann_stability_analysis
 
-Numerical Solutions of the Navier-Stokes Equations:
+Finite Difference Solution of the Navier-Stokes Equations:
 
 .. toctree::
    :maxdepth: 1
@@ -66,6 +66,7 @@ Numerical Solutions of the Navier-Stokes Equations:
 
    poisson_for_pressure
    marker_and_cell_method
+   ghost_cells
 
 Schemes for Non-linear Hyperbolic Equations:
 
@@ -104,6 +105,7 @@ CFD Projects in iPython Notebooks on GitHub
 * `2D Navier Stokes Equations: Cavity Flow (NumPy Method) <http://nbviewer.ipython.org/github/en9apr/sphinx/blob/master/Navier_Stokes_Cavity_Slices.ipynb>`_
 * `2D Navier Stokes Equations: Channel Flow <http://nbviewer.ipython.org/github/en9apr/sphinx/blob/master/Navier_Stokes_Channel.ipynb>`_
 * `Leapfrog, Lax-Friedrichs and Lax-Wendroff Schemes <http://nbviewer.ipython.org/github/en9apr/sphinx/blob/master/New_Convection_Schemes.ipynb>`_
+* `Lax-Friedrichs, Lax-Wendroff and MacCormack Schemes <http://nbviewer.ipython.org/github/en9apr/sphinx/blob/master/Lax_Friedrichs_Lax_Wendroff_and_MacCormack_Schemes.ipynb>`_
 
 ==========
 Literature
@@ -112,7 +114,8 @@ Literature
 .. toctree::
    :maxdepth: 1
    :numbered: 4
-   
+
+   harlow_and_welch
    thompson
    noakes
    drikakis

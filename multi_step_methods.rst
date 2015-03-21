@@ -1,6 +1,6 @@
-==================
-Multi-step Methods
-==================
+============================================
+Multi-step Methods for Non-linear Convection
+============================================
 
 .. contents::
    :local:

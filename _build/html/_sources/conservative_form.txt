@@ -8,11 +8,11 @@ Conservative Form
 Conversion from Non-Conservative Form to Conservative Form
 ==========================================================
 
-* Scalar conservation laws have the following **Conservative Form** in 1D (where :math:`F` = flux):
+* Scalar conservation laws have the following **Conservative Form** in 1D (where :math:`F` = Flux):
 
 .. math:: {{\partial u} \over {\partial t}} + {\partial \over {\partial x}} \left[ F(u(x,t))  \right] = 0 
 
-* Scalar conservation laws have the following **Non-Conservative Form** in 1D:
+* Scalar conservation laws have the following **Non-Conservative Form** in 1D (where :math:`A` = Jacobian):
 
 .. math:: {{\partial u} \over {\partial t}} + A(u(x,t)) {{\partial u} \over {\partial x}}= 0 
 

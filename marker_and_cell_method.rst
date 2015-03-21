@@ -277,11 +277,11 @@ Equations to be solved:
    :label: 11
 
 .. math:: {\partial u \over \partial t} + {\partial u^2 \over \partial x}+ {\partial {uv} \over \partial y} = 
-          - {1 \over \rho} {\partial p \over \partial x} + \nu {{\partial^2 u \over \partial x^2} +{ \partial^2 u \over \partial y^2} } = - {\partial \psi \over \partial x} + \nu {{\partial^2 u \over \partial x^2} +{ \partial^2 u \over \partial y^2} }
+          - {1 \over \rho} {\partial p \over \partial x} + \nu \left( {{\partial^2 u \over \partial x^2} +{ \partial^2 u \over \partial y^2} } \right) = - {\partial \psi \over \partial x} + \nu \left( {{\partial^2 u \over \partial x^2} +{ \partial^2 u \over \partial y^2} } \right)
    :label: 12
 
 .. math:: {\partial v \over \partial t} + {\partial vu \over \partial x}+ {\partial {v^2} \over \partial y} = 
-          - {\partial \psi \over \partial y} + \nu {{\partial^2 v \over \partial x^2} +{ \partial^2 v \over \partial y^2} }
+          - {\partial \psi \over \partial y} + \nu \left( {{\partial^2 v \over \partial x^2} +{ \partial^2 v \over \partial y^2} } \right)
    :label: 14
 
 :math:`\psi \Rightarrow` pressure divided by density

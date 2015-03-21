@@ -1,0 +1,32 @@
+==========================================================================
+Harlow and Welch (1965) "Numercial Calculation of Fluid with Free Surface"
+==========================================================================
+
+Harlow, F.H. and Welch, J.E. "Numerical Calculation of Time-Dependent Viscous Incompressible Flow of Fluid with Free Surface" The Physics of Fluids, Volume 8, 1965
+
+.. contents::
+   :local:
+
+Introduction
+============
+
+* New technique for numerical solution of free surface problems, designated the "Marker and Cell Method"
+
+* Physical assumptions:
+
+1) Time dependent motion
+2) Viscous
+3) Incompressible
+4) 2D with **Cartesian Coordinates**
+5) Uniform body force (gravity) may act on the fluid
+
+* Possible boundary conditions:
+
+1) Wall boundaries for an **irregular box**
+2) Lines of reflective symmetry
+3) Prescribed pressure may be applied to the surface - **variable in position and time**
+
+* Method uses:
+
+1) Finite difference method
+2) Full Navier Stokes Equations

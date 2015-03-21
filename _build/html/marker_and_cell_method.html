@@ -29,7 +29,7 @@
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/theme_extras.js"></script>
     <link rel="top" title="The Visual Room" href="index.html" />
-    <link rel="next" title="1. New Schemes for Convection" href="new_convection_schemes.html" />
+    <link rel="next" title="3. Ghost Cell Boundary Conditions" href="ghost_cells.html" />
     <link rel="prev" title="1. Poisson Equation for Pressure" href="poisson_for_pressure.html" /> 
   </head>
   <body>
@@ -44,7 +44,7 @@
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a href="new_convection_schemes.html">1. New Schemes for Convection</a>&#160;&#160;»
+        <a href="ghost_cells.html">3. Ghost Cell Boundary Conditions</a>&#160;&#160;»
         </p>
 
       </div>
@@ -211,10 +211,10 @@
 <span class="eqno">(11)</span>\[{\partial u \over \partial x}+ {\partial v \over \partial y} = 0\]</div>
 <div class="math" id="equation-12">
 <span class="eqno">(12)</span>\[{\partial u \over \partial t} + {\partial u^2 \over \partial x}+ {\partial {uv} \over \partial y} =
-       - {1 \over \rho} {\partial p \over \partial x} + \nu {{\partial^2 u \over \partial x^2} +{ \partial^2 u \over \partial y^2} } = - {\partial \psi \over \partial x} + \nu {{\partial^2 u \over \partial x^2} +{ \partial^2 u \over \partial y^2} }\]</div>
+       - {1 \over \rho} {\partial p \over \partial x} + \nu \left( {{\partial^2 u \over \partial x^2} +{ \partial^2 u \over \partial y^2} } \right) = - {\partial \psi \over \partial x} + \nu \left( {{\partial^2 u \over \partial x^2} +{ \partial^2 u \over \partial y^2} } \right)\]</div>
 <div class="math" id="equation-14">
 <span class="eqno">(13)</span>\[{\partial v \over \partial t} + {\partial vu \over \partial x}+ {\partial {v^2} \over \partial y} =
-       - {\partial \psi \over \partial y} + \nu {{\partial^2 v \over \partial x^2} +{ \partial^2 v \over \partial y^2} }\]</div>
+       - {\partial \psi \over \partial y} + \nu \left( {{\partial^2 v \over \partial x^2} +{ \partial^2 v \over \partial y^2} } \right)\]</div>
 <p><span class="math">\(\psi \Rightarrow\)</span> pressure divided by density</p>
 <p>Conversion from Conservative Form to Non-Conservative Form (to check equivalence) via product rule:</p>
 <div class="math">
@@ -309,7 +309,7 @@ u {\partial u \over \partial x} +  v {\partial u \over \partial y}\]</div>
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a href="new_convection_schemes.html">1. New Schemes for Convection</a>&#160;&#160;»
+        <a href="ghost_cells.html">3. Ghost Cell Boundary Conditions</a>&#160;&#160;»
         </p>
 
       </div>
