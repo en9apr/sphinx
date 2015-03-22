@@ -18,23 +18,16 @@ The notes that follow are based on the following MOOCs:
 CFD Theory
 ==========
  
-Derivation of the Fundamental CFD Equations:
-
-.. toctree::
-   :maxdepth: 1
-   :numbered: 4
-
-   continuity
-   momentum
-   navier_stokes
-
-Introduction to CFD:
+Introduction to CFD and the Navier-Stokes Equations:
 
 .. toctree::
    :maxdepth: 1
    :numbered: 4
 
    cfd
+   continuity
+   momentum
+   navier_stokes
 
 The Finite Difference Method:
 
@@ -77,6 +70,7 @@ Schemes for Non-linear Hyperbolic Equations:
    new_convection_schemes
    multi_step_methods
    conservative_form
+   spectral_analysis
 
 ============
 CFD Projects

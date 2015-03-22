@@ -263,7 +263,7 @@ Condition 1 for diffusional stability:
 
 Condition 2 for incompressible flow analogy to Courant condition (g is gravity, d is maximum depth):
 
-.. math:: {g d \Delta t^2} \over {\Delta x^2} \lt 1
+.. math:: {{g d \Delta t^2} \over {\Delta x^2}} \lt 1
 
 Harlow and Welsh also did internal consistency checks
 
