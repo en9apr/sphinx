@@ -1,6 +1,6 @@
-=============================
-Analysis of Numerical Schemes
-=============================
+==================================
+The Modified Differential Equation
+==================================
 
 The Truncation Error
 ====================

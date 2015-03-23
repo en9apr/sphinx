@@ -67,6 +67,7 @@ Schemes for Non-linear Hyperbolic Equations:
    :maxdepth: 1
    :numbered: 4
 
+   courant_number
    new_convection_schemes
    multi_step_methods
    conservative_form

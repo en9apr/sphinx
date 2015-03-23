@@ -1,0 +1,25 @@
+==================
+The Courant Number
+==================
+
+.. contents::
+   :local:
+
+Comments on the 12 Steps to Navier Stokes
+=========================================
+
+* We have really used the simplest possible methods for the 12 Steps to Navier-Stokes
+
+* These methods are unsuitable for practical purposes, because of diffusion e.g. the use of **1st order upwinding (BD in space)** for the convection term in the momentum equation for example.
+
+* We must now develop new methods that are higher order methods.
+
+Stability and Convergence, Modified Differential Equation and Truncation Error
+==============================================================================
+
+* For 1D convection, CD in space with FD in time produced a **Modified Differential Equation**, which was not a **convection equation**, but a **convection-diffusion equation** with a negative diffusion coefficient (helping to explain why the scheme was unstable). 
+
+.. math:: \bar{u}_t + c \bar{u}_x = -{{\Delta t} \over 2} c^2 \bar{u}_{xx} + O{\Delta t^2}
+
+
+
