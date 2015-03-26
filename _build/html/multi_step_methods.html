@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>5. Multi-step Methods for Non-linear Convection &mdash; The Visual Room</title>
+    <title>1. Multi-step Numerical Methods &mdash; The Visual Room</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -29,30 +29,30 @@
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/theme_extras.js"></script>
     <link rel="top" title="The Visual Room" href="index.html" />
-    <link rel="next" title="6. Conservative Form" href="conservative_form.html" />
-    <link rel="prev" title="4. Spectral Analysis of Errors" href="spectral_analysis.html" /> 
+    <link rel="next" title="2. Conservative Form" href="conservative_form.html" />
+    <link rel="prev" title="5. Spectral Analysis of Errors" href="spectral_analysis.html" /> 
   </head>
   <body>
       <div class="header"><h1 class="heading"><a href="index.html">
           <span>The Visual Room</span></a></h1>
-        <h2 class="heading"><span>5. Multi-step Methods for Non-linear Convection</span></h2>
+        <h2 class="heading"><span>1. Multi-step Numerical Methods</span></h2>
       </div>
       <div class="topnav">
       
         <p>
-        «&#160;&#160;<a href="spectral_analysis.html">4. Spectral Analysis of Errors</a>
+        «&#160;&#160;<a href="spectral_analysis.html">5. Spectral Analysis of Errors</a>
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a href="conservative_form.html">6. Conservative Form</a>&#160;&#160;»
+        <a href="conservative_form.html">2. Conservative Form</a>&#160;&#160;»
         </p>
 
       </div>
       <div class="content">
         
         
-  <div class="section" id="multi-step-methods-for-non-linear-convection">
-<h1>5. Multi-step Methods for Non-linear Convection<a class="headerlink" href="#multi-step-methods-for-non-linear-convection" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="multi-step-numerical-methods">
+<h1>1. Multi-step Numerical Methods<a class="headerlink" href="#multi-step-numerical-methods" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="contents">
 <ul class="simple">
 <li><a class="reference internal" href="#about-multi-step-methods" id="id1">About Multi-step methods</a></li>
@@ -76,7 +76,7 @@
 </li>
 </ul>
 <div class="section" id="about-multi-step-methods">
-<h2><a class="toc-backref" href="#id1">5.1. About Multi-step methods</a><a class="headerlink" href="#about-multi-step-methods" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id1">1.1. About Multi-step methods</a><a class="headerlink" href="#about-multi-step-methods" title="Permalink to this headline">¶</a></h2>
 <p>Multi-step are FD schemes are at split time levels and work well in <strong>non-linear hyperbolic problems</strong>. They are also called predictor-corrector methods.</p>
 <ul class="simple">
 <li>1st step, a &#8220;temporary value&#8221; for u(x) is &#8220;predicted&#8221;</li>
@@ -84,14 +84,14 @@
 </ul>
 </div>
 <div class="section" id="richtmyer-lax-wendroff">
-<h2><a class="toc-backref" href="#id2">5.2. Richtmyer/Lax-Wendroff</a><a class="headerlink" href="#richtmyer-lax-wendroff" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">1.2. Richtmyer/Lax-Wendroff</a><a class="headerlink" href="#richtmyer-lax-wendroff" title="Permalink to this headline">¶</a></h2>
 <p>Two variants:</p>
 <ul class="simple">
 <li>Variant 1 - Richtmyer - at point <span class="math">\(i\)</span></li>
 <li>Variant 2 - 2 step LW - at point <span class="math">\(i + {1 \over 2}\)</span></li>
 </ul>
 <div class="section" id="variant-1-richtmyer-lax-friedrichs-and-leapfrog">
-<h3><a class="toc-backref" href="#id3">5.2.1. Variant 1 - Richtmyer (Lax-Friedrichs and Leapfrog)</a><a class="headerlink" href="#variant-1-richtmyer-lax-friedrichs-and-leapfrog" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id3">1.2.1. Variant 1 - Richtmyer (Lax-Friedrichs and Leapfrog)</a><a class="headerlink" href="#variant-1-richtmyer-lax-friedrichs-and-leapfrog" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><strong>Step 1: Predictor Step</strong> use LF method at time level <span class="math">\(n + {1 \over 2}\)</span></li>
 </ul>
@@ -123,7 +123,7 @@
 </div>
 </div>
 <div class="section" id="variant-2-2-step-lax-wendroff">
-<h3><a class="toc-backref" href="#id4">5.2.2. Variant 2 - 2 Step Lax-Wendroff</a><a class="headerlink" href="#variant-2-2-step-lax-wendroff" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id4">1.2.2. Variant 2 - 2 Step Lax-Wendroff</a><a class="headerlink" href="#variant-2-2-step-lax-wendroff" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><strong>Step 1: Predictor Step</strong> use LF on <span class="math">\(i+{1 \over 2}\)</span></li>
 </ul>
@@ -147,31 +147,31 @@
 </div>
 </div>
 <div class="section" id="maccormack-method">
-<h2><a class="toc-backref" href="#id5">5.3. MacCormack Method</a><a class="headerlink" href="#maccormack-method" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5">1.3. MacCormack Method</a><a class="headerlink" href="#maccormack-method" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><strong>Step 1</strong> - uses FD scheme in x - call <span class="math">\(u^*\)</span> the temporary solution</li>
+<li><strong>Step 1</strong> - uses FD scheme in x - call <span class="math">\(\tilde{u}^{n+1}\)</span> the temporary solution</li>
 </ul>
 <div class="math">
-\[{{u_i^* - u_i^n} \over {\Delta t}} = -c {{{(u_{i+1}^n - u_i^n)}} \over {\Delta x}}\]</div>
+\[{{\tilde{u}_i^{n+1} - u_i^n} \over {\Delta t}} = -c {{{(u_{i+1}^n - u_i^n)}} \over {\Delta x}}\]</div>
 <ul class="simple">
 <li><strong>Step 2</strong> - uses BD scheme in x with <span class="math">\({{\Delta t} \over 2}\)</span></li>
 </ul>
 <div class="math">
 \[{{u_i^{n+1} - u_i^{n+{1 \over 2}} } \over {{\Delta t} \over 2}}
-= -c{{({u_{i}^* - u_{i-1}^*})} \over {\Delta x}}\]</div>
+= -c{{({\tilde{u}_{i}^{n+1} - \tilde{u}_{i-1}^{n+1}})} \over {\Delta x}}\]</div>
 <p><strong>and</strong> replace the value <span class="math">\(u_i^{n+{1 \over 2}}\)</span> by the average</p>
 <div class="math">
-\[{u_i^{n + {1 \over 2}}} = {1 \over 2}(u_i^n + u_i^*)\]</div>
+\[{u_i^{n + {1 \over 2}}} = {1 \over 2}(u_i^n + \tilde{u}_i^{n+1})\]</div>
 <ul class="simple">
 <li><strong>Predictor</strong></li>
 </ul>
 <div class="math">
-\[u_i^* = u_i^n - {{c \Delta t} \over {\Delta x}} (u_{i+1}^n - u_i^n)\]</div>
+\[\tilde{u}_i^{n+1} = u_i^n - {{c \Delta t} \over {\Delta x}} (u_{i+1}^n - u_i^n)\]</div>
 <ul class="simple">
 <li><strong>Corrector</strong></li>
 </ul>
 <div class="math">
-\[u_i^{n+1} = {1 \over 2} \left [ (u_i^n + u_i^*) - {{c \Delta t} \over {\Delta x}} (u_i^* - u_{i-1}^*)  \right ]\]</div>
+\[u_i^{n+1} = {1 \over 2} \left [ (u_i^n + \tilde{u}_i^{n+1}) - {{c \Delta t} \over {\Delta x}} (\tilde{u}_i^{n+1} - \tilde{u}_{i-1}^{n+1})  \right ]\]</div>
 <ul class="simple">
 <li>2nd order method</li>
 <li>Stability <span class="math">\(\sigma &lt; 1\)</span></li>
@@ -180,11 +180,11 @@
 <li>Don&#8217;t need to store values at intermediate mesh points (like 2 step Lax Wendroff)</li>
 </ul>
 <div class="figure align-center">
-<a class="reference internal image-reference" href="_images/MacCormack_scheme.png"><img alt="_images/MacCormack_scheme.png" src="_images/MacCormack_scheme.png" style="width: 800.0px; height: 700.0px;" /></a>
+<a class="reference internal image-reference" href="_images/MacCormack_scheme.png"><img alt="_images/MacCormack_scheme.png" src="_images/MacCormack_scheme.png" style="width: 1000.0px; height: 700.0px;" /></a>
 </div>
 </div>
 <div class="section" id="conclusion">
-<h2><a class="toc-backref" href="#id6">5.4. Conclusion</a><a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id6">1.4. Conclusion</a><a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>The majority of PDEs in fluid mechanics are <strong>non-linear</strong></li>
 <li>You can learn a lot by just studying Burgers Equation, that are especially important if you are studying the Euler Equations (for compressible flows)</li>
@@ -199,11 +199,11 @@
       <div class="bottomnav">
       
         <p>
-        «&#160;&#160;<a href="spectral_analysis.html">4. Spectral Analysis of Errors</a>
+        «&#160;&#160;<a href="spectral_analysis.html">5. Spectral Analysis of Errors</a>
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a href="conservative_form.html">6. Conservative Form</a>&#160;&#160;»
+        <a href="conservative_form.html">2. Conservative Form</a>&#160;&#160;»
         </p>
 
       </div>

@@ -350,6 +350,25 @@ Dispersion Error for Lax-Wendroff
 Summary
 =======
 
+Spectral Analysis
+-----------------
+
+* Error in amplitude or diffusion error:
+
+.. math:: \epsilon_D = {{\left| G \right|} \over {\left| \tilde{G} \right|}}
+
+* Error in the phase or dipsersion error:
+
+.. math:: \epsilon_{\phi} = {{\Phi} \over {\tilde{\Phi}}}
+
+* For a hyperbolic problem :math:`\left| \tilde{G} \right| = 1`
+
+.. math:: \epsilon_{D} = {\left| G \right|}
+
+.. math:: \epsilon_{\phi} = {{c_{num}} \over c} = {{tan^{-1} {-Im (G) / Re (G)}} \over {\sigma \phi}}
+
+Looked at plots of :math:`\epsilon_D`, :math:`\epsilon_{\phi}` vs :math:`\phi ( = k \Delta x)` with :math:`\sigma` as parameter
+
 1st order Upwind
 ----------------
 
@@ -364,6 +383,10 @@ Summary
 Lax-Friedrichs
 --------------
 
+**Why?** Introduced to stabilize FTCS 
+
+**What?** Introduced considerable numerical diffusion
+
 :math:`\epsilon_D` shows strong damping for smaller :math:`\sigma` and no damping for :math:`\phi = \pi` **any errors that appear in the solution at twice the mesh size will not be damped** - results in the staircase "jagged" result observed for the 1D Burgers Equation.
 
 :math:`\epsilon_{\phi} \gt 1` (leading error)
@@ -371,9 +394,14 @@ Lax-Friedrichs
 Lax-Wendroff
 ------------
 
+* Second Order Method - little numerical diffusion
+
+* Oscillations appear in the solution - especially where the solution is non-smooth
+
 :math:`\epsilon_D` shows larger accurate region where :math:`\epsilon_D = 1`
 
 :math:`\epsilon_{\phi} \lt 1` (lagging error) 
+
 
 Analysis of Leapfrog
 ====================
@@ -502,3 +530,9 @@ So if :math:`\phi_{lim} = {\pi \over {18}}` then :math:`N_{lambda} = 36` points 
 This is quite a severe requirement for unsteady problems
 
 Even in steady problems you have artificial time in a transient period - otherwise you have an excessively damped solution.
+
+
+Question
+========
+
+What is the dissipation error for :math:`\sigma = 1` ? For upwind is this a horizontal line?

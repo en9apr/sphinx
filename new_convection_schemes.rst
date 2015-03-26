@@ -1,6 +1,6 @@
-====================================================
-Higher Order Numerical Methods for Linear Convection
-====================================================
+==============================
+Second Order Numerical Methods
+==============================
 
 .. contents::
    :local:

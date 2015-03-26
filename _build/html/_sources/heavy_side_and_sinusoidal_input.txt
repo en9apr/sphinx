@@ -1,6 +1,6 @@
-===============================================================
-Heaviside Function and Sinusoidal Input to Higher Order Schemes
-===============================================================
+===============================================
+The Diffusion of Heaviside and Sinusoidal Input
+===============================================
 
 .. contents::
    :local:

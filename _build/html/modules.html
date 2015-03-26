@@ -58,7 +58,8 @@
 <li><a class="reference internal" href="#semantics-of-modules" id="id1">Semantics of Modules</a></li>
 <li><a class="reference internal" href="#syntax-of-modules" id="id2">Syntax of Modules</a></li>
 <li><a class="reference internal" href="#math-module" id="id3">Math Module</a></li>
-<li><a class="reference internal" href="#random-module" id="id4">Random Module</a></li>
+<li><a class="reference internal" href="#numpy-module" id="id4">Numpy Module</a></li>
+<li><a class="reference internal" href="#random-module" id="id5">Random Module</a></li>
 </ul>
 </div>
 <div class="section" id="semantics-of-modules">
@@ -122,8 +123,39 @@ in the basic code</li>
 </pre></div>
 </div>
 </div>
+<div class="section" id="numpy-module">
+<h2><a class="toc-backref" href="#id4">10.4. Numpy Module</a><a class="headerlink" href="#numpy-module" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+
+<span class="n">ones</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="k">print</span> <span class="n">ones</span>
+<span class="n">zeros</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">5</span><span class="p">,</span><span class="mi">5</span><span class="p">))</span>
+<span class="k">print</span> <span class="n">zeros</span>
+<span class="k">print</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">ones</span><span class="p">)</span>
+<span class="k">print</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-none"><div class="highlight"><pre>[[ 1.  1.  1.  1.  1.]
+[ 1.  1.  1.  1.  1.]
+[ 1.  1.  1.  1.  1.]
+[ 1.  1.  1.  1.  1.]
+[ 1.  1.  1.  1.  1.]]
+[[ 0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.]
+[ 0.  0.  0.  0.  0.]]
+[[ 0.84147098  0.84147098  0.84147098  0.84147098  0.84147098]
+[ 0.84147098  0.84147098  0.84147098  0.84147098  0.84147098]
+[ 0.84147098  0.84147098  0.84147098  0.84147098  0.84147098]
+[ 0.84147098  0.84147098  0.84147098  0.84147098  0.84147098]
+[ 0.84147098  0.84147098  0.84147098  0.84147098  0.84147098]]
+[ 0.   0.5  1.   1.5  2. ]
+</pre></div>
+</div>
+</div>
 <div class="section" id="random-module">
-<h2><a class="toc-backref" href="#id4">10.4. Random Module</a><a class="headerlink" href="#random-module" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id5">10.5. Random Module</a><a class="headerlink" href="#random-module" title="Permalink to this headline">¶</a></h2>
 <div class="highlight-python"><div class="highlight"><pre><span class="kn">import</span> <span class="nn">random</span>
 
 <span class="k">print</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">])</span> <span class="c">#Random choice from a list</span>

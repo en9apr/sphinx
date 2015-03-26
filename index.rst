@@ -61,7 +61,7 @@ Finite Difference Solution of the Navier-Stokes Equations:
    marker_and_cell_method
    ghost_cells
 
-Schemes for Linear and Non-linear Hyperbolic Equations:
+Numerical Methods for Linear Hyperbolic Equations:
 
 .. toctree::
    :maxdepth: 1
@@ -70,9 +70,18 @@ Schemes for Linear and Non-linear Hyperbolic Equations:
    courant_number
    new_convection_schemes
    heavy_side_and_sinusoidal_input
+   second_order_formulas
    spectral_analysis
+ 
+Numerical Methods for Non-linear Hyperbolic Equations:
+
+.. toctree::
+   :maxdepth: 1
+   :numbered: 4
+
    multi_step_methods
    conservative_form
+   explicit_implicit_non_linear_convection
 
 ============
 CFD Projects

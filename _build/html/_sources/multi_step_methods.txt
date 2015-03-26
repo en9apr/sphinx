@@ -1,6 +1,6 @@
-============================================
-Multi-step Methods for Non-linear Convection
-============================================
+============================
+Multi-step Numerical Methods
+============================
 
 .. contents::
    :local:
@@ -84,27 +84,27 @@ Variant 2 - 2 Step Lax-Wendroff
 MacCormack Method
 -----------------
 
-* **Step 1** - uses FD scheme in x - call :math:`u^*` the temporary solution
+* **Step 1** - uses FD scheme in x - call :math:`\tilde{u}^{n+1}` the temporary solution
 
-.. math:: {{u_i^* - u_i^n} \over {\Delta t}} = -c {{{(u_{i+1}^n - u_i^n)}} \over {\Delta x}}
+.. math:: {{\tilde{u}_i^{n+1} - u_i^n} \over {\Delta t}} = -c {{{(u_{i+1}^n - u_i^n)}} \over {\Delta x}}
 
 * **Step 2** - uses BD scheme in x with :math:`{{\Delta t} \over 2}`
 
 
 .. math:: {{u_i^{n+1} - u_i^{n+{1 \over 2}} } \over {{\Delta t} \over 2}}
-          = -c{{({u_{i}^* - u_{i-1}^*})} \over {\Delta x}}
+          = -c{{({\tilde{u}_{i}^{n+1} - \tilde{u}_{i-1}^{n+1}})} \over {\Delta x}}
 
 **and** replace the value :math:`u_i^{n+{1 \over 2}}` by the average
 
-.. math:: {u_i^{n + {1 \over 2}}} = {1 \over 2}(u_i^n + u_i^*)
+.. math:: {u_i^{n + {1 \over 2}}} = {1 \over 2}(u_i^n + \tilde{u}_i^{n+1})
 
 * **Predictor**
 
-.. math:: u_i^* = u_i^n - {{c \Delta t} \over {\Delta x}} (u_{i+1}^n - u_i^n)
+.. math:: \tilde{u}_i^{n+1} = u_i^n - {{c \Delta t} \over {\Delta x}} (u_{i+1}^n - u_i^n)
 
 * **Corrector**
 
-.. math:: u_i^{n+1} = {1 \over 2} \left [ (u_i^n + u_i^*) - {{c \Delta t} \over {\Delta x}} (u_i^* - u_{i-1}^*)  \right ]
+.. math:: u_i^{n+1} = {1 \over 2} \left [ (u_i^n + \tilde{u}_i^{n+1}) - {{c \Delta t} \over {\Delta x}} (\tilde{u}_i^{n+1} - \tilde{u}_{i-1}^{n+1})  \right ]
 
 * 2nd order method
 
