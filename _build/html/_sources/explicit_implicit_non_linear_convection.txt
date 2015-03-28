@@ -201,6 +201,9 @@ Beam and Warming
 
 This is different from the explicit 2nd order upwind Beam-Warming
 
+Taylor Expansions to replace time derivatives with spatial derivatives
+----------------------------------------------------------------------
+
 Consider Taylor expansion:
 
 .. math:: u(x,t+\Delta t) = u(x,t) + \Delta t \left. {\partial u \over \partial t} \right|_{x,t} +
@@ -252,10 +255,10 @@ Replacing the time derivatives with spatial derivatives from the Burgers' Equati
 
 With an explicit scheme, the formation of the difference equation was linear (although the PDE was non-linear) by using the flux at the previous timestep (F at n)
 
-Linearisation of Beam-Warming
------------------------------
+Linearisation of Beam-Warming using the Jacobian
+------------------------------------------------
 
-With an implicit scheme, we need to incorperate a linearisation system
+With an implicit scheme, we need to incorporate a linearisation system
 
 Taylor Expansion on F:
 
@@ -291,3 +294,62 @@ For the second term on the RHS use 2nd order CD
 .. math:: {\partial \over \partial x} A ( {u_i^{n+1} - u_i^n} ) = 
           {{A_{i+1}^n u_{i+1}^{n+1} -  A_{i-1}^n u_{i-1}^{n+1}} \over {2 \Delta x}} -
           {{A_{i+1}^n u_{i+1}^{n} -  A_{i-1}^n u_{i-1}^{n}} \over {2 \Delta x}}
+
+Use the value of the Jacobian at the known time level :math:`n` (the **lagging value** of the Jacobian)
+
+Formation of the Tri-diagonal Matrix
+------------------------------------
+
+Can now re-arrange the whole system, to form a tri-diagonal matrix.
+
+.. math:: - {\Delta t \over {4 \Delta x}} \left( A_{i-1}^n u_{i-1}^{n+1} \right) + 
+          u_i^{n+1} + {\Delta t \over {4 \Delta x}} \left( A_{i+1}^n u_{i+1}^{n+1} \right) = 
+          u_i^n - {1 \over 2} {\Delta t \over \Delta x} (F_{i+1}^n - F_{i-1}^n) + 
+          {\Delta t \over 4 \Delta x}(A_{i+1}^n u_{i+1}^n - A_{i-1}^n u_{i-1}^n)
+
+* This is a linear system of equations forming a **tri-diagonal coefficient matrix**
+* This scheme is 2nd order and **unconditionally stable**
+* There will still be oscillations, i.e. **dispersion error**
+
+Practical Module - Non-linear Convection
+========================================
+
+Initial condition is a travelling shock:
+
+.. figure:: _images/travelling_shock.png
+   :align: center
+
+1) Lax-Friedrichs
+2) Lax-Wendroff
+3) MacCormack
+4) Beam-Warming Implicit
+5) Beam-Warming Implicit with **Damping** - add on the RHS a fourth order damping term
+
+.. math:: D = - \epsilon_e(u_{i+2}^n - 4u_{i+1}^n + 6u_i^n - 4u_{i-1}^n + u_{i-2}^n)
+
+* Experiment with values of :math:`0 \le \epsilon_e \le 0.125`
+* Try some values :math:`\epsilon_e \gt 0.125`
+* With :math:`\epsilon_e = 0.1` experiment with different step sizes and Courant numbers (:math:`\Delta t \over \Delta x`)
+
+**Question: Which yields the best solution for the Burgers' Equation?**
+
+Notes on damping term
+---------------------
+
+1) Adding a fourth order damping to a 2nd order scheme does not alter the order of accuracy of the overall method
+
+2) Above, we add damping explicitly to the RHS of the equation. As a result, stability of the scheme changes, will require an upper limit in the value of the damping coefficient. Damping coefficient is require to reduce oscillations - but may not work, because the scheme may become unstable.
+
+3) Typical fourth order damping (in 1D) - e means "explicit":
+
+.. math:: D_e = -\epsilon_e(\Delta x)^4 {\partial^4 u \over \partial x^4}
+
+Can be extended to higher dimensions
+
+4) Sometimes, if 2) leads to insufficient damping. Add 2nd order implicit damping (add to LHS of the equation) - approximate with central differences
+
+.. math:: D_i = \epsilon_i(\Delta x)^2 {\partial^2 u \over \partial x^2}
+
+5) Stability analysis required to identify :math:`(\epsilon_e)_{max}` and also :math:`\epsilon_e / \epsilon_i`, typically :math:`\epsilon_i \gt 2 \epsilon_e`
+
+The damping is also called "artificial viscosity" or "artificial diffusion"

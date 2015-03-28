@@ -1,0 +1,181 @@
+=============================
+Tri-Diagonal Matrix Algorithm
+=============================
+
+.. contents::
+   :local:
+
+Use of the Tri-Diagonal Matrix Algorithm
+========================================
+
+The **Tri-Diagonal Matrix Algorithm (TDMA)** or **Thomas Algorithm** is a simplified form of Gaussian elimination that can be used to solve tri-diagonal systems of equations.  
+
+Advantages of the TDMA:
+
+* Less calculations and less storage than Gaussian Elimination
+
+Disadvantages of the TDMA:
+
+* Round off error is still significant
+* May not be suitable for non-linear problems **unless equations can be linearised using the Jacobian**
+* Not stable in general, but it is stable if the matrix is **diagonally dominant** or **symmetric positive definite**
+
+Usually direct calculation using TDMA is not used, but instead iterative solvers are used such as:
+
+* Jacobi
+* Gauss-Seidel
+* SOR
+* Conjugate Gradient
+* Multi-grid
+* Parallel Multi-grid
+
+Matrix Configuration
+====================
+
+Tri-diagonal systems for :math:`nx` unknowns may be written as:
+
+.. math:: a_i u_{i-1} + b_i u_i + c_i u_{i+1} = d_i
+
+We know the values at the boundaries (:math:`B`):
+
+.. math:: u_0 = B_0
+
+.. math:: u_{nx-1} = B_{nx-1}
+
+So the matrix looks like this, with known coefficients :math:`a, b, c, d`. The vector :math:`u` is unknown.
+
+.. math::
+
+   \begin{bmatrix}
+   1 & 0 & 0 & \cdots & &0 \\
+   a_1 & b_1 & c_1 & & & & \\
+   0 & a_2 & b_2 & c_2 & & \\
+   \vdots &  & \ddots & \ddots & \ddots & \vdots \\
+   & &  a_{nx-3} & b_{nx-3} &  c_{nx-3} & 0\\
+   & & & a_{nx-2} & b_{nx-2} &  c_{nx-2}\\
+   0 & &\dots &0 &0 & 1
+   \end{bmatrix}
+   \begin{bmatrix}
+   u_0 \\
+   u_1 \\
+   u_2 \\
+   \vdots \\
+   u_{nx-3} \\
+   u_{nx-2} \\
+   u_{nx-1}
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+   B_0 \\
+   d_1 \\
+   d_2 \\
+   \vdots \\
+   d_{nx-3} \\
+   d_{nx-2} \\
+   B_{nx-1}
+   \end{bmatrix}
+
+Influence of the Boundary Values
+================================
+
+Notice the equation on Line 1 can be re-arranged, since we don't need to solve for :math:`u_0`, since it equals :math:`B_0`:
+
+.. math:: a_1 u_{0} + b_1 u_1 + c_1 u_{2} = d_1
+
+.. math:: b_1 u_1 + c_1 u_{2} = d_1 - a_1 u_{0}
+
+Hence:
+
+.. math:: b_1 u_1 + c_1 u_{2} = d_1 - a_1 B_{0}
+
+Similarly with line :math:`nx-2`, we don't need to solve for :math:`u_{nx-1}` since it equals :math:`B_{nx-1}`:
+
+.. math:: a_{nx-2} u_{nx-3} + b_{nx-2} u_{nx-2} + c_{nx-2} u_{nx-1} = d_{nx-2}
+
+.. math:: a_{nx-2} u_{nx-3} + b_{nx-2} u_{nx-2}  = d_{nx-2} - c_{nx-2} u_{nx-1}
+
+Hence:
+
+.. math:: a_{nx-2} u_{nx-3} + b_{nx-2} u_{nx-2}  = d_{nx-2} - c_{nx-2} B_{nx-1}
+
+Re-arrangement of the Matrix
+============================
+
+.. math::
+
+   \begin{bmatrix}
+    b_1 & c_1 & & &  0 \\
+    a_2 & b_2 & c_2 & & \\
+    \vdots   & \ddots & \ddots & \ddots & \vdots \\
+    & &  a_{nx-3} & b_{nx-3} &  c_{nx-3} \\
+    0 & & & a_{nx-2} & b_{nx-2} 
+   \end{bmatrix}
+   \begin{bmatrix}
+   u_1 \\
+   u_2 \\
+   \vdots \\
+   u_{nx-3} \\
+   u_{nx-2}
+   \end{bmatrix}
+   =
+   \begin{bmatrix}
+   d_1-a_1 B_0 \\
+   d_2 \\
+   \vdots \\
+   d_{nx-3} \\
+   d_{nx-2}-c_{nx-2} B_{nx-1} \\
+   \end{bmatrix}
+
+How does this translate into Python Code?
+=========================================
+
+For the Implicit Beam-Warming Method:
+
+.. math:: - {\Delta t \over {4 \Delta x}} \left( A_{i-1}^n u_{i-1}^{n+1} \right) + 
+          u_i^{n+1} + {\Delta t \over {4 \Delta x}} \left( A_{i+1}^n u_{i+1}^{n+1} \right) = 
+          u_i^n - {1 \over 2} {\Delta t \over \Delta x} (F_{i+1}^n - F_{i-1}^n) + 
+          {\Delta t \over 4 \Delta x}(A_{i+1}^n u_{i+1}^n - A_{i-1}^n u_{i-1}^n)
+
+For the inviscid Burgers' Equation:
+
+.. math:: A_i^n = u_i^n
+
+And:
+
+.. math:: F_i^n = {{(u_i^n)}^2 \over 2}
+
+Identifying :math:`a, b, c` and :math:`d`:
+
+.. math:: a_i = - {\Delta t \over {4 \Delta x}} A_{i-1}^n
+
+.. math:: b_i = 1
+
+.. math:: c_i = {\Delta t \over {4 \Delta x}} A_{i+1}^n
+
+.. math:: d_i =  u_i^n - {1 \over 2} {\Delta t \over \Delta x} (F_{i+1}^n - F_{i-1}^n) + 
+          {\Delta t \over 4 \Delta x}(A_{i+1}^n u_{i+1}^n - A_{i-1}^n u_{i-1}^n)
+
+Modification of the first and last values of the :math:`d` vector:
+
+.. math:: d_1 =  d_1 - (- {\Delta t \over {4 \Delta x}} A_0^n)B_0
+
+.. math:: d_{nx-2} =  d_{nx-2} - ({\Delta t \over {4 \Delta x}} A_{nx-1}^n)B_{nx-1}
+
+Use a Built-in Solver
+=====================
+
+Python orders matrices by column, not by row:
+
+.. code-block:: python
+   
+   # Number of non-zero lower and upper diagonals
+   l_and_u = (1,1)
+
+   # Banded matrix - ordered by column
+   abc = np.matrix([c,b,a])
+
+   # d is the RHS of the TDMA
+   from scipy import linalg
+   u = linalg.solve_banded(l_and_u, abc, d)
+
+

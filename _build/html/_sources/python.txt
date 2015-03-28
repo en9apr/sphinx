@@ -206,6 +206,78 @@ Slicing Arrays
    In [3]: hello[:-1]
 
 
+Slicing Arrays (Short Notation)
+-------------------------------
+
+.. ipython::
+
+   In [1]: alpha = ['a', 'b', 'c', 'd', 'e', 'f']
+
+Indexing
+~~~~~~~~
+
+Index notation occurs when only one character appears in the square brackets
+
+* The first value:
+
+.. ipython::
+
+   In [1]: alpha[0]
+
+* The last value:
+
+.. ipython::
+
+   In [1]: alpha[-1]
+
+
+* All the values
+
+.. ipython::
+
+   In [1]: alpha[:]
+
+
+Slicing
+~~~~~~~
+
+The slice notation occurs with a number included to the left or right of the colon
+
+* From the second value onwards:
+
+.. ipython::
+
+   In [1]: alpha[1:]
+
+* From the third value onwards:
+
+.. ipython::
+
+   In [1]: alpha[2:]
+
+
+* All the values except the last value:
+
+.. ipython::
+
+   In [1]: alpha[0:-1]
+
+   In [2]: alpha[:-1]
+
+* All the values except the last two values:
+
+.. ipython::
+
+   In [1]: alpha[0:-2]
+
+   In [2]: alpha[:-2]
+
+* From the second value to the second to last value:
+
+.. ipython::
+
+   In [1]: alpha[1:-1]
+
 Assigning Array Variables
 -------------------------
 

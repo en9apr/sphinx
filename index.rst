@@ -83,6 +83,14 @@ Numerical Methods for Non-linear Hyperbolic Equations:
    conservative_form
    explicit_implicit_non_linear_convection
 
+Linear Solvers:
+
+.. toctree::
+   :maxdepth: 1
+   :numbered: 4
+
+   tri_diagonal_matrix
+
 ============
 CFD Projects
 ============
@@ -112,7 +120,7 @@ CFD Projects in iPython Notebooks on GitHub
 * `Leapfrog, Lax-Friedrichs and Lax-Wendroff Schemes: Linear Convection & Heaviside Function <http://nbviewer.ipython.org/github/en9apr/sphinx/blob/master/New_Convection_Schemes.ipynb>`_
 * `Leapfrog, Lax-Friedrichs and Lax-Wendroff Schemes: Linear Convection & Sinusoidal Function <http://nbviewer.ipython.org/github/en9apr/sphinx/blob/master/Linear_Convection_Sinusoidal_Input.ipynb>`_
 * `Lax-Friedrichs, Lax-Wendroff and MacCormack Schemes: Non-linear Convection <http://nbviewer.ipython.org/github/en9apr/sphinx/blob/master/Lax_Friedrichs_Lax_Wendroff_and_MacCormack_Schemes.ipynb>`_
-
+* `1D Fourier's Equation with Jacobi and Crank-Nicholson <http://nbviewer.ipython.org/github/en9apr/sphinx/blob/master/Crank_Nicholson.ipynb>`_
 ==========
 Literature
 ==========
