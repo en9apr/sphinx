@@ -1,0 +1,22 @@
+===========================
+ Strong and Weak Solutions
+===========================
+
+Conservative and Non-conservative Form of the Burgers' Equation
+===============================================================
+
+Conservative Form
+-----------------
+
+.. math:: {\partial u \over \partial t} + {\partial F \over \partial x} = 0
+
+where:
+
+.. math:: F = {u^2 \over 2}
+
+Non-Conservative Form
+---------------------
+
+.. math:: {\partial u \over \partial t} + u {\partial u \over \partial x} = 0
+
+

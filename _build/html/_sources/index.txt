@@ -82,6 +82,7 @@ Numerical Methods for Non-linear Hyperbolic Equations:
    multi_step_methods
    conservative_form
    explicit_implicit_non_linear_convection
+   strong_weak
 
 Linear Solvers:
 

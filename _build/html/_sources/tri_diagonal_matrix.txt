@@ -13,6 +13,7 @@ The **Tri-Diagonal Matrix Algorithm (TDMA)** or **Thomas Algorithm** is a simpli
 Advantages of the TDMA:
 
 * Less calculations and less storage than Gaussian Elimination
+* Cost per unknown is independent of the number of unknowns (good scaling w.r.t. iterative methods)
 
 Disadvantages of the TDMA:
 
@@ -125,6 +126,53 @@ Re-arrangement of the Matrix
    d_{nx-3} \\
    d_{nx-2}-c_{nx-2} B_{nx-1} \\
    \end{bmatrix}
+
+Step 1
+------
+
+Forward elimination adjusts the upper diagonal & RHS and eliminates lower diagonal:
+
+.. math:: i = 1 \qquad \Rightarrow \qquad c_1^* = {c_1 \over b_1}
+
+.. math:: i = 2,3,... nx-3 \quad \Rightarrow \quad c_i^* = {c_i \over {b_i - c_{i-1}^* a_i}}
+
+.. math:: i = 1 \quad \Rightarrow \quad d_1^* = {d_1 \over b_1}
+
+.. math:: i = 2,3,... nx-2 \quad \Rightarrow \quad d_i^* = {{d_i-d_{i-1}^* a_i} \over {b_i - c_{i-1}^* a_i}}
+
+Step 2
+------
+
+The solution is then obtained by back substitution:
+
+.. math:: i = nx-2 \qquad \Rightarrow \qquad u_{nx-2} = d_{nx-2}^*
+
+.. math:: i = nx-3, nx-4,... 1 \quad \Rightarrow \quad u_i = d_i^* - c_i^* u_{i+1}
+
+Alternative Step 1
+------------------
+
+Forward elimination adjusts the central diagonal & RHS and elminates the lower diagonal (From Ferziger and Peric)
+
+The line at i=1 is unchanged
+
+.. math:: i = 2,3,... nx-2 \quad \Rightarrow \quad b_i^* = b_i - { {a_i c_{i-1}} \over {b_{i-1}}}
+
+.. math:: i = 2,3,... nx-2 \quad \Rightarrow \quad d_i^* = d_i - {{a_{i} d_{i-1}^* } \over {d_{i-1}}}
+
+Alternative Step 2
+------------------
+
+The solution is obtained by back substitution:
+
+Ferziger and Peric omitted this, but it's true:
+
+.. math:: i = nx-2 \qquad \Rightarrow \qquad u_{nx-2} = {d_{nx-2}^* \over b_{nx-2}^*}
+
+Then
+
+.. math:: i = nx-3, nx-4,... 1 \quad \Rightarrow \quad u_i = {{d_i^* - {c_{i}^*}u_{i+1}} \over b_{i}^*}
+
 
 How does this translate into Python Code?
 =========================================
