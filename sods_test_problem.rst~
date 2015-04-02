@@ -1,0 +1,42 @@
+===========================================
+Sod's Test Problems: The Shock Tube Problem
+===========================================
+
+This set of problems was introduced in the paper by Gary Sod in 1978 called "A Survey of Several Finite Difference Methods for Systems of Nonlinear Hyperbolic Conservation Laws"
+
+Assumptions
+===========
+
+* 1D
+* Infinitely long tube
+* Inviscid fluid
+
+Initial Conditions
+==================
+
+.. figure:: _images/IC_sod.png
+   :align: center
+   :scale: 70%
+
+* At t=0 the diaphragm is instantanesouly removed (this is done experimentally using a a thin sheet of metal and a small explosion bursts the diaphragm)
+
+Regions of Flow
+===============
+
+* The bursting of the diaphragm causes a 1D unsteady flow consisting of a steadily moving **shock** - A Riemann Problem.
+* 1 discontonuity is present 
+* The solution is self-similar with 5 regions
+
+.. figure:: _images/solution_sod.png
+   :align: center
+   :scale: 70%
+
+* Region 1 & 5 - left and right sides of initial states
+* Region 2 - expansion or rarefaction wave (x-dependent state)
+* Regions 3 & 4 - steady states independent of x within the region (uniform)
+
+Contact line between 3 and 4 separates fluids of different entropy (but they have the same pressure and velocity) i.e. it's an invisible line - e.g. two fluids one side with water and the other with dye - contact line is moving.
+
+.. math:: p_3 = p_4
+
+.. math:: u_3 = u_4
