@@ -103,6 +103,15 @@ Finite Difference Solution of the Euler Equations:
    the_riemann_problem
    sods_test_problem
 
+The Finite Volume Method:
+
+.. toctree::
+   :maxdepth: 1
+   :numbered: 4
+
+   finite_volume_method_1
+
+
 ============
 CFD Projects
 ============

@@ -1,0 +1,26 @@
+==========================
+The Finite Volume Method 1
+==========================
+
+.. contents::
+   :local:
+
+About the Finite Difference Method
+==================================
+
+* Could try Euler Equations using Finite Difference Method
+
+Reason for Not Implementing Finite Volume Method in Python
+==========================================================
+
+* Finite Volume Method gets most of it's advantages from being used on unstructured meshes - lots of bookeeping in order to show Finite Volume vs Finite Difference **Question: except in 1D e.g. Godunov's method?**
+
+Finite Volume Method Advantages
+===============================
+
+* No requirements on the grid to be **structured** - suitable for complex geometries. Structured means:
+
+.. figure:: _images/grid.png
+   :align: center
+   :scale: 70%
+   
