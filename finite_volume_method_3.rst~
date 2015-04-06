@@ -1,0 +1,53 @@
+==============================
+ Finite Volume Discretisation
+==============================
+
+Spatial Discretisation
+======================
+
+Types of Spatial Discretisation
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The FVM can handle any type of spatial discretisation
+
+For the same mesh we can have different definitions of the control volumes:
+
+Cell-centred scheme
+--------------------
+
+* Control volumes are identical with the grid cells
+* Flow variables are located at the centres of grid cells - :math:`u_{i,j}` is an average
+* Grid lines define control volume surfaces
+
+Vertex-centred scheme
+---------------------
+
+Cell-vertex scheme
+------------------
+
+* Control volume is 4 cells that share the grid point :math:`i,j`
+* Control volumes may overlap
+
+Hexagonal control volume scheme
+-------------------------------
+
+Trapezoidal control volume scheme
+---------------------------------
+
+For a Consistent Scheme
+~~~~~~~~~~~~~~~~~~~~~~~
+
+1) The sum of all CVs should cover the entire domain
+2) The sub-domains :math:`\Omega_J` are allowed to overlap, as long as each portion of the surface :math:`S_J` have to appear as a part of an **even** number of different surfaces - so that the fluxes cancel out, e.g. 2 surfaces, 4 surfaces etc.
+3) Computing fluxes along a cell surface has to be independent of the cell in which they are considered - **ensures that conservation is satisfied**
+
+Numerical Discretisation
+========================
+
+Apply integral conservation law to subvolumes (:math:`\Omega_J` = subvolume)
+
+.. math:: {\partial \over \partial t} \int_{\Omega_J} U d \Omega + 
+          \oint_{\Omega_J} \mathbf{F} \cdot d \mathbf{S} = 
+          \int_{\Omega_J} Q d \Omega
+
+Discrete Form

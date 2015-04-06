@@ -110,7 +110,8 @@ The Finite Volume Method:
    :numbered: 4
 
    finite_volume_method_1
-
+   finite_volume_method_2
+   finite_volume_method_3
 
 ============
 CFD Projects
@@ -206,6 +207,12 @@ Programming Tips
 Helpful Links
 =============
 
+.. toctree::
+   :hidden:
+
+   unicode
+
 * `MathJax Syntax <http://en.wikipedia.org/wiki/Help:Displaying_a_formula>`_
+* `Unicode <http://www.thevisualroom.com/unicode.html>`_
 * :ref:`search`
 
