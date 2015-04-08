@@ -1,6 +1,9 @@
-==============================
- Finite Volume Discretisation
-==============================
+=============================================================
+2D Finite Volume Method: Spatial and Numerical Discretisation
+=============================================================
+
+.. contents::
+   :local:
 
 Spatial Discretisation
 ======================

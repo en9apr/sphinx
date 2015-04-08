@@ -8,7 +8,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>3. Finite Volume Discretisation &mdash; The Visual Room</title>
+    <title>3. 2D Finite Volume Method: Spatial and Numerical Discretisation &mdash; The Visual Room</title>
     
     <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -29,13 +29,13 @@
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/theme_extras.js"></script>
     <link rel="top" title="The Visual Room" href="index.html" />
-    <link rel="next" title="1. 1D First-order Linear Convection - The Wave Equation" href="linear_convection.html" />
+    <link rel="next" title="4. 2D Finite Volume Method: Non-Cartesian Grids" href="finite_volume_method_4.html" />
     <link rel="prev" title="2. Conservative Discretisation" href="finite_volume_method_2.html" /> 
   </head>
   <body>
       <div class="header"><h1 class="heading"><a href="index.html">
           <span>The Visual Room</span></a></h1>
-        <h2 class="heading"><span>3. Finite Volume Discretisation</span></h2>
+        <h2 class="heading"><span>3. 2D Finite Volume Method: Spatial and Numerical Discretisation</span></h2>
       </div>
       <div class="topnav">
       
@@ -44,23 +44,39 @@
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a href="linear_convection.html">1. 1D First-order Linear Convection - The Wave Equation</a>&#160;&#160;»
+        <a href="finite_volume_method_4.html">4. 2D Finite Volume Method: Non-Cartesian Grids</a>&#160;&#160;»
         </p>
 
       </div>
       <div class="content">
         
         
-  <div class="section" id="finite-volume-discretisation">
-<h1>3. Finite Volume Discretisation<a class="headerlink" href="#finite-volume-discretisation" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="d-finite-volume-method-spatial-and-numerical-discretisation">
+<h1>3. 2D Finite Volume Method: Spatial and Numerical Discretisation<a class="headerlink" href="#d-finite-volume-method-spatial-and-numerical-discretisation" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#spatial-discretisation" id="id1">Spatial Discretisation</a><ul>
+<li><a class="reference internal" href="#types-of-spatial-discretisation" id="id2">Types of Spatial Discretisation</a><ul>
+<li><a class="reference internal" href="#cell-centred-scheme" id="id3">Cell-centred scheme</a></li>
+<li><a class="reference internal" href="#cell-vertex-scheme" id="id4">Cell-vertex scheme</a></li>
+<li><a class="reference internal" href="#hexagonal-control-volume-scheme" id="id5">Hexagonal control volume scheme</a></li>
+<li><a class="reference internal" href="#trapezoidal-control-volume-scheme" id="id6">Trapezoidal control volume scheme</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#for-a-consistent-scheme" id="id7">For a Consistent Scheme</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#numerical-discretisation" id="id8">Numerical Discretisation</a></li>
+</ul>
+</div>
 <div class="section" id="spatial-discretisation">
-<h2>3.1. Spatial Discretisation<a class="headerlink" href="#spatial-discretisation" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id1">3.1. Spatial Discretisation</a><a class="headerlink" href="#spatial-discretisation" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="types-of-spatial-discretisation">
-<h3>3.1.1. Types of Spatial Discretisation<a class="headerlink" href="#types-of-spatial-discretisation" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id2">3.1.1. Types of Spatial Discretisation</a><a class="headerlink" href="#types-of-spatial-discretisation" title="Permalink to this headline">¶</a></h3>
 <p>The FVM can handle any type of spatial discretisation</p>
 <p>For the same mesh we can have different definitions of the control volumes:</p>
 <div class="section" id="cell-centred-scheme">
-<h4>3.1.1.1. Cell-centred scheme<a class="headerlink" href="#cell-centred-scheme" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id3">3.1.1.1. Cell-centred scheme</a><a class="headerlink" href="#cell-centred-scheme" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li>Control volumes are identical with the grid cells</li>
 <li>Flow variables are located at the centres of grid cells - <span class="math">\(q_{i,j}\)</span> and <span class="math">\(u_{i,j}\)</span> can be an average</li>
@@ -71,7 +87,7 @@
 </div>
 </div>
 <div class="section" id="cell-vertex-scheme">
-<h4>3.1.1.2. Cell-vertex scheme<a class="headerlink" href="#cell-vertex-scheme" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id4">3.1.1.2. Cell-vertex scheme</a><a class="headerlink" href="#cell-vertex-scheme" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li>Control volume is 4 cells that share the grid point <span class="math">\(i,j\)</span></li>
 <li>Control volumes may overlap</li>
@@ -81,20 +97,20 @@
 </div>
 </div>
 <div class="section" id="hexagonal-control-volume-scheme">
-<h4>3.1.1.3. Hexagonal control volume scheme<a class="headerlink" href="#hexagonal-control-volume-scheme" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id5">3.1.1.3. Hexagonal control volume scheme</a><a class="headerlink" href="#hexagonal-control-volume-scheme" title="Permalink to this headline">¶</a></h4>
 <div class="figure align-center">
 <a class="reference internal image-reference" href="_images/hexagonal_scheme.png"><img alt="_images/hexagonal_scheme.png" src="_images/hexagonal_scheme.png" style="width: 420.0px; height: 420.0px;" /></a>
 </div>
 </div>
 <div class="section" id="trapezoidal-control-volume-scheme">
-<h4>3.1.1.4. Trapezoidal control volume scheme<a class="headerlink" href="#trapezoidal-control-volume-scheme" title="Permalink to this headline">¶</a></h4>
+<h4><a class="toc-backref" href="#id6">3.1.1.4. Trapezoidal control volume scheme</a><a class="headerlink" href="#trapezoidal-control-volume-scheme" title="Permalink to this headline">¶</a></h4>
 <div class="figure align-center">
 <a class="reference internal image-reference" href="_images/trapezoidal_scheme.png"><img alt="_images/trapezoidal_scheme.png" src="_images/trapezoidal_scheme.png" style="width: 420.0px; height: 420.0px;" /></a>
 </div>
 </div>
 </div>
 <div class="section" id="for-a-consistent-scheme">
-<h3>3.1.2. For a Consistent Scheme<a class="headerlink" href="#for-a-consistent-scheme" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id7">3.1.2. For a Consistent Scheme</a><a class="headerlink" href="#for-a-consistent-scheme" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic simple">
 <li>The sum of all CVs should cover the entire domain</li>
 <li>The sub-domains <span class="math">\(\Omega_J\)</span> are allowed to overlap, as long as each portion of the surface <span class="math">\(S_J\)</span> have to appear as a part of an <strong>even</strong> number of different surfaces - so that the fluxes cancel out, e.g. 2 surfaces, 4 surfaces etc.</li>
@@ -103,7 +119,7 @@
 </div>
 </div>
 <div class="section" id="numerical-discretisation">
-<h2>3.2. Numerical Discretisation<a class="headerlink" href="#numerical-discretisation" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id8">3.2. Numerical Discretisation</a><a class="headerlink" href="#numerical-discretisation" title="Permalink to this headline">¶</a></h2>
 <p>Apply integral conservation law to subvolumes (<span class="math">\(\Omega_J\)</span> = sub-volume, <span class="math">\(S_J\)</span> = sub-surface)</p>
 <div class="math" id="equation-1">
 <span class="eqno">(1)</span>\[{\partial \over \partial t} \int_{\Omega_J} U d \Omega +
@@ -156,7 +172,7 @@
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a href="linear_convection.html">1. 1D First-order Linear Convection - The Wave Equation</a>&#160;&#160;»
+        <a href="finite_volume_method_4.html">4. 2D Finite Volume Method: Non-Cartesian Grids</a>&#160;&#160;»
         </p>
 
       </div>

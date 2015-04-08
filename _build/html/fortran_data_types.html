@@ -1,0 +1,339 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>1. Data Types &mdash; The Visual Room</title>
+    
+    <link rel="stylesheet" href="_static/haiku.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/print.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/theme_extras.js"></script>
+    <link rel="top" title="The Visual Room" href="index.html" />
+    <link rel="next" title="Unicode" href="unicode.html" />
+    <link rel="prev" title="1. Programming Tips 1" href="programming_tips_1.html" /> 
+  </head>
+  <body>
+      <div class="header"><h1 class="heading"><a href="index.html">
+          <span>The Visual Room</span></a></h1>
+        <h2 class="heading"><span>1. Data Types</span></h2>
+      </div>
+      <div class="topnav">
+      
+        <p>
+        «&#160;&#160;<a href="programming_tips_1.html">1. Programming Tips 1</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="unicode.html">Unicode</a>&#160;&#160;»
+        </p>
+
+      </div>
+      <div class="content">
+        
+        
+  <div class="section" id="data-types">
+<h1>1. Data Types<a class="headerlink" href="#data-types" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><a class="reference internal" href="#primitive-data-types" id="id1">Primitive Data Types</a><ul>
+<li><a class="reference internal" href="#initialisation" id="id2">Initialisation</a></li>
+<li><a class="reference internal" href="#specifications" id="id3">Specifications</a><ul>
+<li><a class="reference internal" href="#byte" id="id4">1 Byte</a></li>
+<li><a class="reference internal" href="#range-of-values" id="id5">Range of Values</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#attributes" id="id6">Attributes</a></li>
+<li><a class="reference internal" href="#substrings" id="id7">Substrings</a></li>
+<li><a class="reference internal" href="#initialise-a-range-of-values-to-the-same-value" id="id8">Initialise a Range of Values to the Same Value</a></li>
+<li><a class="reference internal" href="#fortran-77" id="id9">Fortran 77</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="primitive-data-types">
+<h2><a class="toc-backref" href="#id1">1.1. Primitive Data Types</a><a class="headerlink" href="#primitive-data-types" title="Permalink to this headline">¶</a></h2>
+<p>Fortran does not initialise values, these will be &#8220;undefined&#8221; unless you give an initial value:</p>
+<div class="section" id="initialisation">
+<h3><a class="toc-backref" href="#id2">1.1.1. Initialisation</a><a class="headerlink" href="#initialisation" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Data Type</th>
+<th class="head">Meaning</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">integer(specs)</span> <span class="pre">[,</span> <span class="pre">attrs]</span> <span class="pre">::</span> <span class="pre">i</span> <span class="pre">=</span> <span class="pre">1,</span> <span class="pre">j</span> <span class="pre">=</span> <span class="pre">0</span></tt></td>
+<td><strong>Integer</strong> declaration with default 4 bytes (with list and initialisation)</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">real(specs)</span> <span class="pre">[,</span> <span class="pre">attrs]</span> <span class="pre">::</span> <span class="pre">r</span> <span class="pre">=</span> <span class="pre">1.0e-7</span></tt></td>
+<td><strong>Real</strong> declaration with 4 bytes</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">double</span> <span class="pre">precision(specs)</span> <span class="pre">[,</span> <span class="pre">attrs]</span> <span class="pre">::</span> <span class="pre">d</span> <span class="pre">=</span> <span class="pre">2.0d-12</span></tt></td>
+<td><strong>Double precision</strong> declaration with default 8 bytes, equivalent to real(kind=8)</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">complex(specs)</span> <span class="pre">[,</span> <span class="pre">attrs]</span> <span class="pre">::</span> <span class="pre">z</span> <span class="pre">=</span> <span class="pre">cmplx(1.0,</span> <span class="pre">1.0)</span></tt></td>
+<td><strong>Complex</strong> declaration with default 8 bytes</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">logical(specs)</span> <span class="pre">[,</span> <span class="pre">attrs]</span> <span class="pre">::</span> <span class="pre">b</span> <span class="pre">=</span> <span class="pre">.true.,</span> <span class="pre">c</span> <span class="pre">=</span> <span class="pre">.false.</span></tt></td>
+<td><strong>Boolean</strong> declaration with default 4 bytes</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">character(specs)</span> <span class="pre">[,</span> <span class="pre">attrs]</span> <span class="pre">::</span> <span class="pre">s</span> <span class="pre">=</span> <span class="pre">&quot;string_1&quot;,</span> <span class="pre">t</span> <span class="pre">=</span> <span class="pre">&quot;string_2&quot;</span></tt></td>
+<td><strong>String</strong> declaration with default 1 byte</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="specifications">
+<h3><a class="toc-backref" href="#id3">1.1.2. Specifications</a><a class="headerlink" href="#specifications" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="44%" />
+<col width="56%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Specification</th>
+<th class="head">Meaning</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">real(kind</span> <span class="pre">=</span> <span class="pre">8)</span> <span class="pre">::</span> <span class="pre">value</span> <span class="pre">=</span> <span class="pre">3.142d20</span></tt></td>
+<td>Real declaration with <strong>8 bytes</strong> (double precision)</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">character(len</span> <span class="pre">=</span> <span class="pre">10)</span> <span class="pre">::</span> <span class="pre">s</span> <span class="pre">=</span> <span class="pre">&quot;string_1&quot;</span></tt></td>
+<td>String declaration with length <strong>10 bytes</strong> (10 characters)</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">character(len</span> <span class="pre">=</span> <span class="pre">*)</span> <span class="pre">::</span> <span class="pre">s</span></tt></td>
+<td>String declaration with length <strong>declared elsewhere</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="byte">
+<h4><a class="toc-backref" href="#id4">1.1.2.1. 1 Byte</a><a class="headerlink" href="#byte" title="Permalink to this headline">¶</a></h4>
+<p>Specifications are based on bytes and a byte is:</p>
+<ul class="simple">
+<li><strong>One</strong> character</li>
+<li>An integer between <strong>-128 and 127</strong></li>
+<li>The logical values <tt class="docutils literal"><span class="pre">.true.</span></tt> and <tt class="docutils literal"><span class="pre">.false.</span></tt></li>
+</ul>
+</div>
+<div class="section" id="range-of-values">
+<h4><a class="toc-backref" href="#id5">1.1.2.2. Range of Values</a><a class="headerlink" href="#range-of-values" title="Permalink to this headline">¶</a></h4>
+<p>The meaning of the specifications is in the possible range of values:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Exponent</th>
+<th class="head">Range</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">integer</span> <span class="pre">::</span> <span class="pre">short_integer</span> <span class="pre">=</span> <span class="pre">3000</span></tt></td>
+<td>-2147483648 to 2147483647</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">integer(kind=8)</span> <span class="pre">::</span> <span class="pre">long_integer</span> <span class="pre">=</span> <span class="pre">30000000</span></tt></td>
+<td>-9223372036854775808 to 9223372036854775807</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">real</span> <span class="pre">::</span> <span class="pre">small_number</span> <span class="pre">=</span> <span class="pre">1.0e10</span></tt></td>
+<td>1.175E-38 to 3.402E+38</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">real(kind=8)</span> <span class="pre">::</span> <span class="pre">large_number</span> <span class="pre">=</span> <span class="pre">1.0d50</span></tt></td>
+<td>2.225D-308 to 1.798D+308</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="attributes">
+<h3><a class="toc-backref" href="#id6">1.1.3. Attributes</a><a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h3>
+<p>Quite a lot of the time we use double precision, so I used that is this example</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="44%" />
+<col width="56%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Specification</th>
+<th class="head">Meaning</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">real(kind=8),</span> <span class="pre">parameter</span>&nbsp; <span class="pre">::</span> <span class="pre">pi</span> <span class="pre">=</span> <span class="pre">3.142</span></tt></td>
+<td>Real <strong>constant</strong> with 4 bytes</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">real(kind=8),</span> <span class="pre">intent(in)</span> <span class="pre">::</span> <span class="pre">x</span></tt></td>
+<td>Real variable is expected as an <strong>input</strong></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">real(kind=8),</span> <span class="pre">intent(out)</span> <span class="pre">::</span> <span class="pre">y</span></tt></td>
+<td>Real variable is expected as an <strong>output</strong></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">real(kind=8),</span> <span class="pre">external</span> <span class="pre">::</span> <span class="pre">f</span></tt></td>
+<td>Result of function f is real and is evaluated <strong>externally</strong> (like a lambda function in python - function names used as arguments to other functions)</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">real(kind=8),</span> <span class="pre">dimension(n)</span> <span class="pre">::</span> <span class="pre">array_one</span></tt></td>
+<td>Array of <strong>rank</strong> 1 (1D), with <strong>shape</strong> 1xn containing real values and <strong>extent</strong> of possible indices is 1 (default)</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">real(kind=8),</span> <span class="pre">dimension(0:10)</span> <span class="pre">::</span> <span class="pre">array_two</span></tt></td>
+<td>Array of <strong>rank</strong> 1 (1D), with <strong>shape</strong> 1x11 containing real values and <strong>extent</strong> of possible indices 0 to 10</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">real(kind=8),</span> <span class="pre">allocatable,</span> <span class="pre">dimension(:,:)</span> <span class="pre">::</span> <span class="pre">array_three</span></tt></td>
+<td>Array of <strong>rank</strong> 2 (2D), with <strong>shape determined elsewhere</strong> containing real values and <strong>extent</strong> of possible indices is 1 (default)</td>
+</tr>
+</tbody>
+</table>
+<p>Other attributes I haven&#8217;t used yet include:</p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">pointer</span></tt> - behaves like <tt class="docutils literal"><span class="pre">allocatable</span></tt>, except it uses existing memory not new memory</li>
+<li><tt class="docutils literal"><span class="pre">target</span></tt> - the variables to which <tt class="docutils literal"><span class="pre">pointer</span></tt> is associated</li>
+<li><tt class="docutils literal"><span class="pre">public</span></tt> - variables are used externally</li>
+<li><tt class="docutils literal"><span class="pre">private</span></tt> - variables are used internally</li>
+<li><tt class="docutils literal"><span class="pre">optional</span></tt> - used if the variable is optional on the argument list</li>
+<li><tt class="docutils literal"><span class="pre">save</span></tt> - to preserve values between successive calls</li>
+<li><tt class="docutils literal"><span class="pre">intrinsic</span></tt> - not sure what this means - <strong>how could you declare an intrinsic variable?</strong></li>
+</ul>
+</div>
+<div class="section" id="substrings">
+<h3><a class="toc-backref" href="#id7">1.1.4. Substrings</a><a class="headerlink" href="#substrings" title="Permalink to this headline">¶</a></h3>
+<p>Let&#8217;s say we had the string <tt class="docutils literal"><span class="pre">string</span> <span class="pre">=</span> <span class="pre">&quot;12345&quot;</span></tt></p>
+<p>To extract elements, use <tt class="docutils literal"><span class="pre">string(start</span> <span class="pre">:</span> <span class="pre">end)</span></tt> where start and end are the indices of the start and end values.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Code</th>
+<th class="head">Meaning</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">s1</span> <span class="pre">=</span> <span class="pre">string(2:5)</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">&quot;2345&quot;</span></tt></td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">s2</span> <span class="pre">=</span> <span class="pre">string(:3)</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">&quot;123&quot;</span></tt></td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">s3</span> <span class="pre">=</span> <span class="pre">string(3:)</span></tt></td>
+<td><tt class="docutils literal"><span class="pre">&quot;345&quot;</span></tt></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="initialise-a-range-of-values-to-the-same-value">
+<h3><a class="toc-backref" href="#id8">1.1.5. Initialise a Range of Values to the Same Value</a><a class="headerlink" href="#initialise-a-range-of-values-to-the-same-value" title="Permalink to this headline">¶</a></h3>
+<p>Fortran allows us to <strong>initialise a range of values</strong> to the same value using the <tt class="docutils literal"><span class="pre">data</span></tt> statement:</p>
+<p><tt class="docutils literal"><span class="pre">data</span> <span class="pre">nlist</span> <span class="pre">/clist/</span></tt></p>
+<ul class="simple">
+<li><tt class="docutils literal"><span class="pre">nlist</span></tt> is a list of names of variables, arrays, elements of arrays, substrings, implied do lists</li>
+<li><tt class="docutils literal"><span class="pre">clist</span></tt> is either <tt class="docutils literal"><span class="pre">c</span></tt> or <tt class="docutils literal"><span class="pre">r*c</span></tt> where <tt class="docutils literal"><span class="pre">r</span></tt> is the number of values to initialise and <tt class="docutils literal"><span class="pre">c</span></tt> is the value to give</li>
+</ul>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Code</th>
+<th class="head">Meaning</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">data</span> <span class="pre">i,</span> <span class="pre">j,</span> <span class="pre">k</span> <span class="pre">/3*0/</span></tt></td>
+<td>Initialise all the values to zero</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="fortran-77">
+<h3><a class="toc-backref" href="#id9">1.1.6. Fortran 77</a><a class="headerlink" href="#fortran-77" title="Permalink to this headline">¶</a></h3>
+<p>To be able to read old Fortran, we might need these definitions. I am filling this table out to decode Ferzinger and Peric&#8217;s notation (which uses old formatting)</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Data Type</th>
+<th class="head">Meaning</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">integer</span></tt>  <tt class="docutils literal"><span class="pre">integer*2</span></tt>  <tt class="docutils literal"><span class="pre">integer*4</span></tt>  <tt class="docutils literal"><span class="pre">integer*8</span></tt></td>
+<td>Integer with 2, 4 and 8 bytes (4 is default)</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">real</span></tt>  <tt class="docutils literal"><span class="pre">real*4</span></tt>  <tt class="docutils literal"><span class="pre">real*8</span></tt>  <tt class="docutils literal"><span class="pre">real*16</span></tt></td>
+<td>Real with 4, 8 and 16 bytes (4 is default)</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">double</span> <span class="pre">precision</span></tt></td>
+<td>Double precision 8 bytes</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">complex</span></tt>  <tt class="docutils literal"><span class="pre">complex*8</span></tt>  <tt class="docutils literal"><span class="pre">complex*16</span></tt>  <tt class="docutils literal"><span class="pre">complex*32</span></tt></td>
+<td>Complex with 8, 16 and 32 bytes (8 is default)</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">logical</span></tt>  <tt class="docutils literal"><span class="pre">logical*1</span></tt>  <tt class="docutils literal"><span class="pre">logical*2</span></tt>  <tt class="docutils literal"><span class="pre">logical*4</span></tt>  <tt class="docutils literal"><span class="pre">logical*8</span></tt></td>
+<td>Boolean with 1, 2, 4 and 8 bytes (4 is default)</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">character</span></tt>  <tt class="docutils literal"><span class="pre">character*n</span></tt></td>
+<td>String with n bytes (1 is default)</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">parameter(a</span> <span class="pre">=</span> <span class="pre">2.12,</span> <span class="pre">b</span> <span class="pre">=</span> <span class="pre">5.32)</span></tt></td>
+<td>List of typeless constants (bad for giving type)</td>
+</tr>
+<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">common</span> <span class="pre">a,</span> <span class="pre">b,</span> <span class="pre">c</span></tt></td>
+<td>List of global variables (bad for encapsulation)</td>
+</tr>
+<tr class="row-even"><td><tt class="docutils literal"><span class="pre">dimension</span> <span class="pre">a(n)</span></tt></td>
+<td>Array declaration</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+      </div>
+      <div class="bottomnav">
+      
+        <p>
+        «&#160;&#160;<a href="programming_tips_1.html">1. Programming Tips 1</a>
+        &#160;&#160;::&#160;&#160;
+        <a class="uplink" href="index.html">Contents</a>
+        &#160;&#160;::&#160;&#160;
+        <a href="unicode.html">Unicode</a>&#160;&#160;»
+        </p>
+
+      </div>
+
+    <div class="footer">
+        &copy; Copyright 2014, Andrew Roberts.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.1.3.
+    </div>
+  </body>
+</html>

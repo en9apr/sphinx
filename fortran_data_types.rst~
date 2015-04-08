@@ -1,0 +1,19 @@
+==========
+Data Types
+==========
+
+.. contents::
+   :local:
+
+Primative Data Types
+====================
+
+.. list-table::
+   :header-rows: 1
+   :widths: 25 25
+
+   * - Data Type
+     - Meaning
+   * - `integer(specification) [attributes,] :: i=1`
+     - Integer with initialisation
+
