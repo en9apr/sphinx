@@ -29,7 +29,7 @@
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <script type="text/javascript" src="_static/theme_extras.js"></script>
     <link rel="top" title="The Visual Room" href="index.html" />
-    <link rel="next" title="Unicode" href="unicode.html" />
+    <link rel="next" title="2. Operators" href="fortran_operators.html" />
     <link rel="prev" title="1. Programming Tips 1" href="programming_tips_1.html" /> 
   </head>
   <body>
@@ -44,7 +44,7 @@
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a href="unicode.html">Unicode</a>&#160;&#160;»
+        <a href="fortran_operators.html">2. Operators</a>&#160;&#160;»
         </p>
 
       </div>
@@ -56,25 +56,42 @@
 <div class="contents local topic" id="contents">
 <ul class="simple">
 <li><a class="reference internal" href="#primitive-data-types" id="id1">Primitive Data Types</a><ul>
-<li><a class="reference internal" href="#initialisation" id="id2">Initialisation</a></li>
-<li><a class="reference internal" href="#specifications" id="id3">Specifications</a><ul>
-<li><a class="reference internal" href="#byte" id="id4">1 Byte</a></li>
-<li><a class="reference internal" href="#range-of-values" id="id5">Range of Values</a></li>
+<li><a class="reference internal" href="#declaration-and-initialisation" id="id2">Declaration and Initialisation</a><ul>
+<li><a class="reference internal" href="#specifications" id="id3">Specifications</a></li>
+<li><a class="reference internal" href="#attributes" id="id4">Attributes</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#attributes" id="id6">Attributes</a></li>
-<li><a class="reference internal" href="#substrings" id="id7">Substrings</a></li>
-<li><a class="reference internal" href="#initialise-a-range-of-values-to-the-same-value" id="id8">Initialise a Range of Values to the Same Value</a></li>
-<li><a class="reference internal" href="#fortran-77" id="id9">Fortran 77</a></li>
+<li><a class="reference internal" href="#substrings" id="id5">Substrings</a></li>
+<li><a class="reference internal" href="#initialise-a-range-of-values-to-the-same-value" id="id6">Initialise a Range of Values to the Same Value</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#array-manipulation" id="id7">Array Manipulation</a><ul>
+<li><a class="reference internal" href="#array-initialisation-and-allocation" id="id8">Array Initialisation and Allocation</a></li>
+<li><a class="reference internal" href="#array-extraction" id="id9">Array Extraction</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#reference-section" id="id10">Reference Section</a><ul>
+<li><a class="reference internal" href="#derived-data-types" id="id11">Derived Data Types</a><ul>
+<li><a class="reference internal" href="#definition" id="id12">Definition</a></li>
+<li><a class="reference internal" href="#instantiatation" id="id13">Instantiatation</a></li>
+<li><a class="reference internal" href="#constructor" id="id14">Constructor</a></li>
+<li><a class="reference internal" href="#how-to-access-values" id="id15">How to Access Values</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#pointers" id="id16">Pointers</a></li>
+<li><a class="reference internal" href="#fortran-77" id="id17">Fortran 77</a></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="primitive-data-types">
 <h2><a class="toc-backref" href="#id1">1.1. Primitive Data Types</a><a class="headerlink" href="#primitive-data-types" title="Permalink to this headline">¶</a></h2>
-<p>Fortran does not initialise values, these will be &#8220;undefined&#8221; unless you give an initial value:</p>
-<div class="section" id="initialisation">
-<h3><a class="toc-backref" href="#id2">1.1.1. Initialisation</a><a class="headerlink" href="#initialisation" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="declaration-and-initialisation">
+<h3><a class="toc-backref" href="#id2">1.1.1. Declaration and Initialisation</a><a class="headerlink" href="#declaration-and-initialisation" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li>Fortran does not initialise values, these will be &#8220;undefined&#8221; unless you give an initial value</li>
+<li>It&#8217;s best to <strong>separate declaration from initialisation</strong>, because intialisation and declaration together creates a static variable (which may not be what you intended)</li>
+</ul>
 <table border="1" class="docutils">
 <colgroup>
 <col width="50%" />
@@ -86,29 +103,49 @@
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">integer(specs)</span> <span class="pre">[,</span> <span class="pre">attrs]</span> <span class="pre">::</span> <span class="pre">i</span> <span class="pre">=</span> <span class="pre">1,</span> <span class="pre">j</span> <span class="pre">=</span> <span class="pre">0</span></tt></td>
-<td><strong>Integer</strong> declaration with default 4 bytes (with list and initialisation)</td>
+<tr class="row-even"><td><div class="first last highlight-python"><pre>integer(specs) [, attrs] :: i, j
+i = 1
+j = 0</pre>
+</div>
+</td>
+<td><strong>Integer</strong> declaration with default 4 bytes and initialisation</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">real(specs)</span> <span class="pre">[,</span> <span class="pre">attrs]</span> <span class="pre">::</span> <span class="pre">r</span> <span class="pre">=</span> <span class="pre">1.0e-7</span></tt></td>
-<td><strong>Real</strong> declaration with 4 bytes</td>
+<tr class="row-odd"><td><div class="first last highlight-python"><pre>real(specs) [, attrs] :: r
+r = 1.0e-7</pre>
+</div>
+</td>
+<td><strong>Real</strong> declaration with default 4 bytes and initialisation (e is for single precision exponent)</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">double</span> <span class="pre">precision(specs)</span> <span class="pre">[,</span> <span class="pre">attrs]</span> <span class="pre">::</span> <span class="pre">d</span> <span class="pre">=</span> <span class="pre">2.0d-12</span></tt></td>
-<td><strong>Double precision</strong> declaration with default 8 bytes, equivalent to real(kind=8)</td>
+<tr class="row-even"><td><div class="first last highlight-python"><pre>double precision(specs) [, attrs] :: d
+d = 2.0d-12</pre>
+</div>
+</td>
+<td><strong>Double precision</strong> declaration with default 8 bytes, equivalent to real(kind=8) and initialisation (d means double precision exponent)</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">complex(specs)</span> <span class="pre">[,</span> <span class="pre">attrs]</span> <span class="pre">::</span> <span class="pre">z</span> <span class="pre">=</span> <span class="pre">cmplx(1.0,</span> <span class="pre">1.0)</span></tt></td>
-<td><strong>Complex</strong> declaration with default 8 bytes</td>
+<tr class="row-odd"><td><div class="first last highlight-python"><pre>complex(specs) [, attrs] :: z
+z = cmplx(1.0, 1.0)</pre>
+</div>
+</td>
+<td><strong>Complex</strong> declaration with default 8 bytes and initialisation</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">logical(specs)</span> <span class="pre">[,</span> <span class="pre">attrs]</span> <span class="pre">::</span> <span class="pre">b</span> <span class="pre">=</span> <span class="pre">.true.,</span> <span class="pre">c</span> <span class="pre">=</span> <span class="pre">.false.</span></tt></td>
-<td><strong>Boolean</strong> declaration with default 4 bytes</td>
+<tr class="row-even"><td><div class="first last highlight-python"><pre>logical(specs) [, attrs] :: b, c
+b = .true.
+c = .false.</pre>
+</div>
+</td>
+<td><strong>Boolean</strong> declaration with default 4 bytes and initialisation</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">character(specs)</span> <span class="pre">[,</span> <span class="pre">attrs]</span> <span class="pre">::</span> <span class="pre">s</span> <span class="pre">=</span> <span class="pre">&quot;string_1&quot;,</span> <span class="pre">t</span> <span class="pre">=</span> <span class="pre">&quot;string_2&quot;</span></tt></td>
-<td><strong>String</strong> declaration with default 1 byte</td>
+<tr class="row-odd"><td><div class="first last highlight-python"><pre>character(specs) [, attrs] :: s, t
+s = "string_1"
+t = 'string_2'</pre>
+</div>
+</td>
+<td><strong>String</strong> declaration with default 1 byte and initialisation (can use single or double quote)</td>
 </tr>
 </tbody>
 </table>
-</div>
 <div class="section" id="specifications">
-<h3><a class="toc-backref" href="#id3">1.1.2. Specifications</a><a class="headerlink" href="#specifications" title="Permalink to this headline">¶</a></h3>
+<h4><a class="toc-backref" href="#id3">1.1.1.1. Specifications</a><a class="headerlink" href="#specifications" title="Permalink to this headline">¶</a></h4>
 <table border="1" class="docutils">
 <colgroup>
 <col width="44%" />
@@ -120,28 +157,31 @@
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">real(kind</span> <span class="pre">=</span> <span class="pre">8)</span> <span class="pre">::</span> <span class="pre">value</span> <span class="pre">=</span> <span class="pre">3.142d20</span></tt></td>
+<tr class="row-even"><td><div class="first last highlight-python"><pre>real(kind = 8) :: value
+value = 3.142d20</pre>
+</div>
+</td>
 <td>Real declaration with <strong>8 bytes</strong> (double precision)</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">character(len</span> <span class="pre">=</span> <span class="pre">10)</span> <span class="pre">::</span> <span class="pre">s</span> <span class="pre">=</span> <span class="pre">&quot;string_1&quot;</span></tt></td>
+<tr class="row-odd"><td><div class="first last highlight-python"><pre>character(len = 10) :: s
+s = "string_1"</pre>
+</div>
+</td>
 <td>String declaration with length <strong>10 bytes</strong> (10 characters)</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">character(len</span> <span class="pre">=</span> <span class="pre">*)</span> <span class="pre">::</span> <span class="pre">s</span></tt></td>
+<tr class="row-even"><td><div class="first last highlight-python"><pre>character(len = *) :: s</pre>
+</div>
+</td>
 <td>String declaration with length <strong>declared elsewhere</strong></td>
 </tr>
 </tbody>
 </table>
-<div class="section" id="byte">
-<h4><a class="toc-backref" href="#id4">1.1.2.1. 1 Byte</a><a class="headerlink" href="#byte" title="Permalink to this headline">¶</a></h4>
 <p>Specifications are based on bytes and a byte is:</p>
 <ul class="simple">
 <li><strong>One</strong> character</li>
 <li>An integer between <strong>-128 and 127</strong></li>
 <li>The logical values <tt class="docutils literal"><span class="pre">.true.</span></tt> and <tt class="docutils literal"><span class="pre">.false.</span></tt></li>
 </ul>
-</div>
-<div class="section" id="range-of-values">
-<h4><a class="toc-backref" href="#id5">1.1.2.2. Range of Values</a><a class="headerlink" href="#range-of-values" title="Permalink to this headline">¶</a></h4>
 <p>The meaning of the specifications is in the possible range of values:</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -154,24 +194,31 @@
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">integer</span> <span class="pre">::</span> <span class="pre">short_integer</span> <span class="pre">=</span> <span class="pre">3000</span></tt></td>
+<tr class="row-even"><td><div class="first last highlight-python"><pre>integer :: short_integer</pre>
+</div>
+</td>
 <td>-2147483648 to 2147483647</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">integer(kind=8)</span> <span class="pre">::</span> <span class="pre">long_integer</span> <span class="pre">=</span> <span class="pre">30000000</span></tt></td>
+<tr class="row-odd"><td><div class="first last highlight-python"><pre>integer(kind=8) :: long_integer</pre>
+</div>
+</td>
 <td>-9223372036854775808 to 9223372036854775807</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">real</span> <span class="pre">::</span> <span class="pre">small_number</span> <span class="pre">=</span> <span class="pre">1.0e10</span></tt></td>
+<tr class="row-even"><td><div class="first last highlight-python"><pre>real :: small_number</pre>
+</div>
+</td>
 <td>1.175E-38 to 3.402E+38</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">real(kind=8)</span> <span class="pre">::</span> <span class="pre">large_number</span> <span class="pre">=</span> <span class="pre">1.0d50</span></tt></td>
+<tr class="row-odd"><td><div class="first last highlight-python"><pre>real(kind=8) :: large_number</pre>
+</div>
+</td>
 <td>2.225D-308 to 1.798D+308</td>
 </tr>
 </tbody>
 </table>
 </div>
-</div>
 <div class="section" id="attributes">
-<h3><a class="toc-backref" href="#id6">1.1.3. Attributes</a><a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h3>
+<h4><a class="toc-backref" href="#id4">1.1.1.2. Attributes</a><a class="headerlink" href="#attributes" title="Permalink to this headline">¶</a></h4>
 <p>Quite a lot of the time we use double precision, so I used that is this example</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -184,26 +231,51 @@
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">real(kind=8),</span> <span class="pre">parameter</span>&nbsp; <span class="pre">::</span> <span class="pre">pi</span> <span class="pre">=</span> <span class="pre">3.142</span></tt></td>
+<tr class="row-even"><td><div class="first last highlight-python"><pre>real(kind=8), parameter  :: pi
+pi = 3.142</pre>
+</div>
+</td>
 <td>Real <strong>constant</strong> with 4 bytes</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">real(kind=8),</span> <span class="pre">intent(in)</span> <span class="pre">::</span> <span class="pre">x</span></tt></td>
+<tr class="row-odd"><td><div class="first last highlight-python"><pre>real(kind=8), intent(in) :: x</pre>
+</div>
+</td>
 <td>Real variable is expected as an <strong>input</strong></td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">real(kind=8),</span> <span class="pre">intent(out)</span> <span class="pre">::</span> <span class="pre">y</span></tt></td>
+<tr class="row-even"><td><div class="first last highlight-python"><pre>real(kind=8), intent(out) :: y</pre>
+</div>
+</td>
 <td>Real variable is expected as an <strong>output</strong></td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">real(kind=8),</span> <span class="pre">external</span> <span class="pre">::</span> <span class="pre">f</span></tt></td>
+<tr class="row-odd"><td><div class="first last highlight-python"><pre>real(kind=8), external :: f</pre>
+</div>
+</td>
 <td>Result of function f is real and is evaluated <strong>externally</strong> (like a lambda function in python - function names used as arguments to other functions)</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">real(kind=8),</span> <span class="pre">dimension(n)</span> <span class="pre">::</span> <span class="pre">array_one</span></tt></td>
-<td>Array of <strong>rank</strong> 1 (1D), with <strong>shape</strong> 1xn containing real values and <strong>extent</strong> of possible indices is 1 (default)</td>
+<tr class="row-even"><td><div class="first last highlight-python"><pre>real(kind=8), dimension(n) :: array_one</pre>
+</div>
+</td>
+<td>Array of <strong>rank</strong> 1 (1D), with <strong>shape</strong> nx1 containing real values and <strong>extent</strong> of possible indices are 1 (default)</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">real(kind=8),</span> <span class="pre">dimension(0:10)</span> <span class="pre">::</span> <span class="pre">array_two</span></tt></td>
-<td>Array of <strong>rank</strong> 1 (1D), with <strong>shape</strong> 1x11 containing real values and <strong>extent</strong> of possible indices 0 to 10</td>
+<tr class="row-odd"><td><div class="first last highlight-python"><pre>real(kind=8), dimension(10) :: array_two</pre>
+</div>
+</td>
+<td>Array of <strong>rank</strong> 1 (1D), with <strong>shape</strong> 10x1 containing real values and <strong>extent</strong> of possible indices are 1 to 10</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">real(kind=8),</span> <span class="pre">allocatable,</span> <span class="pre">dimension(:,:)</span> <span class="pre">::</span> <span class="pre">array_three</span></tt></td>
+<tr class="row-even"><td><div class="first last highlight-python"><pre>real(kind=8), dimension(0:10) :: array_three</pre>
+</div>
+</td>
+<td>Array of <strong>rank</strong> 1 (1D), with <strong>shape</strong> 11x1 containing real values and <strong>extent</strong> of possible indices 0 to 10</td>
+</tr>
+<tr class="row-odd"><td><div class="first last highlight-python"><pre>real(kind=8), allocatable, dimension(:,:) :: array_three</pre>
+</div>
+</td>
 <td>Array of <strong>rank</strong> 2 (2D), with <strong>shape determined elsewhere</strong> containing real values and <strong>extent</strong> of possible indices is 1 (default)</td>
+</tr>
+<tr class="row-even"><td><div class="first last highlight-python"><pre>real(kind=8),  dimension(-1:1,3) :: array_four</pre>
+</div>
+</td>
+<td>Array of <strong>rank</strong> 2 (2D), with <strong>shape</strong> 3x2 containing real values and <strong>extent</strong> of possible indices is -1 to 1 and 1 to 3</td>
 </tr>
 </tbody>
 </table>
@@ -218,10 +290,14 @@
 <li><tt class="docutils literal"><span class="pre">intrinsic</span></tt> - not sure what this means - <strong>how could you declare an intrinsic variable?</strong></li>
 </ul>
 </div>
+</div>
 <div class="section" id="substrings">
-<h3><a class="toc-backref" href="#id7">1.1.4. Substrings</a><a class="headerlink" href="#substrings" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id5">1.1.2. Substrings</a><a class="headerlink" href="#substrings" title="Permalink to this headline">¶</a></h3>
 <p>Let&#8217;s say we had the string <tt class="docutils literal"><span class="pre">string</span> <span class="pre">=</span> <span class="pre">&quot;12345&quot;</span></tt></p>
-<p>To extract elements, use <tt class="docutils literal"><span class="pre">string(start</span> <span class="pre">:</span> <span class="pre">end)</span></tt> where start and end are the indices of the start and end values.</p>
+<p>To extract elements, use:</p>
+<div class="highlight-python"><pre>string(start : end)</pre>
+</div>
+<p>where start and end are the indices of the start and end values.</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="50%" />
@@ -233,22 +309,29 @@
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">s1</span> <span class="pre">=</span> <span class="pre">string(2:5)</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">&quot;2345&quot;</span></tt></td>
+<tr class="row-even"><td><div class="first last highlight-python"><pre>s1 = string(2:5)</pre>
+</div>
+</td>
+<td>2345</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">s2</span> <span class="pre">=</span> <span class="pre">string(:3)</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">&quot;123&quot;</span></tt></td>
+<tr class="row-odd"><td><div class="first last highlight-python"><pre>s2 = string(:3)</pre>
+</div>
+</td>
+<td>123</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">s3</span> <span class="pre">=</span> <span class="pre">string(3:)</span></tt></td>
-<td><tt class="docutils literal"><span class="pre">&quot;345&quot;</span></tt></td>
+<tr class="row-even"><td><div class="first last highlight-python"><pre>s3 = string(3:)</pre>
+</div>
+</td>
+<td>345</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="section" id="initialise-a-range-of-values-to-the-same-value">
-<h3><a class="toc-backref" href="#id8">1.1.5. Initialise a Range of Values to the Same Value</a><a class="headerlink" href="#initialise-a-range-of-values-to-the-same-value" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id6">1.1.3. Initialise a Range of Values to the Same Value</a><a class="headerlink" href="#initialise-a-range-of-values-to-the-same-value" title="Permalink to this headline">¶</a></h3>
 <p>Fortran allows us to <strong>initialise a range of values</strong> to the same value using the <tt class="docutils literal"><span class="pre">data</span></tt> statement:</p>
-<p><tt class="docutils literal"><span class="pre">data</span> <span class="pre">nlist</span> <span class="pre">/clist/</span></tt></p>
+<div class="highlight-python"><pre>data nlist /clist/</pre>
+</div>
 <ul class="simple">
 <li><tt class="docutils literal"><span class="pre">nlist</span></tt> is a list of names of variables, arrays, elements of arrays, substrings, implied do lists</li>
 <li><tt class="docutils literal"><span class="pre">clist</span></tt> is either <tt class="docutils literal"><span class="pre">c</span></tt> or <tt class="docutils literal"><span class="pre">r*c</span></tt> where <tt class="docutils literal"><span class="pre">r</span></tt> is the number of values to initialise and <tt class="docutils literal"><span class="pre">c</span></tt> is the value to give</li>
@@ -264,14 +347,204 @@
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">data</span> <span class="pre">i,</span> <span class="pre">j,</span> <span class="pre">k</span> <span class="pre">/3*0/</span></tt></td>
+<tr class="row-even"><td><div class="first last highlight-python"><pre>data i, j, k /3*0/</pre>
+</div>
+</td>
 <td>Initialise all the values to zero</td>
 </tr>
 </tbody>
 </table>
 </div>
+</div>
+<div class="section" id="array-manipulation">
+<h2><a class="toc-backref" href="#id7">1.2. Array Manipulation</a><a class="headerlink" href="#array-manipulation" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="array-initialisation-and-allocation">
+<h3><a class="toc-backref" href="#id8">1.2.1. Array Initialisation and Allocation</a><a class="headerlink" href="#array-initialisation-and-allocation" title="Permalink to this headline">¶</a></h3>
+<p>In the Primative Types section, we declared arrays and sometimes gave them shape. We also need to be able to give arrays initial values and if the shape is deferred, specify the shape using <tt class="docutils literal"><span class="pre">allocate</span></tt>.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Code</th>
+<th class="head">Meaning</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><div class="first last highlight-python"><pre>real(kind=8), dimension(1:10) :: a
+a = 0.d0</pre>
+</div>
+</td>
+<td><strong>Real array</strong> declaration and intialisation of an array to zero</td>
+</tr>
+<tr class="row-odd"><td><div class="first last highlight-python"><pre>real(kind=8):: a(5,5), b(-4,16)
+a = 1.d0
+b = 0.d0</pre>
+</div>
+</td>
+<td><strong>Real array</strong> declaration and intialisation of different shaped arrays in the same line</td>
+</tr>
+<tr class="row-even"><td><div class="first last highlight-python"><pre>a = real(10,15); data a/150*0.0/</pre>
+</div>
+</td>
+<td><strong>Real array</strong> declaration and intialisation of 150 values to zero using Fortran 77 data statement (note semi-colon separates commands). This is a bit dodgy because the type of real values is not specified.</td>
+</tr>
+<tr class="row-odd"><td><div class="first last highlight-python"><pre>a = (/100.0d0, 200.0d0, 300.0d0/)</pre>
+</div>
+</td>
+<td><strong>Array constructor</strong></td>
+</tr>
+<tr class="row-even"><td><div class="first last highlight-python"><pre>a = (/100.0d0, A(1:5, :), 300.0d0/)</pre>
+</div>
+</td>
+<td><strong>Array constructor</strong> with 5 rows of A included in the order (in the same row as 100 and 300)</td>
+</tr>
+<tr class="row-odd"><td><div class="first last highlight-python"><pre>a = (/ (j**3), j = 1, m /)</pre>
+</div>
+</td>
+<td><strong>Implied do array constructor</strong> useful if the array contains a formula</td>
+</tr>
+<tr class="row-even"><td><div class="first last highlight-python"><pre>allocate(b(5,5), c(2,1), stat = allocate_status)
+if(allocate_status /= 0) STOP "***Not enough memory ***"</pre>
+</div>
+</td>
+<td><strong>Array allocation</strong> where stat can be used to see if there is enough memory</td>
+</tr>
+<tr class="row-odd"><td><div class="first last highlight-python"><div class="highlight"><pre><span class="n">deallocate</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+</pre></div>
+</div>
+</td>
+<td><strong>Array deallocation</strong> to free up memory if the array isn&#8217;t needed</td>
+</tr>
+<tr class="row-even"><td><div class="first last highlight-python"><pre>x = 1/y + c(2:6,10)</pre>
+</div>
+</td>
+<td><strong>Array expression</strong> (haven&#8217;t used this one)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="array-extraction">
+<h3><a class="toc-backref" href="#id9">1.2.2. Array Extraction</a><a class="headerlink" href="#array-extraction" title="Permalink to this headline">¶</a></h3>
+<p>Let&#8217;s say we had the array</p>
+<div class="highlight-python"><pre>real(kind=8), dimension(m, n) :: a</pre>
+</div>
+<p>To extract elements, use <tt class="docutils literal"><span class="pre">a(start</span> <span class="pre">:</span> <span class="pre">end</span> <span class="pre">[:stride])</span></tt> where start and end are the indices of the start and end values and stride is optional, default is stride = 1.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Code</th>
+<th class="head">Meaning</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><div class="first last highlight-python"><pre>a(:, 2)</pre>
+</div>
+</td>
+<td>Read as &#8220;All rows, (in the) second column&#8221;</td>
+</tr>
+<tr class="row-odd"><td><div class="first last highlight-python"><pre>a(m, :)</pre>
+</div>
+</td>
+<td>Read as &#8220;All columns, (in the) last row&#8221;</td>
+</tr>
+<tr class="row-even"><td><div class="first last highlight-python"><pre>a(:10, :10)</pre>
+</div>
+</td>
+<td>Leading 10 by 10 submatrix</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="section" id="reference-section">
+<h2><a class="toc-backref" href="#id10">1.3. Reference Section</a><a class="headerlink" href="#reference-section" title="Permalink to this headline">¶</a></h2>
+<p>This section contains methods I haven&#8217;t used, but they are useful in order to interpret the code of others.</p>
+<div class="section" id="derived-data-types">
+<h3><a class="toc-backref" href="#id11">1.3.1. Derived Data Types</a><a class="headerlink" href="#derived-data-types" title="Permalink to this headline">¶</a></h3>
+<p>I haven&#8217;t used these, but, this is how a Dervied Data Type is used:</p>
+<div class="section" id="definition">
+<h4><a class="toc-backref" href="#id12">1.3.1.1. Definition</a><a class="headerlink" href="#definition" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python"><pre>type person
+    character(len=10) :: name
+    integer :: age
+end type person</pre>
+</div>
+</div>
+<div class="section" id="instantiatation">
+<h4><a class="toc-backref" href="#id13">1.3.1.2. Instantiatation</a><a class="headerlink" href="#instantiatation" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python"><div class="highlight"><pre><span class="nb">type</span><span class="p">(</span><span class="n">person</span><span class="p">)</span> <span class="o">=</span> <span class="n">person_one</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="constructor">
+<h4><a class="toc-backref" href="#id14">1.3.1.3. Constructor</a><a class="headerlink" href="#constructor" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">person_one</span> <span class="o">=</span> <span class="n">person</span><span class="p">(</span><span class="s">&quot;andrew&quot;</span><span class="p">,</span> <span class="mi">24</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="how-to-access-values">
+<h4><a class="toc-backref" href="#id15">1.3.1.4. How to Access Values</a><a class="headerlink" href="#how-to-access-values" title="Permalink to this headline">¶</a></h4>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">name</span> <span class="o">=</span> <span class="n">person_one</span><span class="o">%</span><span class="n">name</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="pointers">
+<h3><a class="toc-backref" href="#id16">1.3.2. Pointers</a><a class="headerlink" href="#pointers" title="Permalink to this headline">¶</a></h3>
+<p>I haven&#8217;t used Pointers in Fortran, but this is a list of commands:</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="50%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Code</th>
+<th class="head">Meaning</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><div class="first last highlight-python"><pre>real, pointer :: p</pre>
+</div>
+</td>
+<td>Pointer declaration</td>
+</tr>
+<tr class="row-odd"><td><div class="first last highlight-python"><pre>real, pointer :: a(:)</pre>
+</div>
+</td>
+<td>Array declaration (with deferred shape)</td>
+</tr>
+<tr class="row-even"><td><div class="first last highlight-python"><pre>real, target :: t</pre>
+</div>
+</td>
+<td>Defines the target</td>
+</tr>
+<tr class="row-odd"><td><div class="first last highlight-python"><pre>p =&gt; t</pre>
+</div>
+</td>
+<td>Set pointer p to t</td>
+</tr>
+<tr class="row-even"><td><div class="first last highlight-python"><div class="highlight"><pre><span class="n">associated</span><span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="p">[</span><span class="n">target</span><span class="p">])</span>
+</pre></div>
+</div>
+</td>
+<td>Pointer associated with target</td>
+</tr>
+<tr class="row-odd"><td><div class="first last highlight-python"><div class="highlight"><pre><span class="n">nullify</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+</pre></div>
+</div>
+</td>
+<td>Associate the pointer with NULL</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="section" id="fortran-77">
-<h3><a class="toc-backref" href="#id9">1.1.6. Fortran 77</a><a class="headerlink" href="#fortran-77" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id17">1.3.3. Fortran 77</a><a class="headerlink" href="#fortran-77" title="Permalink to this headline">¶</a></h3>
 <p>To be able to read old Fortran, we might need these definitions. I am filling this table out to decode Ferzinger and Peric&#8217;s notation (which uses old formatting)</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -284,31 +557,50 @@
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">integer</span></tt>  <tt class="docutils literal"><span class="pre">integer*2</span></tt>  <tt class="docutils literal"><span class="pre">integer*4</span></tt>  <tt class="docutils literal"><span class="pre">integer*8</span></tt></td>
+<tr class="row-even"><td><div class="first last highlight-python"><pre>integer integer*2 integer*4 integer*8</pre>
+</div>
+</td>
 <td>Integer with 2, 4 and 8 bytes (4 is default)</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">real</span></tt>  <tt class="docutils literal"><span class="pre">real*4</span></tt>  <tt class="docutils literal"><span class="pre">real*8</span></tt>  <tt class="docutils literal"><span class="pre">real*16</span></tt></td>
+<tr class="row-odd"><td><div class="first last highlight-python"><pre>real real*4 real*8 real*16</pre>
+</div>
+</td>
 <td>Real with 4, 8 and 16 bytes (4 is default)</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">double</span> <span class="pre">precision</span></tt></td>
+<tr class="row-even"><td><div class="first last highlight-python"><pre>double precision</pre>
+</div>
+</td>
 <td>Double precision 8 bytes</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">complex</span></tt>  <tt class="docutils literal"><span class="pre">complex*8</span></tt>  <tt class="docutils literal"><span class="pre">complex*16</span></tt>  <tt class="docutils literal"><span class="pre">complex*32</span></tt></td>
+<tr class="row-odd"><td><div class="first last highlight-python"><pre>complex complex*8 complex*16 complex*32</pre>
+</div>
+</td>
 <td>Complex with 8, 16 and 32 bytes (8 is default)</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">logical</span></tt>  <tt class="docutils literal"><span class="pre">logical*1</span></tt>  <tt class="docutils literal"><span class="pre">logical*2</span></tt>  <tt class="docutils literal"><span class="pre">logical*4</span></tt>  <tt class="docutils literal"><span class="pre">logical*8</span></tt></td>
+<tr class="row-even"><td><div class="first last highlight-python"><pre>logical logical*1 logical*2 logical*4 logical*8</pre>
+</div>
+</td>
 <td>Boolean with 1, 2, 4 and 8 bytes (4 is default)</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">character</span></tt>  <tt class="docutils literal"><span class="pre">character*n</span></tt></td>
+<tr class="row-odd"><td><div class="first last highlight-python"><pre>character character*n</pre>
+</div>
+</td>
 <td>String with n bytes (1 is default)</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">parameter(a</span> <span class="pre">=</span> <span class="pre">2.12,</span> <span class="pre">b</span> <span class="pre">=</span> <span class="pre">5.32)</span></tt></td>
+<tr class="row-even"><td><div class="first last highlight-python"><div class="highlight"><pre><span class="n">parameter</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+</pre></div>
+</div>
+</td>
 <td>List of typeless constants (bad for giving type)</td>
 </tr>
-<tr class="row-odd"><td><tt class="docutils literal"><span class="pre">common</span> <span class="pre">a,</span> <span class="pre">b,</span> <span class="pre">c</span></tt></td>
+<tr class="row-odd"><td><div class="first last highlight-python"><pre>common a, b, c</pre>
+</div>
+</td>
 <td>List of global variables (bad for encapsulation)</td>
 </tr>
-<tr class="row-even"><td><tt class="docutils literal"><span class="pre">dimension</span> <span class="pre">a(n)</span></tt></td>
+<tr class="row-even"><td><div class="first last highlight-python"><pre>dimension a(n)</pre>
+</div>
+</td>
 <td>Array declaration</td>
 </tr>
 </tbody>
@@ -326,7 +618,7 @@
         &#160;&#160;::&#160;&#160;
         <a class="uplink" href="index.html">Contents</a>
         &#160;&#160;::&#160;&#160;
-        <a href="unicode.html">Unicode</a>&#160;&#160;»
+        <a href="fortran_operators.html">2. Operators</a>&#160;&#160;»
         </p>
 
       </div>

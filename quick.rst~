@@ -1,0 +1,19 @@
+================
+The QUICK Scheme
+================
+
+Problem with Upwind Scheme
+==========================
+
+Upwind scheme is 1st order accurate, which creates numerical diffusion.
+
+Quick Scheme
+============
+
+To address this, B.P. Leonard (1979) introduced the "Quadratic Interpolation for Convective Kinetics" scheme (QUICK)
+
+QUICK uses a 3-point upstream weighted quadratic interpolation for the cell face values
+
+Example in 1D:
+
+

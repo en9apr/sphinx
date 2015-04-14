@@ -1,0 +1,23 @@
+======================================================================
+Examples of Using the Finite Volume Method with Different  Schemes
+======================================================================
+
+2D Diffusion Equation
+=====================
+
+For example - 2D diffusion equation:
+
+.. math:: {\partial u \over \partial t} + 
+          {\partial \over \partial x} \left( k {\partial u \over \partial x}  \right) +
+          {\partial \over \partial y} \left( k {\partial u \over \partial y}  \right) = 0
+
+Diffusive Flux:
+
+.. math:: f = k {\partial u \over \partial x}
+
+.. math:: g = k {\partial u \over \partial y}
+
+Balance of fluxes:
+
+.. figure:: _images/flux_balance_2.png
+
