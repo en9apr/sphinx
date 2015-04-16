@@ -125,6 +125,17 @@ General Stability Analysis
 
    time_integration_1
    matrix_method
+   spatial_numerical_stability
+
+==================
+Mathematical Notes
+==================
+
+.. toctree::
+   :maxdepth: 1
+   :numbered: 4
+
+   linear_algebra
 
 ============
 CFD Projects
@@ -236,6 +247,7 @@ Fortran
 
    fortran_data_types
    fortran_operators
+   fortran_constructs
 
 =============
 Helpful Links

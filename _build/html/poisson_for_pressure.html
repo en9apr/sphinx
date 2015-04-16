@@ -83,119 +83,13 @@
 <li>PROBLEM: There is no obvious way to couple the velocity and pressure (for compressible fluids we would have an equation of state, which provides a relation between density and pressure)</li>
 </ul>
 </div>
-</div>
-<div class="section" id="navier-stokes-equations-in-partial-notation">
-<h3>1.1.2. Navier Stokes Equations in Partial Notation<a class="headerlink" href="#navier-stokes-equations-in-partial-notation" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li>Divergence of a <strong>vector</strong> gives a scalar (via the scalar product)</li>
-<li>Divergence of a <strong>scalar</strong> doesn&#8217;t exist</li>
-<li>Gradient of a <strong>vector</strong> gives a vector</li>
-<li>Gradient of a <strong>scalar</strong> gives a scalar</li>
-</ul>
-<div class="section" id="d-vector-notation-divergence-operations">
-<h4>1.1.2.1. 2D Vector Notation:  Divergence Operations<a class="headerlink" href="#d-vector-notation-divergence-operations" title="Permalink to this headline">¶</a></h4>
-<table border="1" class="docutils">
-<colgroup>
-<col width="17%" />
-<col width="17%" />
-<col width="17%" />
-<col width="17%" />
-<col width="17%" />
-<col width="17%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Expression 1</th>
-<th class="head">Expression 2</th>
-<th class="head">Component 1a</th>
-<th class="head">Component 1b</th>
-<th class="head">Operation</th>
-<th class="head">Expansion</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><span class="math">\(\nabla \cdot \mathbf{u}(x,y)\)</span></td>
-<td><span class="math">\(\text{div } \mathbf{u}\)</span></td>
-<td><span class="math">\(\left[ {\partial \over {\partial x}},  {\partial \over {\partial y}} \right]\)</span></td>
-<td><span class="math">\(\begin{bmatrix} {u} \ \mathbf{i} \\ {v} \ \mathbf{j}  \end{bmatrix}\)</span></td>
-<td>Scalar Product</td>
-<td><span class="math">\({{\partial u} \over {\partial x}} + {{\partial v} \over {\partial y}}\)</span></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="section" id="d-vector-notation-gradient-operations">
-<h4>1.1.2.2. 2D Vector Notation:  Gradient Operations<a class="headerlink" href="#d-vector-notation-gradient-operations" title="Permalink to this headline">¶</a></h4>
-<table border="1" class="docutils">
-<colgroup>
-<col width="14%" />
-<col width="14%" />
-<col width="14%" />
-<col width="14%" />
-<col width="14%" />
-<col width="14%" />
-<col width="14%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head">Expression 1</th>
-<th class="head">Expression 2</th>
-<th class="head">Component 1a</th>
-<th class="head">Component 1b</th>
-<th class="head">Operation</th>
-<th class="head">Expansion-x</th>
-<th class="head">Expansion-y</th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td><span class="math">\({\partial \mathbf{u}(x,y)} \over t\)</span></td>
-<td>N/A</td>
-<td><span class="math">\({\partial \over {\partial t}}\)</span></td>
-<td><span class="math">\(u\)</span> or <span class="math">\(v\)</span></td>
-<td>Time Derivative</td>
-<td><span class="math">\({\partial u} \over {\partial t}\)</span></td>
-<td><span class="math">\({\partial v} \over {\partial t}\)</span></td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(\nabla \mathbf{u}(x,y)\)</span></td>
-<td><span class="math">\(\text{grad } \mathbf{u}\)</span></td>
-<td><span class="math">\(\left[ {\partial \over {\partial x}},  {\partial \over {\partial y}} \right]\)</span></td>
-<td><span class="math">\(\begin{bmatrix} {u} \ \mathbf{i} \\ {u} \ \mathbf{j}  \end{bmatrix}\)</span> or <span class="math">\(\begin{bmatrix} {v} \ \mathbf{i} \\ {v} \  \mathbf{j}  \end{bmatrix}\)</span></td>
-<td>Vector Gradient</td>
-<td><span class="math">\({{\partial u} \over {\partial x}} \mathbf{i} + {{\partial u} \over {\partial y}} \mathbf{j}\)</span></td>
-<td><span class="math">\({{\partial v} \over {\partial x}} \mathbf{i} + {{\partial v} \over {\partial y}} \mathbf{j}\)</span></td>
-</tr>
-<tr class="row-even"><td><span class="math">\(\mathbf{u} \cdot \nabla \mathbf{u}(x,y)\)</span></td>
-<td><span class="math">\(\mathbf{u} \cdot \text{grad } \mathbf{u}\)</span></td>
-<td><span class="math">\(\left[ u, v \right]\)</span></td>
-<td><span class="math">\(\begin{bmatrix} {{\partial u} \over {\partial x}} \mathbf{i} \\ {{\partial u} \over {\partial y}} \mathbf{j} \end{bmatrix}\)</span> or <span class="math">\(\begin{bmatrix} {{\partial v} \over {\partial x}} \mathbf{i} \\ {{\partial v} \over {\partial y}} \mathbf{j} \end{bmatrix}\)</span></td>
-<td>Scalar Product</td>
-<td><span class="math">\(u{{\partial u} \over {\partial x}} + v {{\partial u} \over {\partial y}}\)</span></td>
-<td><span class="math">\(u{{\partial v} \over {\partial x}} + v {{\partial v} \over {\partial y}}\)</span></td>
-</tr>
-<tr class="row-odd"><td><span class="math">\(\nabla p(x)\)</span> or <span class="math">\(\nabla p(y)\)</span></td>
-<td><span class="math">\(\text{grad } p\)</span></td>
-<td><span class="math">\({\partial \over {\partial x}}\)</span> or <span class="math">\({\partial \over {\partial y}}\)</span></td>
-<td><span class="math">\(p\)</span></td>
-<td>Scalar Gradient</td>
-<td><span class="math">\({{\partial p} \over {\partial x}}\)</span></td>
-<td><span class="math">\({{\partial p} \over {\partial y}}\)</span></td>
-</tr>
-<tr class="row-even"><td><span class="math">\(\nabla^2 \mathbf{u}(x,y)\)</span></td>
-<td>N/A</td>
-<td><span class="math">\(\left[ {\partial^2 \over {\partial x^2}},  {\partial^2 \over {\partial y^2}} \right]\)</span></td>
-<td><span class="math">\(\begin{bmatrix} {u} \ \mathbf{i} \\ {u} \ \mathbf{j}  \end{bmatrix}\)</span> or <span class="math">\(\begin{bmatrix} {v} \ \mathbf{i} \\ {v} \  \mathbf{j}  \end{bmatrix}\)</span></td>
-<td>Vector Gradient</td>
-<td><span class="math">\({{\partial^2 u} \over {\partial x^2}} \mathbf{i} + {{\partial^2 u} \over {\partial y^2}} \mathbf{j}\)</span></td>
-<td><span class="math">\({{\partial^2 v} \over {\partial x^2}} \mathbf{i} + {{\partial^2 v} \over {\partial y^2}} \mathbf{j}\)</span></td>
-</tr>
-</tbody>
-</table>
-</div>
 <div class="section" id="continuity-equation">
-<h4>1.1.2.3. Continuity Equation<a class="headerlink" href="#continuity-equation" title="Permalink to this headline">¶</a></h4>
+<h4>1.1.1.3. Continuity Equation<a class="headerlink" href="#continuity-equation" title="Permalink to this headline">¶</a></h4>
 <div class="math">
 \[{{\partial u} \over {\partial x}} + {{\partial v} \over {\partial y}} = 0\]</div>
 </div>
 <div class="section" id="momentum-equations">
-<h4>1.1.2.4. Momentum Equations<a class="headerlink" href="#momentum-equations" title="Permalink to this headline">¶</a></h4>
+<h4>1.1.1.4. Momentum Equations<a class="headerlink" href="#momentum-equations" title="Permalink to this headline">¶</a></h4>
 <div class="math">
 \[{{\partial u} \over {\partial t}} + {u {{\partial u} \over {\partial x}}} + v {{\partial u} \over {\partial y}} =
 -{1 \over \rho} {{\partial p} \over {\partial x}} +
@@ -207,7 +101,7 @@
 </div>
 </div>
 <div class="section" id="the-divergence-of-the-momentum-equation-in-partial-notation">
-<h3>1.1.3. The Divergence of the Momentum Equation in Partial Notation<a class="headerlink" href="#the-divergence-of-the-momentum-equation-in-partial-notation" title="Permalink to this headline">¶</a></h3>
+<h3>1.1.2. The Divergence of the Momentum Equation in Partial Notation<a class="headerlink" href="#the-divergence-of-the-momentum-equation-in-partial-notation" title="Permalink to this headline">¶</a></h3>
 <p>Now take the divergence of the momentum equations, if <span class="math">\(\mathbf{M}\)</span> is the &#8220;vector&#8221; of momentum equations, the divergence is:</p>
 <div class="math">
 \[\nabla \cdot \mathbf{M} = {\partial \over {\partial x}} M_x + {\partial \over {\partial y}} M_y\]</div>
@@ -226,7 +120,7 @@
 -{1 \over \rho} {{\partial^2 p} \over {\partial y^2}} +
 \nu \left( {{\partial^3 v} \over {\partial x^2 \partial y}} + {{\partial^3 v} \over {\partial y^3}} \right)\]</div>
 <div class="section" id="add-the-lhs">
-<h4>1.1.3.1. Add the LHS<a class="headerlink" href="#add-the-lhs" title="Permalink to this headline">¶</a></h4>
+<h4>1.1.2.1. Add the LHS<a class="headerlink" href="#add-the-lhs" title="Permalink to this headline">¶</a></h4>
 <div class="math">
 \[{\partial \over {\partial x}} M_x + {\partial \over {\partial y}} M_y =
 {\partial \over {\partial t}} \left( {{\partial u} \over {\partial x}} + {{\partial v} \over {\partial y}} \right) +
@@ -257,7 +151,7 @@ v {\partial \over {\partial y}} \left( {{\partial u} \over {\partial x}} +
 \left( {{\partial v} \over {\partial y}} \right)^2 = RHS\]</div>
 </div>
 <div class="section" id="add-the-rhs">
-<h4>1.1.3.2. Add the RHS<a class="headerlink" href="#add-the-rhs" title="Permalink to this headline">¶</a></h4>
+<h4>1.1.2.2. Add the RHS<a class="headerlink" href="#add-the-rhs" title="Permalink to this headline">¶</a></h4>
 <div class="math">
 \[-{1 \over \rho} \left( {{\partial^2 p} \over {\partial x^2}} + {{\partial^2 p} \over {\partial y^2}} \right)+
 \nu \left( {{\partial^3 u} \over {\partial x^3}} + {{\partial^3 u} \over {\partial x \partial y^2}} +
@@ -273,9 +167,9 @@ v {\partial \over {\partial y}} \left( {{\partial u} \over {\partial x}} +
 </div>
 </div>
 <div class="section" id="the-poisson-equation-in-vector-notation">
-<h3>1.1.4. The Poisson Equation in Vector Notation<a class="headerlink" href="#the-poisson-equation-in-vector-notation" title="Permalink to this headline">¶</a></h3>
+<h3>1.1.3. The Poisson Equation in Vector Notation<a class="headerlink" href="#the-poisson-equation-in-vector-notation" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="equate-lhs-and-rhs">
-<h4>1.1.4.1. Equate LHS and RHS<a class="headerlink" href="#equate-lhs-and-rhs" title="Permalink to this headline">¶</a></h4>
+<h4>1.1.3.1. Equate LHS and RHS<a class="headerlink" href="#equate-lhs-and-rhs" title="Permalink to this headline">¶</a></h4>
 <div class="math">
 \[-{1 \over \rho} \left( {{\partial^2 p} \over {\partial x^2}} + {{\partial^2 p} \over {\partial y^2}} \right) =
  \left( {{\partial u} \over {\partial x}} \right)^2 +
@@ -283,7 +177,7 @@ v {\partial \over {\partial y}} \left( {{\partial u} \over {\partial x}} +
 \left( {{\partial v} \over {\partial y}} \right)^2\]</div>
 </div>
 <div class="section" id="in-vector-form">
-<h4>1.1.4.2. In Vector Form<a class="headerlink" href="#in-vector-form" title="Permalink to this headline">¶</a></h4>
+<h4>1.1.3.2. In Vector Form<a class="headerlink" href="#in-vector-form" title="Permalink to this headline">¶</a></h4>
 <div class="math">
 \[\nabla^2 p = -f\]</div>
 <ul class="simple">

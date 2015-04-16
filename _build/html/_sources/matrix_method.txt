@@ -1,6 +1,6 @@
-===============================
-The Matrix Method for Stability
-===============================
+=========================================================
+The Matrix Method for Stability of Spatial Discretisation
+=========================================================
 
 .. contents::
    :local:

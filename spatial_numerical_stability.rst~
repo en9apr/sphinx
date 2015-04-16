@@ -1,0 +1,48 @@
+==============================================
+ Amplification of the Semi-discretized System
+==============================================
+
+Summary of Previous Work
+========================
+
+Recall the semi-discretised system:
+
+.. math:: {d \mathbf{u} \over dt}  = \mathbf{S} \cdot \mathbf{u} + Q
+   :label: 1
+Where:
+
+* :math:`\mathbf{S}` is the matrix representing the spatial discretisation (with BCs)
+* :math:`\mathbf{u}` is the vector of nodal values
+* :math:`Q` is a non-homogenous term related to the boundary conditions
+
+It's exact solution :math:`\overline{\mathbf{u}}` has a **"Model Decomposition"**:
+
+.. math:: \overline{\mathbf{u}}(t, \mathbf{x}) = 
+          \sum_{j=1}^N \overline{\mathbf{u}_j}(t) V^j(\mathbf{x})
+   :label: 2
+
+Inserting :eq:`2` into :eq:`1`:
+
+.. math:: {d /over dt} \left( \sum_{j=1}^N /mathbf{u}_j(t) V^j (\mathbf{x}) \right) = 
+          \mathbf{S} \cdot \sum_{j=1}^N /mathbf{u}_j(t) V^j (\mathbf{x}) + Q
+
+.. math:: \mathbf{S} \cdot V^j = \Omega_j V^j(\mathbf{x})
+
+So the equation for the time-dependent coefficients are:
+
+.. math:: {d \over dt} \overline{\mathbf{u}_j} = \Omega_j \overline{\mathbf{u}_j} + Q_j
+
+The homogeneous solution was :math:`\overline{\mathbf{u}}_{jT} = c_{0k}exp(\Omega_j t)` (the transient)
+
+This transient completely determines the stability of the semi-discretised system :eq:`1`
+
+We only look at this homogeneous part - assume :math:`Q=0`
+
+Stability Condition for Time Integration
+========================================
+
+At :math:`t=n \Delta t`, then
+
+.. math:: \overline{\mathbf{u}_T}(n \Delta t) = \sum_{j=1}^N \overline{\mathbf{u}_{Tj}}(n \Delta t) V^j = 
+                                                \sum_{j=1}^N \overline{\mathbf{u}_{j}^0} e^{\Omega_j n \Delta t} V^j
+
